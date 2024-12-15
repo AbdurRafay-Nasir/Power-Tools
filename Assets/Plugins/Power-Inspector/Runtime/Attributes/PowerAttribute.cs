@@ -1,4 +1,4 @@
-public class PowerAttribute : System.Attribute
+public class PowerAttribute : UnityEngine.PropertyAttribute
 {
     
 }
