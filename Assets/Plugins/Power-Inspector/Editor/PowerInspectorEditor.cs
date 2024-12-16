@@ -43,6 +43,35 @@ public class PowerInspectorEditor : Editor
             tree.Add(box);
         }
 
+        CommentAttribute commentAttribute = targetType.GetCustomAttribute<CommentAttribute>();
+        if (commentAttribute != null)
+        {
+            Box box = new Box();
+
+            ColorUtility.TryParseHtmlString("#416141", out Color color);
+            box.style.backgroundColor = color;
+            box.style.borderBottomLeftRadius = 5f;
+            box.style.borderBottomRightRadius = 5f;
+            box.style.borderTopLeftRadius = 5f;
+            box.style.borderTopRightRadius = 5f;
+
+            box.style.paddingLeft = 5f;
+            box.style.paddingRight = 5f;
+            box.style.paddingBottom = 5f;
+            box.style.paddingTop = 5f;
+
+            if (titleAttribute != null)
+                box.style.marginTop = 5f;
+
+            Label label = new Label(commentAttribute.comment);
+            label.style.color = Color.white;
+            label.style.whiteSpace = WhiteSpace.Normal;
+            label.style.overflow = Overflow.Visible;
+
+            box.Add(label);
+            tree.Add(box);
+        }
+
         foreach (var property in serializedProperties)
         {
             List<Attribute> allAttributes = GetAttributes(property);
