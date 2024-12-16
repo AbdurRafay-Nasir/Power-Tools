@@ -30,14 +30,17 @@ public class PowerInspectorEditor : Editor
         TitleAttribute titleAttribute = targetType.GetCustomAttribute<TitleAttribute>();
         if (titleAttribute != null)
         {
-            Label title = new Label();
+            Box box = new Box();
+            box.style.backgroundColor = titleAttribute.backgroundColor;
 
-            title.text = "Title";
-            title.style.alignSelf = Align.Center;
-            title.style.fontSize = 30f;
-            title.style.color = Color.red;
+            Label label = new Label(titleAttribute.titleText);
 
-            tree.Add(title);
+            label.style.alignSelf = titleAttribute.alignment;
+            label.style.fontSize = titleAttribute.fontSize;
+            label.style.color = titleAttribute.textColor;
+
+            box.Add(label);
+            tree.Add(box);
         }
 
         foreach (var property in serializedProperties)

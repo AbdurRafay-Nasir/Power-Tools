@@ -15,7 +15,7 @@ public class RequiredAttributeDrawer : PropertyDrawer
             return root;
         }
 
-        HelpBox helpbox = new HelpBox((attribute as RequiredAttribute).text, HelpBoxMessageType.Error);
+        HelpBox helpbox = new HelpBox((attribute as RequiredAttribute).message, HelpBoxMessageType.Error);
         PropertyField propertyField = new PropertyField(property);
 
         propertyField.RegisterValueChangeCallback(callback =>
