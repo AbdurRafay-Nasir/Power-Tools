@@ -25,7 +25,8 @@ public class PowerInspectorEditor : Editor
 
         VisualElement tree = new VisualElement();
         Stack<VisualElement> parentStack = new Stack<VisualElement>();
-        parentStack.Push(tree); // Root parent
+
+        VisualElement currentParent = tree;
 
         TitleAttribute titleAttribute = targetType.GetCustomAttribute<TitleAttribute>();
         if (titleAttribute != null)
@@ -76,24 +77,21 @@ public class PowerInspectorEditor : Editor
         {
             List<Attribute> allAttributes = GetAttributes(property);
 
-            // Track the current parent
-            VisualElement currentParent = parentStack.Peek();
-
             foreach (var attribute in allAttributes)
             {
                 if (attribute is IGroupAttribute groupAttribute)
                 {
-                    // Create the group UI
                     VisualElement group = groupAttribute.CreateGroupGUI();
-                    currentParent.Add(group); // Add the group to the current parent
-                    parentStack.Push(group);  // Push this group to the stack
-                    currentParent = group;    // Update current parent
+
+                    currentParent.Add(group);
+
+                    parentStack.Push(currentParent);
+                    currentParent = group;
                 }
-                else if (attribute is EndGroupAttribute)
+                else if (attribute is EndGroupAttribute endGroupAttribute)
                 {
-                    // Pop the parent stack safely, handling multiple EndGroups
-                    parentStack.Pop();
-                    currentParent = parentStack.Peek();
+                    for (int i = 0; i < endGroupAttribute.openGroupsToClose; i++)
+                        currentParent = parentStack.Pop();
                 }
             }
 

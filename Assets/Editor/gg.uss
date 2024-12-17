@@ -1,5 +1,8 @@
-.custom-label {
-    font-size: 20px;
-    -unity-font-style: bold;
-    color: rgb(68, 138, 255);
+.power-foldout {
+}
+
+.power-foldout > .unity-foldout__toggle {
+    background-color: rgb(36, 36, 36);
+    left: auto;
+    margin-left: -2px;
 }

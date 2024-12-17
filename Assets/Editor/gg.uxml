@@ -3,11 +3,13 @@
     <engine:GroupBox style="background-color: rgb(56, 56, 56); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-left-color: rgb(35, 35, 35); border-right-color: rgb(35, 35, 35); border-top-color: rgb(35, 35, 35); border-bottom-color: rgb(35, 35, 35); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
         <engine:Label text="Hello World! From UXML" enabled="true" />
         <editor:ToolbarSpacer style="padding-bottom: 3px;" />
-        <engine:Label text="Hello World! With Style" class="custom-label" />
         <editor:ToolbarSpacer style="padding-bottom: 3px;" />
         <engine:TextField label="Text Field" placeholder-text="filler text" />
         <editor:ToolbarSpacer style="padding-bottom: 3px;" />
         <engine:MinMaxSlider label="Min/Max Slider" value="10,12" low-limit="-10" high-limit="40" />
     </engine:GroupBox>
     <engine:Label text="Title" style="align-items: stretch; justify-content: flex-start; align-self: center; align-content: flex-start; font-size: 30px; color: rgb(255, 40, 40); -unity-text-align: upper-left; -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(255, 255, 255); text-shadow: 0.7px 0.8px 1.5px rgb(0, 0, 0); background-color: rgb(176, 238, 130); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;" />
+    <engine:Foldout text="Foldout" class="power-foldout">
+        <engine:Vector2Field label="Vec2 Field" />
+    </engine:Foldout>
 </engine:UXML>

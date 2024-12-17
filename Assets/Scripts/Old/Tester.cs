@@ -9,7 +9,7 @@ public class Tester : MonoBehaviour
     [FoldoutGroup, BoxGroup] public int i2;
     public int i3;
     [Required("Bruh, Plz assign this thing")] public GameObject obj;
-    [EndGroup, EndGroup] public int i4;
+    [EndGroup(2)] public int i4;
 
     [Space]
     [Title("I AM PROPERTY TITLE")]
