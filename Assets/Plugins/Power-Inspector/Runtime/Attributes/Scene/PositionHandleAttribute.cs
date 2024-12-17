@@ -1,6 +1,7 @@
-using UnityEngine;
+using System;
 
-public class PositionHandleAttribute
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+public class PositionHandleAttribute : SceneAttribute
 {
     
 }

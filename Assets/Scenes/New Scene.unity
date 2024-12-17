@@ -427,6 +427,8 @@ MonoBehaviour:
   obj: {fileID: 0}
   i4: 19
   i5: 0
+  target: {x: -2.7182026, y: 7.605987, z: 10}
+  target2: {x: 24.3, y: 1.8703232, z: 10}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ using UnityEditor.UIElements;
 public class PowerInspectorEditor : Editor
 {
     private List<SerializedProperty> serializedProperties = new();
+    private Dictionary<SerializedProperty, List<Attribute>> propertyAttributes = null;
 
     private bool hasUsePowerInspectorAttribute;
     private bool hasUsePowerSceneAttribute;
@@ -23,6 +24,27 @@ public class PowerInspectorEditor : Editor
 
         hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
         hasUsePowerSceneAttribute = targetType.GetCustomAttribute<UsePowerSceneAttribute>() != null;
+
+        if (hasUsePowerInspectorAttribute || hasUsePowerSceneAttribute)
+        {
+            propertyAttributes = new();
+
+            foreach (var property in serializedProperties)
+            {
+                propertyAttributes.Add(property, GetAttributes(property));
+            }
+        }
+
+        foreach (var entry in propertyAttributes)
+        {
+            List<Attribute> attributes = propertyAttributes[entry.Key];
+
+            foreach (var attr in attributes)
+            {
+                Debug.Log(entry.Key.name + ": " + attr.GetType().Name);
+            }
+        }
+
     }
 
     public override VisualElement CreateInspectorGUI()
@@ -124,11 +146,49 @@ public class PowerInspectorEditor : Editor
 
             foreach (var attribute in attributes)
             {
-                if (attribute is DrawLine)
+                if (attribute is DrawLineAttribute)
                 {
                     Handles.DrawLine(transform.position, property.vector3Value);
                 }
+
+                if (attribute is PositionHandleAttribute)
+                {
+                    FieldInfo field = targetType.GetField(property.name);
+
+                    if (property.propertyType == SerializedPropertyType.Vector3)
+                    {
+                        SetVector3Value(field);
+                    }
+                    else if (property.propertyType == SerializedPropertyType.Vector2)
+                    {
+                        SetVector2Value(field);
+                    }                 
+                }
             }
+        }
+    }
+
+    private void SetVector3Value(FieldInfo field) 
+    {
+        Vector3 oldVal = (Vector3)field.GetValue(target);
+        Vector3 newVal = Handles.PositionHandle(oldVal, Quaternion.identity);
+
+        if (newVal != oldVal)
+        {
+            Undo.RecordObject(target, "undo Vector3 value");
+            field.SetValue(target, newVal);
+        }
+    }
+
+    private void SetVector2Value(FieldInfo field)
+    {
+        Vector2 oldVal = (Vector2)field.GetValue(target);
+        Vector2 newVal = Handles.PositionHandle(oldVal, Quaternion.identity);
+
+        if (newVal != oldVal)
+        {
+            Undo.RecordObject(target, "undo Vector2 value");
+            field.SetValue(target, newVal);
         }
     }
 
