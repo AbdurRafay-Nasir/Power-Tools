@@ -20,7 +20,7 @@ public class PowerInspectorEditor : Editor
     {
         Type targetType = target.GetType();
 
-        if (targetType.GetCustomAttribute<UsePowerEditorAttribute>() == null)
+        if (targetType.GetCustomAttribute<UsePowerInspectorAttribute>() == null)
             return base.CreateInspectorGUI();
 
         VisualElement tree = new VisualElement();

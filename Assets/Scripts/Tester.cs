@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[UsePowerEditor]
+[UsePowerInspector]
 [Title("I AM A TITLE", alignment = UnityEngine.UIElements.Align.Center)]
 [Comment("This is a test comment, Write whatever you want here andjwa danwkdwn and anw knawn ")]
 public class Tester : MonoBehaviour
