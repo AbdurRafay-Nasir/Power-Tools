@@ -11,16 +11,23 @@ public class PowerInspectorEditor : Editor
 {
     private List<SerializedProperty> serializedProperties = new();
 
+    private bool hasUsePowerInspectorAttribute;
+    private bool hasUsePowerSceneAttribute;
+
+    private Type targetType;
+
     private void OnEnable()
     {
         serializedProperties = GetAllSerializedProperties();
+        targetType = target.GetType();
+
+        hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
+        hasUsePowerSceneAttribute = targetType.GetCustomAttribute<UsePowerSceneAttribute>() != null;
     }
 
     public override VisualElement CreateInspectorGUI()
     {
-        Type targetType = target.GetType();
-
-        if (targetType.GetCustomAttribute<UsePowerInspectorAttribute>() == null)
+        if (!hasUsePowerInspectorAttribute)
             return base.CreateInspectorGUI();
 
         VisualElement tree = new VisualElement();
@@ -102,6 +109,27 @@ public class PowerInspectorEditor : Editor
         parentStack.Clear();
 
         return tree;
+    }
+
+    private void OnSceneGUI()
+    {
+        if (!hasUsePowerSceneAttribute)
+            return;
+
+        foreach (var property in serializedProperties)
+        {
+            List<Attribute> attributes = GetAttributes(property);
+
+            Transform transform = (target as MonoBehaviour).transform;
+
+            foreach (var attribute in attributes)
+            {
+                if (attribute is DrawLine)
+                {
+                    Handles.DrawLine(transform.position, property.vector3Value);
+                }
+            }
+        }
     }
 
     private List<SerializedProperty> GetAllSerializedProperties()

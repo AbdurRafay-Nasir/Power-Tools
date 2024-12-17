@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[UsePowerInspector]
+[UsePowerInspector, UsePowerScene]
 [Title("I AM A TITLE", alignment = UnityEngine.UIElements.Align.Center)]
 [Comment("This is a test comment, Write whatever you want here andjwa danwkdwn and anw knawn ")]
 public class Tester : MonoBehaviour
@@ -14,4 +14,7 @@ public class Tester : MonoBehaviour
     [Space]
     [Title("I AM PROPERTY TITLE")]
     public int i5;
+
+    [DrawLine]
+    public Vector3 target = new Vector3(10, 10, 10);
 }
