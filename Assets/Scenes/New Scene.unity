@@ -428,7 +428,7 @@ MonoBehaviour:
   i4: 19
   i5: 0
   target: {x: 14.66, y: 10, z: 10}
-  target2: {x: 25.123152, y: 1.034483}
+  target2: {x: 15.888937, y: -2.2767754}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

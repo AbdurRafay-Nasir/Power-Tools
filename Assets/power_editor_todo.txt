@@ -7,3 +7,4 @@ x 2024-12-18 2024-12-18 Add template files for attribute pri:A
 (A) TabGroup
 (A) TabView
 (A) TableList
+(A) Add extension class for common serialized property / object functions

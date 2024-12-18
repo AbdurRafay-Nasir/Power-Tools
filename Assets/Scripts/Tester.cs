@@ -12,8 +12,8 @@ public class Tester : MonoBehaviour
     [Required("Bruh, Plz assign this thing")] public GameObject obj;
     [EndGroup(2)] public int i4;
 
-    [Space]
-    [Title("I AM PROPERTY TITLE")]
+    //[Space]
+    //[Title("I AM PROPERTY TITLE")]
     public int i5;
 
     [DrawLine("#ffff00"), PositionHandle]

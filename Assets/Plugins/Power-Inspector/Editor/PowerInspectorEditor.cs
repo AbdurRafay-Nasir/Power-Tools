@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 using PowerEditor.Attributes;
+using PowerEditor.Attributes.Drawer.Misc;
 
 namespace PowerEditor
 {
@@ -22,7 +23,7 @@ namespace PowerEditor
 
         private void OnEnable()
         {
-            serializedProperties = GetAllSerializedProperties();
+            serializedProperties = serializedObject.GetAllSerializedProperties();
             targetType = target.GetType();
 
             hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
@@ -37,7 +38,7 @@ namespace PowerEditor
 
             foreach (var property in serializedProperties)
             {
-                List<Attribute> allAttributes = GetAttributes(property);
+                List<Attribute> allAttributes = property.GetAttributes();
                 List<SceneAttribute> sceneAttributes = new();
 
                 foreach (var attr in allAttributes)
@@ -112,7 +113,7 @@ namespace PowerEditor
 
             foreach (var property in serializedProperties)
             {
-                List<Attribute> allAttributes = GetAttributes(property);
+                List<Attribute> allAttributes = property.GetAttributes();
 
                 foreach (var attribute in allAttributes)
                 {
@@ -210,61 +211,6 @@ namespace PowerEditor
             }
         }
 
-        private List<SerializedProperty> GetAllSerializedProperties()
-        {
-            List<SerializedProperty> serializedProperties = new();
-
-            SerializedProperty iterator = serializedObject.GetIterator();
-            iterator.NextVisible(true);
-
-            bool isNextPropertyVisible = iterator.NextVisible(false);
-
-            while (isNextPropertyVisible)
-            {
-                serializedProperties.Add(iterator.Copy());
-
-                isNextPropertyVisible = iterator.NextVisible(false);
-            }
-
-            return serializedProperties;
-        }
-
-        private SerializedProperty GetPropertyWithAttribute<T>() where T : Attribute
-        {
-            Type targetType = target.GetType();
-            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-
-            foreach (SerializedProperty property in serializedProperties)
-            {
-                FieldInfo field = targetType.GetField(property.name, bindingFlags);
-
-                if (field.GetCustomAttribute<T>() != null)
-                    return property;
-            }
-
-            return null;
-        }
-
-        private T GetAttribute<T>(SerializedProperty property) where T : Attribute
-        {
-            Type targetType = target.GetType();
-            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-
-            FieldInfo field = targetType.GetField(property.name, bindingFlags);
-
-            return field.GetCustomAttribute<T>();
-        }
-
-        private List<Attribute> GetAttributes(SerializedProperty property)
-        {
-            Type targetType = target.GetType();
-            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-
-            FieldInfo field = targetType.GetField(property.name, bindingFlags);
-
-            return new List<Attribute>(field.GetCustomAttributes(false) as Attribute[]);
-        }
-    
         private void PrintDictionary()
         {
             foreach (var entry in sceneAttributesDict)
