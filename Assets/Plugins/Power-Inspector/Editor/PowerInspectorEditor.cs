@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using PowerEditor.Attributes;
 
 [CustomEditor(typeof(MonoBehaviour), true)]
 public class PowerInspectorEditor : Editor

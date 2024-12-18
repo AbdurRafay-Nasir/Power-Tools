@@ -1,4 +1,5 @@
 using UnityEngine;
+using PowerEditor.Attributes;
 
 [UsePowerInspector, UsePowerScene]
 [Title("I AM A TITLE", alignment = UnityEngine.UIElements.Align.Center)]

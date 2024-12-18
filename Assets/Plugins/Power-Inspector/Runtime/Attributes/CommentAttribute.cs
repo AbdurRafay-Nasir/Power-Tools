@@ -1,12 +1,15 @@
 using System;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class CommentAttribute : InspectorAttribute
+namespace PowerEditor.Attributes
 {
-    public string comment;
-
-    public CommentAttribute(string comment)
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class CommentAttribute : InspectorAttribute
     {
-        this.comment = comment;
+        public string comment;
+
+        public CommentAttribute(string comment)
+        {
+            this.comment = comment;
+        }
     }
 }
