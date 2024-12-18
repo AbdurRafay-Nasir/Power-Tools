@@ -2,27 +2,30 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 
-[CustomPropertyDrawer(typeof(TitleAttribute))]
-public class TitleAttributeDrawer : PropertyDrawer
+namespace PowerEditor.Attributes.Drawer
 {
-    public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    [CustomPropertyDrawer(typeof(TitleAttribute))]
+    public class TitleAttributeDrawer : PropertyDrawer
     {
-        TitleAttribute attr = (attribute as TitleAttribute);
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            TitleAttribute attr = (attribute as TitleAttribute);
 
-        VisualElement root = new();
+            VisualElement root = new();
 
-        Box box = new Box();
-        box.style.backgroundColor = attr.backgroundColor;
+            Box box = new Box();
+            box.style.backgroundColor = attr.backgroundColor;
 
-        Label label = new Label(attr.titleText);
-        label.style.alignSelf = attr.alignment;
-        label.style.fontSize = attr.fontSize;
-        label.style.color = attr.textColor;
+            Label label = new Label(attr.titleText);
+            label.style.alignSelf = attr.alignment;
+            label.style.fontSize = attr.fontSize;
+            label.style.color = attr.textColor;
 
-        box.Add(label);
-        root.Add(box);
-        root.Add(new PropertyField(property));
+            box.Add(label);
+            root.Add(box);
+            root.Add(new PropertyField(property));
 
-        return root;
+            return root;
+        }
     }
 }

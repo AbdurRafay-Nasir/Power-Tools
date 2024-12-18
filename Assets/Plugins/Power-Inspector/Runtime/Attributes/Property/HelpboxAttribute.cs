@@ -1,16 +1,18 @@
 using System;
 using UnityEngine.UIElements;
-using PowerEditor.Attributes;
 
-[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-public class HelpboxAttribute : InspectorAttribute, IGroupAttribute
+namespace PowerEditor.Attributes
 {
-    public VisualElement CreateGroupGUI()
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
+    public class HelpboxAttribute : InspectorAttribute, IGroupAttribute
     {
-        VisualElement gui = new VisualElement();
+        public VisualElement CreateGroupGUI()
+        {
+            VisualElement gui = new VisualElement();
 
-        gui.Add(new HelpBox("HOLA AMIGO", HelpBoxMessageType.Error));
+            gui.Add(new HelpBox("HOLA AMIGO", HelpBoxMessageType.Error));
 
-        return gui;
+            return gui;
+        }
     }
 }

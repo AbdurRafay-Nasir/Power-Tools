@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace PowerEditor.Attributes.Drawer
+namespace PowerEditor
 { 
     public class ScriptsCreator
     {

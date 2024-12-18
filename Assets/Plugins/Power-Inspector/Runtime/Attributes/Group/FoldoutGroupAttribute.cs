@@ -1,18 +1,20 @@
 using System;
-using UnityEngine;
 using UnityEngine.UIElements;
-using PowerEditor.Attributes;
 
-[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-public class FoldoutGroupAttribute : InspectorAttribute, IGroupAttribute
+namespace PowerEditor.Attributes
 {
-    public VisualElement CreateGroupGUI()
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
+    public class FoldoutGroupAttribute : InspectorAttribute, IGroupAttribute
     {
-        Foldout foldout = new Foldout();
-        foldout.text = "F1";
+        public VisualElement CreateGroupGUI()
+        {
+            Foldout foldout = new Foldout();
+            foldout.text = "F1";
 
-        foldout.viewDataKey = "AAA";
+            foldout.viewDataKey = "AAA";
 
-        return foldout;
+            return foldout;
+        }
     }
+
 }

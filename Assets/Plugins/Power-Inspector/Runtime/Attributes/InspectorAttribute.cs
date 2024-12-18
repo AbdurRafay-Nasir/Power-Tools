@@ -1,4 +1,7 @@
-public class InspectorAttribute : PowerAttribute
+namespace PowerEditor.Attributes
 {
-    
+    public class InspectorAttribute : PowerAttribute
+    {
+
+    }
 }

@@ -1,7 +1,10 @@
 using System;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class UsePowerInspectorAttribute : PowerAttribute
+namespace PowerEditor.Attributes
 {
-    
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class UsePowerInspectorAttribute : PowerAttribute
+    {
+
+    }
 }

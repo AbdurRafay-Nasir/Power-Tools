@@ -1,12 +1,15 @@
 using System;
 
-[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-public class RequiredAttribute : InspectorAttribute
+namespace PowerEditor.Attributes
 {
-    public string message;
-
-    public RequiredAttribute(string message)
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class RequiredAttribute : InspectorAttribute
     {
-        this.message = message;
+        public string message;
+
+        public RequiredAttribute(string message)
+        {
+            this.message = message;
+        }
     }
 }

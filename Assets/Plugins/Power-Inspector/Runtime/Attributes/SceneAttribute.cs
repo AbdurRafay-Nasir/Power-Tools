@@ -1,4 +1,7 @@
-public class SceneAttribute : PowerAttribute
+namespace PowerEditor.Attributes
 {
-    
+    public class SceneAttribute : PowerAttribute
+    {
+
+    }
 }
