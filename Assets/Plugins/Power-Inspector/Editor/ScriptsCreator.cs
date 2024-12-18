@@ -8,23 +8,23 @@ namespace PowerEditor
 { 
     public class ScriptsCreator
     {
-        private const string PROPERTY_ATTRIBUTE_TEMPLATE_FILE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/PropertyAttribute.cs.txt";
-        private const string GROUP_ATTRIBUTE_TEMPLATE_FILE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/GroupAttribute.cs.txt";
-        private const string DRAWER_TEMPLATE_FILE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/PropertyAttributeDrawer.cs.txt";
+        private const string PROPERTY_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/PropertyAttribute.cs.txt";
+        private const string GROUP_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/GroupAttribute.cs.txt";
+        private const string DRAWER_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/PropertyAttributeDrawer.cs.txt";
 
         #region Create Attribute
 
         [MenuItem("Assets/Create/Power Editor/Property Attribute", priority = 5)]
         public static void CreatePropertyAttribute()
         {
-            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(PROPERTY_ATTRIBUTE_TEMPLATE_FILE_PATH, 
+            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(PROPERTY_ATTRIBUTE_TEMPLATE_PATH, 
                                                                 "NewPropertyAttribute.cs");
         }
 
         [MenuItem("Assets/Create/Power Editor/Group Attribute", priority = 5)]
         public static void CreateGroupAttribute()
         {
-            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(GROUP_ATTRIBUTE_TEMPLATE_FILE_PATH,
+            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(GROUP_ATTRIBUTE_TEMPLATE_PATH,
                                                                 "NewGroupAttribute.cs");
         }
 
@@ -37,7 +37,7 @@ namespace PowerEditor
         {
             string selectedFileName = Selection.activeObject.name;
 
-            string templateFileContent = File.ReadAllText(DRAWER_TEMPLATE_FILE_PATH);
+            string templateFileContent = File.ReadAllText(DRAWER_TEMPLATE_PATH);
             string editorScriptContent = templateFileContent.Replace("#ATTRIBUTENAME#", selectedFileName);
 
             string relativeEditorScriptPath = "Assets/Plugins/Power-Inspector/Editor/Drawers/" + selectedFileName + "Drawer.cs";
@@ -66,7 +66,7 @@ namespace PowerEditor
                 return false;
 
             // Stop exectuion if Template file does not exist
-            if (!File.Exists(DRAWER_TEMPLATE_FILE_PATH))
+            if (!File.Exists(DRAWER_TEMPLATE_PATH))
                 return false;
 
             string relativeEditorScriptPath = "Assets/Plugins/Power-Inspector/Editor/Drawers/" + Selection.activeObject.name + "Drawer.cs";

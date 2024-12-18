@@ -13,7 +13,7 @@ namespace PowerEditor
     public class PowerInspectorEditor : Editor
     {
         private List<SerializedProperty> serializedProperties = new();
-        private Dictionary<SerializedProperty, List<Attribute>> propertyAttributes = null;
+        private Dictionary<SerializedProperty, List<SceneAttribute>> sceneAttributesDict = null;
 
         private bool hasUsePowerInspectorAttribute;
         private bool hasUsePowerSceneAttribute;
@@ -28,26 +28,31 @@ namespace PowerEditor
             hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
             hasUsePowerSceneAttribute = targetType.GetCustomAttribute<UsePowerSceneAttribute>() != null;
 
-            if (hasUsePowerInspectorAttribute || hasUsePowerSceneAttribute)
-            {
-                propertyAttributes = new();
+            // If the class is not marked with UsePowerSceneAttribute,
+            // then don't process it
+            if (!hasUsePowerSceneAttribute)
+                return;
 
-                foreach (var property in serializedProperties)
+            sceneAttributesDict = new();
+
+            foreach (var property in serializedProperties)
+            {
+                List<Attribute> allAttributes = GetAttributes(property);
+                List<SceneAttribute> sceneAttributes = new();
+
+                foreach (var attr in allAttributes)
                 {
-                    propertyAttributes.Add(property, GetAttributes(property));
+                    if (attr is SceneAttribute sceneAttr)
+                    {
+                        sceneAttributes.Add(sceneAttr);
+                    }
+                }
+
+                if (sceneAttributes.Count > 0)
+                {
+                    sceneAttributesDict.Add(property, sceneAttributes);
                 }
             }
-
-            foreach (var entry in propertyAttributes)
-            {
-                List<Attribute> attributes = propertyAttributes[entry.Key];
-
-                foreach (var attr in attributes)
-                {
-                    Debug.Log(entry.Key.name + ": " + attr.GetType().Name);
-                }
-            }
-
         }
 
         public override VisualElement CreateInspectorGUI()
@@ -143,18 +148,20 @@ namespace PowerEditor
 
             foreach (var property in serializedProperties)
             {
-                List<Attribute> attributes = propertyAttributes[property];
+                if (!sceneAttributesDict.ContainsKey(property))
+                    continue;
 
-                Transform transform = (target as MonoBehaviour).transform;
+                List<SceneAttribute> sceneAttributes = sceneAttributesDict[property];
 
-                foreach (var attribute in attributes)
+                foreach (var attr in sceneAttributes)
                 {
-                    if (attribute is DrawLineAttribute)
+                    Transform transform = (target as MonoBehaviour).transform;
+
+                    if (attr is DrawLineAttribute)
                     {
                         Handles.DrawLine(transform.position, property.vector3Value);
                     }
-
-                    if (attribute is PositionHandleAttribute)
+                    else if (attr is PositionHandleAttribute)
                     {
                         FieldInfo field = targetType.GetField(property.name);
 
@@ -248,6 +255,19 @@ namespace PowerEditor
             FieldInfo field = targetType.GetField(property.name, bindingFlags);
 
             return new List<Attribute>(field.GetCustomAttributes(false) as Attribute[]);
+        }
+    
+        private void PrintDictionary()
+        {
+            foreach (var entry in sceneAttributesDict)
+            {
+                List<SceneAttribute> attributes = sceneAttributesDict[entry.Key];
+
+                foreach (var attr in attributes)
+                {
+                    Debug.Log("Printed: " + entry.Key.name + ": " + attr.GetType().Name);
+                }
+            }
         }
     }
 

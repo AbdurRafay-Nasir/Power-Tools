@@ -17,7 +17,7 @@ public class Tester : MonoBehaviour
     public int i5;
 
     [DrawLine, PositionHandle]
-    public Vector3 target = new Vector3(10, 10, 10);    
+    public Vector3 target = new Vector3(10, 10, 10);
 
     [PositionHandle]
     public Vector2 target2 = new Vector3(10, 10, 10);
