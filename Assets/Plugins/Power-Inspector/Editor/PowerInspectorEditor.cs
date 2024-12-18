@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 using PowerEditor.Attributes;
-using PowerEditor.Attributes.Drawer.Misc;
+using PowerEditor.Misc;
 
 namespace PowerEditor
 {
@@ -58,10 +58,25 @@ namespace PowerEditor
 
         public override VisualElement CreateInspectorGUI()
         {
-            if (!hasUsePowerInspectorAttribute)
-                return base.CreateInspectorGUI();
-
             VisualElement tree = new VisualElement();
+
+            if (!hasUsePowerInspectorAttribute)
+            {
+                foreach (var prop in serializedProperties)
+                {
+                    tree.Add(new PropertyField(prop));
+                }
+                return tree;
+                //Editor defaultInspector = CreateEditor(target);
+
+                //return new IMGUIContainer(() =>
+                //{
+                //    Debug.Log(defaultInspector == null);
+                //    if (defaultInspector != null)
+                //        defaultInspector.OnInspectorGUI();
+                //});
+            }
+            
             Stack<VisualElement> parentStack = new Stack<VisualElement>();
 
             VisualElement currentParent = tree;
@@ -171,7 +186,7 @@ namespace PowerEditor
                     }
                     else if (attr is PositionHandleAttribute)
                     {
-                        FieldInfo field = targetType.GetField(property.name);
+                        FieldInfo field = property.GetField();
 
                         if (property.propertyType == SerializedPropertyType.Vector3)
                         {

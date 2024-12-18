@@ -1,9 +1,11 @@
+#if UNITY_EDITOR
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 
-namespace PowerEditor.Attributes.Drawer.Misc
+namespace PowerEditor.Misc
 {
     public static class Extensions
     {
@@ -46,7 +48,7 @@ namespace PowerEditor.Attributes.Drawer.Misc
         public static T GetAttribute<T>(this SerializedProperty property) where T : Attribute
         {
             Type targetType = property.serializedObject.targetObject.GetType();
-            
+
             FieldInfo field = targetType.GetField(property.name, bindingFlags);
 
             return field.GetCustomAttribute<T>();
@@ -60,3 +62,5 @@ namespace PowerEditor.Attributes.Drawer.Misc
         }
     }
 }
+
+#endif
