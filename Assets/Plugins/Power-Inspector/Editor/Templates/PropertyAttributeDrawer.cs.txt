@@ -1,0 +1,25 @@
+#if UNITY_EDITOR
+
+using UnityEngine.UIElements;
+using UnityEditor;
+using UnityEditor.UIElements;
+
+namespace PowerEditor.Attributes.Editor
+{
+    [CustomPropertyDrawer(typeof(#ATTRIBUTENAME#))]
+    public class #ATTRIBUTENAME#Drawer : PropertyDrawer
+    {
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            #ATTRIBUTENAME# attr = (attribute as #ATTRIBUTENAME#);
+
+            VisualElement root = new VisualElement();
+
+            // Your code here
+
+            return root;
+        }
+    }
+}
+
+#endif

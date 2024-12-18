@@ -1,0 +1,23 @@
+using System;
+using UnityEngine.UIElements;
+
+namespace PowerEditor.Attributes
+{
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class #SCRIPTNAME# : InspectorAttribute, IGroupAttribute
+    {
+        public #SCRIPTNAME#()
+        {
+            
+        }
+
+        public VisualElement CreateGroupGUI()
+        {
+            VisualElement root = new VisualElement();
+
+            // Your code here
+
+            return root;
+        }
+    }
+}

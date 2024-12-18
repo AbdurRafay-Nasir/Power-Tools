@@ -140,7 +140,7 @@ public class PowerInspectorEditor : Editor
 
         foreach (var property in serializedProperties)
         {
-            List<Attribute> attributes = GetAttributes(property);
+            List<Attribute> attributes = propertyAttributes[property];
 
             Transform transform = (target as MonoBehaviour).transform;
 
