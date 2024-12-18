@@ -74,7 +74,9 @@ namespace PowerEditor
             return !File.Exists(relativeEditorScriptPath);
         }
 
+
         #endregion
+
     }
 }
 

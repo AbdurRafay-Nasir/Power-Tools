@@ -155,11 +155,18 @@ namespace PowerEditor
 
                 foreach (var attr in sceneAttributes)
                 {
-                    Transform transform = (target as MonoBehaviour).transform;
 
-                    if (attr is DrawLineAttribute)
+                    if (attr is DrawLineAttribute drawLineAttribute)
                     {
-                        Handles.DrawLine(transform.position, property.vector3Value);
+                        Transform transform = (target as MonoBehaviour).transform;
+
+                        Color prevColor = Handles.color;
+                        Handles.color = drawLineAttribute.lineColor;
+
+                        Handles.DrawLine(transform.position, property.vector3Value, 
+                                         drawLineAttribute.lineThickness);
+
+                        Handles.color = prevColor;
                     }
                     else if (attr is PositionHandleAttribute)
                     {
@@ -174,6 +181,7 @@ namespace PowerEditor
                             SetVector2Value(field);
                         }
                     }
+
                 }
             }
         }

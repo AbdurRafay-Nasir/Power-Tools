@@ -16,7 +16,7 @@ public class Tester : MonoBehaviour
     [Title("I AM PROPERTY TITLE")]
     public int i5;
 
-    [DrawLine, PositionHandle]
+    [DrawLine("#ffff00"), PositionHandle]
     public Vector3 target = new Vector3(10, 10, 10);
 
     [PositionHandle]

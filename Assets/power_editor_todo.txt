@@ -1,5 +1,9 @@
 (A) 2024-12-18 DrawPath Attribute
 (A) ShowIf Attribute
-(A) Add Namespace
-(A) Create Editor Script to create Attribute
-(A) Add template files for attribute
+x 2024-12-18 2024-12-18 Add Namespace pri:A
+x 2024-12-18 2024-12-18 Create Editor Script to create Attribute pri:A
+x 2024-12-18 2024-12-18 Add template files for attribute pri:A
+(A) Expandable
+(A) TabGroup
+(A) TabView
+(A) TableList
