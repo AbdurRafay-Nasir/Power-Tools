@@ -1,4 +1,7 @@
-public interface IGroupAttribute 
+namespace PowerEditor.Attributes
 {
-    UnityEngine.UIElements.VisualElement CreateGroupGUI();
+    public interface IGroupAttribute
+    {
+        UnityEngine.UIElements.VisualElement CreateGroupGUI();
+    }
 }

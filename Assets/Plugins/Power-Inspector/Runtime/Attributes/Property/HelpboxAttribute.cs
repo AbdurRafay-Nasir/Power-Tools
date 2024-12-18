@@ -1,5 +1,6 @@
 using System;
 using UnityEngine.UIElements;
+using PowerEditor.Attributes;
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class HelpboxAttribute : InspectorAttribute, IGroupAttribute

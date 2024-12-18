@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using PowerEditor.Attributes;
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class BoxGroupAttribute : InspectorAttribute, IGroupAttribute
