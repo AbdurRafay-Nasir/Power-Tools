@@ -6,7 +6,7 @@ using PowerEditor.Attributes;
 [Comment("This is a test comment, Write whatever you want here andjwa danwkdwn and anw knawn ")]
 public class Tester : MonoBehaviour
 {
-    [FoldoutGroup, ReadOnly] public int i1;
+    [FoldoutGroup] public int i1;
     [FoldoutGroup, BoxGroup] public int i2;
     public int i3;
     [Required("Bruh, Plz assign this thing")] public GameObject obj;
