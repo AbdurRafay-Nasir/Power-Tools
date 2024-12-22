@@ -2,7 +2,7 @@ using System;
 
 namespace PowerEditor.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class CommentAttribute : InspectorAttribute
     {
         public string comment;

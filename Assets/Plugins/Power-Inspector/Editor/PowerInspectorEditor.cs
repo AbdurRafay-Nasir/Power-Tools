@@ -23,11 +23,12 @@ namespace PowerEditor
 
         private void OnEnable()
         {
-            serializedProperties = serializedObject.GetAllSerializedProperties();
             targetType = target.GetType();
 
             hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
             hasUsePowerSceneAttribute = targetType.GetCustomAttribute<UsePowerSceneAttribute>() != null;
+            
+            serializedProperties = serializedObject.GetAllSerializedProperties(false);
 
             // If the class is not marked with UsePowerSceneAttribute,
             // then don't process it
@@ -60,74 +61,28 @@ namespace PowerEditor
         {
             VisualElement tree = new VisualElement();
 
+            PropertyField scriptField = new PropertyField(serializedProperties[0]);
+            scriptField.SetEnabled(false);
+
+            tree.Add(scriptField);
+            
             if (!hasUsePowerInspectorAttribute)
             {
-                foreach (var prop in serializedProperties)
+                for (int i = 1; i < serializedProperties.Count; i++)
                 {
-                    tree.Add(new PropertyField(prop));
+                    tree.Add(new PropertyField(serializedProperties[i]));
                 }
-                return tree;
-                //Editor defaultInspector = CreateEditor(target);
 
-                //return new IMGUIContainer(() =>
-                //{
-                //    Debug.Log(defaultInspector == null);
-                //    if (defaultInspector != null)
-                //        defaultInspector.OnInspectorGUI();
-                //});
+                return tree;
             }
             
             Stack<VisualElement> parentStack = new Stack<VisualElement>();
 
             VisualElement currentParent = tree;
 
-            TitleAttribute titleAttribute = targetType.GetCustomAttribute<TitleAttribute>();
-            if (titleAttribute != null)
+            for (int i = 1; i < serializedProperties.Count; i++)
             {
-                Box box = new Box();
-                box.style.backgroundColor = titleAttribute.backgroundColor;
-
-                Label label = new Label(titleAttribute.titleText);
-
-                label.style.alignSelf = titleAttribute.alignment;
-                label.style.fontSize = titleAttribute.fontSize;
-                label.style.color = titleAttribute.textColor;
-
-                box.Add(label);
-                tree.Add(box);
-            }
-
-            CommentAttribute commentAttribute = targetType.GetCustomAttribute<CommentAttribute>();
-            if (commentAttribute != null)
-            {
-                Box box = new Box();
-
-                ColorUtility.TryParseHtmlString("#416141", out Color color);
-                box.style.backgroundColor = color;
-                box.style.borderBottomLeftRadius = 5f;
-                box.style.borderBottomRightRadius = 5f;
-                box.style.borderTopLeftRadius = 5f;
-                box.style.borderTopRightRadius = 5f;
-
-                box.style.paddingLeft = 5f;
-                box.style.paddingRight = 5f;
-                box.style.paddingBottom = 5f;
-                box.style.paddingTop = 5f;
-
-                if (titleAttribute != null)
-                    box.style.marginTop = 5f;
-
-                Label label = new Label(commentAttribute.comment);
-                label.style.color = Color.white;
-                label.style.whiteSpace = WhiteSpace.Normal;
-                label.style.overflow = Overflow.Visible;
-
-                box.Add(label);
-                tree.Add(box);
-            }
-
-            foreach (var property in serializedProperties)
-            {
+                SerializedProperty property = serializedProperties[i];
                 List<Attribute> allAttributes = property.GetAttributes();
 
                 foreach (var attribute in allAttributes)
@@ -143,7 +98,7 @@ namespace PowerEditor
                     }
                     else if (attribute is EndGroupAttribute endGroupAttribute)
                     {
-                        for (int i = 0; i < endGroupAttribute.openGroupsToClose; i++)
+                        for (int j = 0; j < endGroupAttribute.openGroupsToClose; j++)
                             currentParent = parentStack.Pop();
                     }
                 }

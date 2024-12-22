@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace PowerEditor.Attributes
 {
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class TitleAttribute : InspectorAttribute
     {
         public string titleText;

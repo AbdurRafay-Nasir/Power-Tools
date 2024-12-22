@@ -43,7 +43,7 @@
 - Hides a field only when a given condition is true.
 
 ### :x: Required
-- Displays an error message (in a helpbox) if object fiels is null.
+- Displays an error message (in a helpbox) if object field is null.
 - Applicable on Object reference fields. 
 
 ### :x: Button

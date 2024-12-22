@@ -4,7 +4,7 @@ using UnityEngine;
 // [UsePowerInspector]
 public class Test3 : MonoBehaviour
 {
-    [Required("AAA")]
+    // [Required("AAA")]
     public GameObject go;
 
     [Range(0f, 10f)]

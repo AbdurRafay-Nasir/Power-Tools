@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
+using UnityEngine;
 
 namespace PowerEditor.Misc
 {
@@ -15,24 +16,29 @@ namespace PowerEditor.Misc
         /// Returns all Serialized Properties of this Serialized Object
         /// </summary>
         /// <remarks>Will not return null, empty List can be returned</remarks>
-        public static List<SerializedProperty> GetAllSerializedProperties(this SerializedObject serializedObject)
+        public static List<SerializedProperty> GetAllSerializedProperties(this SerializedObject serializedObject,
+                                                                          bool ignoreScriptReference = true)
         {
             List<SerializedProperty> serializedProperties = new();
 
             SerializedProperty iterator = serializedObject.GetIterator();
-            iterator.NextVisible(true);
 
-            bool isNextPropertyVisible = iterator.NextVisible(false);
+            bool isNextPropertyVisible = iterator.NextVisible(true);
+
+            if (ignoreScriptReference)
+            {
+                isNextPropertyVisible = iterator.NextVisible(false);
+            }
 
             while (isNextPropertyVisible)
             {
                 serializedProperties.Add(iterator.Copy());
-
                 isNextPropertyVisible = iterator.NextVisible(false);
             }
 
             return serializedProperties;
         }
+
 
         /// <returns>All Attributes this Serialized Property has</returns>
         public static List<Attribute> GetAttributes(this SerializedProperty property)
