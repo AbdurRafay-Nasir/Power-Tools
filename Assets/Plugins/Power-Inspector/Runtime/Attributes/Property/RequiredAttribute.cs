@@ -7,7 +7,7 @@ namespace PowerEditor.Attributes
     {
         public string message;
 
-        public RequiredAttribute(string message)
+        public RequiredAttribute(string message = "This is Required")
         {
             this.message = message;
         }

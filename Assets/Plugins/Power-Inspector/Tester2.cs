@@ -4,8 +4,8 @@ using PowerEditor.Attributes;
 [UsePowerInspector]
 public class Tester2 : MonoBehaviour
 {
-    [Required("Bro this is required")]
+    [Required]
     public GameObject go;
 
-    [SerializeField, Required("This is required")] Sprite sprite; 
+    [SerializeField, Required] Sprite sprite; 
 }
