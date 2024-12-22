@@ -141,7 +141,7 @@
 - Displays a dropdown, having all parameters of this animator.
 - Applicable on int.
 
-### :x: LabelGUI
+### :x: FieldGUI
 - Allows complete modification of a Property Field.
 - Can also use userdefined USS.
 
