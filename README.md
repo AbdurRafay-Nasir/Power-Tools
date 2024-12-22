@@ -54,6 +54,17 @@
 ### :x: HelpBox
 - Displays a helpbox on top/bottom of a field.
 
+### :x: GetFromSelf
+- Automatically get component.
+
+### :x: GetFromParent
+- Automatically gets component from parent gameObject.
+- Can search all successors
+
+### :x: GetFromChild
+- Automatically gets component from child gameObject.
+- Can search all childs
+
 ### :x: ParentOnly
 - Restricts reference to be of parent game object only.
 - Applicable on Component fields only.
