@@ -76,8 +76,19 @@
 ### Separator :x:
 - Separates a given int/float field using a separator char.
 
-### Max
+### PowerMax
 - Clamps a value to a maximum value.
+- Allows expression to dynamically set clamping value.
+- Applicable on float and int.
+
+### PowerMin
+- Clamps a value to a minimum value.
+- Allows expression to dynamically set clamping value.
+- Applicable on float and int.
+
+### PowerRange
+- Clamps a value to a min and max value.
+- Allows expression to dynamically set clamping value.
 - Applicable on float and int.
 
 ### Spacer :x:
