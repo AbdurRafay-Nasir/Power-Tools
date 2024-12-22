@@ -42,7 +42,7 @@
 ### :x: HideIf
 - Hides a field only when a given condition is true.
 
-### :x: Required
+### :heavy_check_mark: Required
 - Displays an error message (in a helpbox) if object field is null.
 - Applicable on Object reference fields. 
 
@@ -51,7 +51,7 @@
 - Applicable only on Mehods.
 - This button executes code of function.
 
-### :x: HelpBox
+### :heavy_check_mark: HelpBox
 - Displays a helpbox on top/bottom of a field.
 
 ### :x: GetFromSelf

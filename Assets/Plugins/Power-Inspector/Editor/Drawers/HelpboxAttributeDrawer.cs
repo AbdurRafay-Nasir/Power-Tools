@@ -6,17 +6,13 @@ using UnityEditor;
 namespace PowerEditor.Attributes.Editor
 {
     [CustomPropertyDrawer(typeof(HelpboxAttribute))]
-    public class HelpboxAttributeDrawer : PropertyDrawer
+    public class HelpboxAttributeDrawer : DecoratorDrawer
     {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        public override VisualElement CreatePropertyGUI()
         {
             HelpboxAttribute attr = (attribute as HelpboxAttribute);
 
-            VisualElement root = new VisualElement();
-
-            root.Add(new HelpBox("HOLA AMIGO", HelpBoxMessageType.Error));
-
-            return root;
+            return new HelpBox(attr.message, attr.messageType);
         }
     }
 }
