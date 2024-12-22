@@ -4,159 +4,167 @@
 :yellow_circle: In-Progress  
 
 ## Attributes
-### FoldoutGroup :x:
+### :x: FoldoutGroup
 - Groups fields.
 - Similar to Array's foldout.
 - Provides custom styling, which can be modified.
 - Supports user-defined USS.
 - Requires UsePowerAttributes on class.
 
-### BoxGroup :x:
+### :x: BoxGroup
 - Provides a background box to grouped fields.
 - Provides custom styling, which can be modified.
 - Supports user-defined USS.
 - Requires UsePowerAttributes on class.
 
-### ToggleGroup :x:
+### :x: ToggleGroup
 - Provides Toggle buttons on top of inspector.
 - Similar to Tween Kit.
 - Allows customizing size of toggle buttons.
 - Requires UsePowerAttributes on class.
 
-### ShowIfGroup :x:
+### :x: ShowIfGroup
 - Displays group of fields only when a given condition is true.
 - Requires UsePowerAttributes on class.
 
-### HideIfGroup :x:
+### :x: HideIfGroup
 - Hides a group of fields only when a given condition is true.
 - Requires UsePowerAttributes on class.
 
-### EndGroup :x:
+### :x: EndGroup 
 - Closes an open group.
 - Allows closing multiple open groups with one EndGroup attribute.
 - Requires UsePowerAttributes on class.
 
-### ShowIf :x:
+### :x: ShowIf
 - Displays a field only when a given condition is true.
 
-### HideIf :x:
+### :x: HideIf
 - Hides a field only when a given condition is true.
 
-### Required :x:
+### :x: Required
 - Displays an error message (in a helpbox) if object fiels is null.
 - Applicable on Object reference fields. 
 
-### Button :x:
+### :x: Button
 - Displays a button at bottom of inspector.
 - Applicable only on Mehods.
 - This button executes code of function.
 
-### HelpBox :x:
+### :x: HelpBox
 - Displays a helpbox on top/bottom of a field.
 
-### ChildOnly :x:
+### :x: ParentOnly
+- Restricts reference to be of parent game object only.
+- Applicable on Component fields only.
+ 
+### :x: ChildOnly
 - Restricts reference to be of child game object only.
-- Applicable on Component fields only
+- Applicable on Component fields only.
 
-### SceneObjectOnly :x:
+### :x: SceneObjectOnly
 - Only allow assignment of objects that are in scene view.
 - Applicable on Component fields only
 
-### PrefabOnly :x:
+### :x: PrefabOnly
 - Only allow prefab assignment.
 - Applicable on GameObject fields only.
 
-### PreviewSprite :x:
+### :x: PreviewSprite
 - Creates a preview of an asset in inspector
 - Applicable on Sprite.
 
-### PreviewTexture :x:
+### :x: PreviewTexture
 - Creates a preview of an asset in inspector
 - Applicable on Texture.
 
-### PreviewMesh :x:
+### :x: PreviewMesh
 - Creates a preview of an asset in inspector
 - Applicable on Mesh.
 
-### PreviewAudioClip :x:
+### :x: PreviewAudioClip
 - Creates a preview of an asset in inspector
 - Applicable on AudioClip.
 
-### Title :x;
+### :x: Title
 - Adds a title, sub-title on top of a field.
 
-### Separator :x:
+### :x: Separator
 - Separates a given int/float field using a separator char.
 
-### PowerMax :x:
+### :x: PowerMax
 - Clamps a value to a maximum value.
 - Allows expression to dynamically set clamping value.
 - Applicable on float and int.
 
-### PowerMin :x:
+### :x: PowerMin
 - Clamps a value to a minimum value.
 - Allows expression to dynamically set clamping value.
 - Applicable on float and int.
 
-### PowerRange :x:
+### :x: PowerRange
 - Clamps a value to a min and max value.
 - Allows expression to dynamically set clamping value.
 - Applicable on float and int.
 
-### Spacer :x:
+### :x: Spacer
 - Adds a space before/after a field.
 - Can also add horizontal lines before/after fields.
 
-### Input :x:
+### :x: Input
 - Displays a dropdown, having all Input keys (old input-system) of project.
 - Applicable on strings. 
 
-### Bar :x:
+### :x: Bar
 - Displays a Progress bar for int/float field.
 - Useful for displaying health/stamina/mana.
 
-### Tag :x:
+### :x: Tag
 - Displays a dropdown, having all Tags wihtin a Project.
 - Applicable only on strings.
 
-### SortingLayer :x:
+### :x: SortingLayer
 - Displays a dropdown, having all Sorting Layers wihtin a project.
 - Applicable only on strings.
 
-### SceneName :x:
+### :x: SceneName
 - Displays a dropdown, having all Scene names wihtin build settings.
 - Applicable only on strings.
 
-### AnimatorParam :x:
+### :x: AnimatorParam
 - Requires a reference to an Animator component
 - Displays a dropdown, having all parameters of this animator.
 - Applicable on strings.
 
-### AnimatorParamHash :x:
+### :x: AnimatorParamHash
 - Requires a reference to an Animator component
 - Displays a dropdown, having all parameters of this animator.
 - Applicable on int.
 
-### PositionHandle :x:
+### :x: LabelGUI
+- Allows complete modification of a Property Field.
+- Can also use userdefined USS.
+
+### :x: PositionHandle
 - Displays a Position Handle in scene view.
 - Applicable on Vector2 and Vector3. 
 - Requires UsePowerSceneAttribute.
 
-### DrawLine :x:
+### :x: DrawLine
 - Displays a line from current position to given vector in scene view.
-- Applicable on Vector2 and Vector3.
+- Applicable on Transform, Vector2 and Vector3.
 - Requires UsePowerSceneAttribute.
 
-### DrawPath :x:
+### :x: DrawPath
 - Displays a line starting from index[0] to index[length - 1].
-- Applicable on Vector2[], Vector3[], List<Vector2> and List<Vector3> .
+- Applicable on Transform[], Vector2[], Vector3[], List<Vector2> and List<Vector3> .
 - Requires UsePowerSceneAttribute.
 
-### DrawRadius :x:
+### :x: DrawRadius
 - Displays a solid/wire sphere whose center is currentPosition.
 - Applicable on float and int.
 - Requires UsePowerSceneAttribute.
 
-### DrawLabel :x:
+### :x: DrawLabel
 - Displays info in Scene View.
 - Applicable on <unknown>. 
