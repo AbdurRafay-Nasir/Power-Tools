@@ -61,7 +61,7 @@
 - Automatically gets component from parent gameObject.
 - Can search all successors
 
-### :x: GetFromChild
+### :heavy_check_mark: GetFromChild
 - Automatically gets component from child gameObject.
 - Can search all childs
 

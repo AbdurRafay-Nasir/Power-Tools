@@ -1,7 +1,7 @@
 using UnityEngine;
 using PowerEditor.Attributes;
 
-// [UsePowerInspector]
+[UsePowerInspector]
 public class Tester2 : MonoBehaviour
 {
     //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]
@@ -9,19 +9,19 @@ public class Tester2 : MonoBehaviour
 
     //[SerializeField, Required, Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Error)] Sprite sprite;
 
-    [GetFromSelf]
-    public string kk;
+    //[GetFromSelf]
+    //public string kk;
 
-    [GetFromParent(true)]
-    public Rigidbody rb;
+    //[GetFromParent(true)]
+    //public Rigidbody rb;
 
-    [GetFromSelf]
+    [GetFromChild(true)]
     public Tester t;
 
-    [Required]
-    public Tester t1;
+    //[Required]
+    //public Tester t1;
 
-    [GetFromSelf]
-    public Transform tra;
+    //[GetFromSelf]
+    //public Transform tra;
 
 }
