@@ -4,8 +4,18 @@ using PowerEditor.Attributes;
 [UsePowerInspector]
 public class Tester2 : MonoBehaviour
 {
-    [Required, Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Error)]
-    public GameObject go;
+    //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]
+    //public GameObject go;
 
-    [SerializeField, Required, Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Error)] Sprite sprite; 
+    //[SerializeField, Required, Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Error)] Sprite sprite;
+
+    [GetFromSelf]
+    public Tester t;
+
+    [Required]
+    public Tester t1;
+
+    [GetFromSelf]
+    public Transform tra;
+
 }

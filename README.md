@@ -54,7 +54,7 @@
 ### :heavy_check_mark: HelpBox
 - Displays a helpbox on top/bottom of a field.
 
-### :x: GetFromSelf
+### :heavy_check_mark: GetFromSelf
 - Automatically get component.
 
 ### :x: GetFromParent

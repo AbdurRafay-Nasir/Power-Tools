@@ -2,17 +2,22 @@
 
 using UnityEngine.UIElements;
 using UnityEditor;
+using UnityEditor.UIElements;
 
 namespace PowerEditor.Attributes.Editor
 {
     [CustomPropertyDrawer(typeof(HelpboxAttribute))]
-    public class HelpboxAttributeDrawer : DecoratorDrawer
+    public class HelpboxAttributeDrawer : PropertyDrawer
     {
-        public override VisualElement CreatePropertyGUI()
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             HelpboxAttribute attr = (attribute as HelpboxAttribute);
 
-            return new HelpBox(attr.message, attr.messageType);
+            VisualElement root = new VisualElement();
+            root.Add(new HelpBox(attr.message, attr.messageType));
+            root.Add(new PropertyField(property));
+
+            return root;
         }
     }
 }
