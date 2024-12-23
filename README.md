@@ -57,7 +57,7 @@
 ### :heavy_check_mark: GetFromSelf
 - Automatically get component.
 
-### :x: GetFromParent
+### :heavy_check_mark: GetFromParent
 - Automatically gets component from parent gameObject.
 - Can search all successors
 

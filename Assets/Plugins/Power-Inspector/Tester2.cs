@@ -1,13 +1,19 @@
 using UnityEngine;
 using PowerEditor.Attributes;
 
-[UsePowerInspector]
+// [UsePowerInspector]
 public class Tester2 : MonoBehaviour
 {
     //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]
     //public GameObject go;
 
     //[SerializeField, Required, Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Error)] Sprite sprite;
+
+    [GetFromSelf]
+    public string kk;
+
+    [GetFromParent(true)]
+    public Rigidbody rb;
 
     [GetFromSelf]
     public Tester t;
