@@ -65,6 +65,14 @@
 - Automatically gets component from child gameObject.
 - Can search all childs
 
+### :x: FolderPath
+- Creates a button, that when clicked opens up file explorer
+- Applicable on string fields only
+
+### :x: FilePath
+- Creates a button, that when clicked opens up file explorer
+- Applicable on string fields only
+
 ### :x: ParentOnly
 - Restricts reference to be of parent game object only.
 - Applicable on Component fields only.
