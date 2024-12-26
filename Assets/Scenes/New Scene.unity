@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8ecf5bde0114d4fa777c8d453edca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onj: {fileID: 0}
+  folder: Assets/Plugins/Power-Inspector/Editor/Drawers
   prefab: {fileID: 0}
   t: {fileID: 0}
 --- !u!1001 &8481114790276849611

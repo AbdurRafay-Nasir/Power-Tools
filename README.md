@@ -65,7 +65,7 @@
 - Automatically gets component from child gameObject.
 - Can search all childs
 
-### :x: FolderPath
+### :heavy_check_mark: FolderPath
 - Creates a button, that when clicked opens up file explorer
 - Applicable on string fields only
 
@@ -85,7 +85,7 @@
 - Only allow assignment of objects that are in scene view.
 - Applicable on Component fields only
 
-### :x: PrefabOnly
+### :heavy_check_mark: PrefabOnly
 - Only allow prefab assignment.
 - Applicable on GameObject fields only.
 
