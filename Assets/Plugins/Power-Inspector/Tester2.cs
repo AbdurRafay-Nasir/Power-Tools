@@ -15,6 +15,9 @@ public class Tester2 : MonoBehaviour
     //[GetFromParent(true)]
     //public Rigidbody rb;
 
+    [PrefabOnly]
+    public GameObject prefab;
+
     [GetFromChild(true)]
     public Tester t;
 
