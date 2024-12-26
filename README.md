@@ -69,7 +69,7 @@
 - Creates a button, that when clicked opens up file explorer
 - Applicable on string fields only
 
-### :x: FilePath
+### :heavy_check_mark: FilePath
 - Creates a button, that when clicked opens up file explorer
 - Applicable on string fields only
 

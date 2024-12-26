@@ -11,8 +11,6 @@ namespace PowerEditor.Attributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            FolderPathAttribute attr = (attribute as FolderPathAttribute);
-
             if (property.propertyType != SerializedPropertyType.String)
             {
                 return new HelpBox("<color=green>[FolderPath]</color> is applicable only on String Fields", HelpBoxMessageType.Error);
