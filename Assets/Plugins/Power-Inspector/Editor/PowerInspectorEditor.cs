@@ -73,6 +73,25 @@ namespace PowerEditor
                     tree.Add(new PropertyField(serializedProperties[i]));
                 }
 
+                MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                foreach (var method in methods)
+                {
+                    ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
+
+                    if (buttonAttribute == null)
+                        continue;
+
+                    Button button = new Button();
+                    button.text = buttonAttribute.text;
+
+                    button.RegisterCallback<ClickEvent>((callback) =>
+                    {
+                        method.Invoke(target, method.GetParameters());
+                    });
+
+                    tree.Add(button);                    
+                }
+
                 return tree;
             }
             

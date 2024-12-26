@@ -65,7 +65,7 @@
 - Automatically gets component from child gameObject.
 - Can search all childs
 
-### :heavy_check_mark: FolderPath
+### :heavy_check_mark: FolderPath <Fix Pending>
 - Creates a button, that when clicked opens up file explorer
 - Applicable on string fields only
 

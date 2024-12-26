@@ -1,7 +1,7 @@
 using UnityEngine;
 using PowerEditor.Attributes;
 
-[UsePowerInspector]
+// [UsePowerInspector]
 public class Tester2 : MonoBehaviour
 {
     //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]
@@ -18,7 +18,8 @@ public class Tester2 : MonoBehaviour
     [FilePath]
     public string file;
 
-    [ContextMenu("TEST")]
+    // [ContextMenu("TEST")]
+    [Button("TEST")]
     public void TEST()
     {
         Debug.Log(file);
