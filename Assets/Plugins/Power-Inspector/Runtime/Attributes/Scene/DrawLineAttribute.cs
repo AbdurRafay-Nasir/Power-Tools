@@ -4,7 +4,7 @@ using UnityEngine;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class DrawLineAttribute : SceneAttribute
+    public class DrawLineAttribute : PowerAttribute
     {
         public float lineThickness = 2f;
         public Color lineColor = Color.green;

@@ -14,7 +14,7 @@ namespace PowerEditor
     public class PowerInspectorEditor : Editor
     {
         private List<SerializedProperty> serializedProperties = new();
-        private Dictionary<SerializedProperty, List<SceneAttribute>> sceneAttributesDict = null;
+        private Dictionary<SerializedProperty, List<ISceneAttribute>> sceneAttributesDict = null;
 
         private bool hasUsePowerInspectorAttribute;
         private bool hasUsePowerSceneAttribute;
@@ -40,11 +40,11 @@ namespace PowerEditor
             foreach (var property in serializedProperties)
             {
                 List<Attribute> allAttributes = property.GetAttributes();
-                List<SceneAttribute> sceneAttributes = new();
+                List<ISceneAttribute> sceneAttributes = new();
 
                 foreach (var attr in allAttributes)
                 {
-                    if (attr is SceneAttribute sceneAttr)
+                    if (attr is ISceneAttribute sceneAttr)
                     {
                         sceneAttributes.Add(sceneAttr);
                     }
@@ -141,7 +141,7 @@ namespace PowerEditor
                 if (!sceneAttributesDict.ContainsKey(property))
                     continue;
 
-                List<SceneAttribute> sceneAttributes = sceneAttributesDict[property];
+                List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property];
 
                 foreach (var attr in sceneAttributes)
                 {
@@ -204,7 +204,7 @@ namespace PowerEditor
         {
             foreach (var entry in sceneAttributesDict)
             {
-                List<SceneAttribute> attributes = sceneAttributesDict[entry.Key];
+                List<ISceneAttribute> attributes = sceneAttributesDict[entry.Key];
 
                 foreach (var attr in attributes)
                 {

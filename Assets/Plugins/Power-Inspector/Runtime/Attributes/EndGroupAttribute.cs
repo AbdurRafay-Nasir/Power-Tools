@@ -3,7 +3,7 @@ using System;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class EndGroupAttribute : InspectorAttribute
+    public class EndGroupAttribute : PowerAttribute
     {
         public int openGroupsToClose;
 

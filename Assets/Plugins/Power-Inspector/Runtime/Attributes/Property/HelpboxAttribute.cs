@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class HelpboxAttribute : InspectorAttribute
+    public class HelpboxAttribute : PowerAttribute
     {
         public string message;
         public HelpBoxMessageType messageType;

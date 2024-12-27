@@ -3,7 +3,7 @@ using System;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class PositionHandleAttribute : SceneAttribute
+    public class PositionHandleAttribute : PowerAttribute
     {
 
     }

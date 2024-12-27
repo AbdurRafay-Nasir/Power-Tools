@@ -16,11 +16,15 @@ namespace PowerEditor.Attributes.Editor
                 return new HelpBox("<color=green>[FolderPath]</color> is applicable only on String Fields", HelpBoxMessageType.Error);
             }
 
-            ObjectField objectField = new ObjectField("WWWWWWWWWW");
+            ObjectField objectField = new ObjectField(property.name);
 
-            // For whatever reason the field where object is assigned is too long
-            // Therefore adding some margin to label
-            objectField.Q<Label>().style.marginRight = 15f;
+            // By default unity adds this class on Child Fields of PropertyField
+            // Since this field is added as a child of PropertyField through code
+            // we need to add it manaully. 
+            // NOTE - The root that we are returning will become child of PropertyField
+            // which is Added in PowerInspectorEditor.cs. For more info refer to:
+            // https://docs.unity3d.com/6000.0/Documentation/Manual/UIE-uxml-element-PropertyField.html#:~:text=Align%20a%20PropertyField,consistency%20and%20compatibility.
+            objectField.AddToClassList("unity-base-field__aligned");
 
             objectField.RegisterValueChangedCallback((callback) =>
             {

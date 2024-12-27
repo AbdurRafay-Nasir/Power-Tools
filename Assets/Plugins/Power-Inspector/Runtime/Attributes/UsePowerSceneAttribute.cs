@@ -3,7 +3,7 @@ using System;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class UsePowerSceneAttribute : SceneAttribute
+    public class UsePowerSceneAttribute : PowerAttribute
     {
 
     }

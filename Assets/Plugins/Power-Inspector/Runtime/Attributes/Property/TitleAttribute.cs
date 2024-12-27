@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class TitleAttribute : InspectorAttribute
+    public class TitleAttribute : PowerAttribute
     {
         public string titleText;
         public float fontSize;

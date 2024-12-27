@@ -3,7 +3,7 @@ using System;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class ButtonAttribute : InspectorAttribute
+    public class ButtonAttribute : PowerAttribute
     {
         public string text;
 

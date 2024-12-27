@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace PowerEditor.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class FoldoutGroupAttribute : InspectorAttribute, IGroupAttribute
+    public class FoldoutGroupAttribute : PowerAttribute, IGroupAttribute
     {
         public VisualElement CreateGroupGUI()
         {
