@@ -12,4 +12,8 @@
     <engine:Foldout text="Foldout" class="power-foldout">
         <engine:Vector2Field label="Vec2 Field" />
     </engine:Foldout>
+    <engine:TextField label="Text Field" placeholder-text="filler text" />
+    <engine:TextField label="Text Field" placeholder-text="filler text" />
+    <editor:ObjectField label="Object Field" />
+    <editor:PropertyField />
 </engine:UXML>

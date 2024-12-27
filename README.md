@@ -46,7 +46,7 @@
 - Displays an error message (in a helpbox) if object field is null.
 - Applicable on Object reference fields. 
 
-### :x: Button
+### :heavy_check_mark: Button
 - Displays a button at bottom of inspector.
 - Applicable only on Mehods.
 - This button executes code of function.

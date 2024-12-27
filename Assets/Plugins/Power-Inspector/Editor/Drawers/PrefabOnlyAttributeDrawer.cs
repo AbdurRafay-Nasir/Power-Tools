@@ -12,47 +12,25 @@ namespace PowerEditor.Attributes.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            PrefabOnlyAttribute attr = (attribute as PrefabOnlyAttribute);
-
-            VisualElement root = new VisualElement();
-
             if (fieldInfo.FieldType != typeof(GameObject))
             {
-                root.Add(new HelpBox("<color=green>[PrefabOnly]</color> is applicable on GameObject reference only", HelpBoxMessageType.Error));
-                return root;
+                return new HelpBox("<color=green>[PrefabOnly]</color> is applicable on GameObject reference only", HelpBoxMessageType.Error);
             }
 
-            HelpBox helpBox = new HelpBox();
-            helpBox.messageType = HelpBoxMessageType.Error;
-            helpBox.style.display = DisplayStyle.None;
-            root.Add(helpBox);
+            ObjectField objectField = new ObjectField(property.name);
+            objectField.objectType = typeof(GameObject);
+            objectField.allowSceneObjects = false;
+            objectField.BindProperty(property);
 
-            PropertyField propertyField = new PropertyField(property);
-            root.Add(propertyField);
+            // By default unity adds this class on Child Fields of PropertyField
+            // Since this field is added as a child of PropertyField through code
+            // we need to add it manaully. 
+            // NOTE - The root that we are returning will become child of PropertyField
+            // which is Added in PowerInspectorEditor.cs. For more info refer to:
+            // https://docs.unity3d.com/6000.0/Documentation/Manual/UIE-uxml-element-PropertyField.html#:~:text=Align%20a%20PropertyField,consistency%20and%20compatibility.
+            objectField.AddToClassList("unity-base-field__aligned");
 
-            propertyField.RegisterValueChangeCallback((changeCallback) =>
-            {                
-                if (property.objectReferenceValue != null)
-                {
-                    GameObject go = property.objectReferenceValue as GameObject;
-                    helpBox.text = go.name + ": is not a prefab";
-
-                    bool isPrefab = PrefabUtility.IsPartOfPrefabAsset(go);
-                    if (!isPrefab)
-                    {
-                        helpBox.style.display = DisplayStyle.Flex;
-
-                        property.objectReferenceValue = null;
-                        property.serializedObject.ApplyModifiedProperties();
-                    }
-                    else
-                    {
-                        helpBox.style.display = DisplayStyle.None;
-                    }
-                }
-            });
-
-            return root;
+            return objectField;
         }
     }
 }

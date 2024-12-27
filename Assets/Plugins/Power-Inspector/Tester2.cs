@@ -15,18 +15,24 @@ public class Tester2 : MonoBehaviour
     //[GetFromParent(true)]
     //public Rigidbody rb;
 
-    [FilePath]
-    public string file;
+    //[FilePath]
+    //public string file;
 
-    // [ContextMenu("TEST")]
-    [Button("TEST")]
-    public void TEST()
-    {
-        Debug.Log(file);
-    }
+    //// [ContextMenu("TEST")]
+    //[Button("TEST")]
+    //public void TEST()
+    //{
+    //    Debug.Log(file);
+    //}
 
     [PrefabOnly]
     public GameObject prefab;
+
+    [Button("Name")]
+    public void PRINT()
+    {
+        Debug.Log(prefab.name);
+    }
 
     [GetFromChild(true)]
     public Tester t;
