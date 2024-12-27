@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace PowerEditor
+namespace PowerEditor.Attributes.Editor
 { 
     public class ScriptsCreator
     {

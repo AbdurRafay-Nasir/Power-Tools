@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 
-namespace PowerEditor.Attributes.Drawer
+namespace PowerEditor.Attributes.Editor
 {
     [CustomPropertyDrawer(typeof(RequiredAttribute))]
     public class RequiredAttributeDrawer : PropertyDrawer

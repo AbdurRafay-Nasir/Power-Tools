@@ -5,13 +5,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
-using PowerEditor.Attributes;
-using PowerEditor.Misc;
 
-namespace PowerEditor
+namespace PowerEditor.Attributes.Editor
 {
     [CustomEditor(typeof(MonoBehaviour), true)]
-    public class PowerInspectorEditor : Editor
+    public class PowerInspectorEditor : UnityEditor.Editor
     {
         private List<SerializedProperty> serializedProperties = new();
         private Dictionary<SerializedProperty, List<ISceneAttribute>> sceneAttributesDict = null;

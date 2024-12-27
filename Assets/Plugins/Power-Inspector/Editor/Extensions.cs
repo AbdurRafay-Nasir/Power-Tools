@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
-using UnityEngine;
 
-namespace PowerEditor.Misc
+namespace PowerEditor.Attributes.Editor
 {
     public static class Extensions
     {
