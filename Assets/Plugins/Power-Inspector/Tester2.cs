@@ -2,6 +2,7 @@ using UnityEngine;
 using PowerEditor.Attributes;
 
 // [UsePowerInspector]
+[UsePowerScene]
 public class Tester2 : MonoBehaviour
 {
     //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]
@@ -25,6 +26,12 @@ public class Tester2 : MonoBehaviour
     //    Debug.Log(file);
     //}
 
+    [DrawLine]
+    public Vector3 target = new(15f, 15f, 15f);
+
+    [DrawLine("#FFFFFF")]
+    public Transform t;
+
     [PrefabOnly]
     public GameObject prefab;
 
@@ -34,8 +41,8 @@ public class Tester2 : MonoBehaviour
         Debug.Log(prefab.name);
     }
 
-    [GetFromChild(true)]
-    public Tester t;
+    // [GetFromChild(true)]
+    // public Tester t;
 
     //[Required]
     //public Tester t1;

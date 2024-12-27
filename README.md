@@ -169,7 +169,7 @@
 - Applicable on Vector2 and Vector3. 
 - Requires UsePowerSceneAttribute.
 
-### :x: DrawLine
+### :heavy_check_mark: DrawLine
 - Displays a line from current position to given vector in scene view.
 - Applicable on Transform, Vector2 and Vector3.
 - Requires UsePowerSceneAttribute.

@@ -55,6 +55,8 @@ namespace PowerEditor
                     sceneAttributesDict.Add(property, sceneAttributes);
                 }
             }
+
+            PrintDictionary();
         }
 
         public override VisualElement CreateInspectorGUI()
@@ -145,33 +147,8 @@ namespace PowerEditor
 
                 foreach (var attr in sceneAttributes)
                 {
-
-                    if (attr is DrawLineAttribute drawLineAttribute)
-                    {
-                        Transform transform = (target as MonoBehaviour).transform;
-
-                        Color prevColor = Handles.color;
-                        Handles.color = drawLineAttribute.lineColor;
-
-                        Handles.DrawLine(transform.position, property.vector3Value, 
-                                         drawLineAttribute.lineThickness);
-
-                        Handles.color = prevColor;
-                    }
-                    else if (attr is PositionHandleAttribute)
-                    {
-                        FieldInfo field = property.GetField();
-
-                        if (property.propertyType == SerializedPropertyType.Vector3)
-                        {
-                            SetVector3Value(field);
-                        }
-                        else if (property.propertyType == SerializedPropertyType.Vector2)
-                        {
-                            SetVector2Value(field);
-                        }
-                    }
-
+                    if (attr.IsValid(property))
+                        attr.Draw(target, property);
                 }
             }
         }
@@ -208,7 +185,7 @@ namespace PowerEditor
 
                 foreach (var attr in attributes)
                 {
-                    Debug.Log("Printed: " + entry.Key.name + ": " + attr.GetType().Name);
+                    Debug.Log(entry.Key.name + ": has " + attr.GetType().Name);
                 }
             }
         }

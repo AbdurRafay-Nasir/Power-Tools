@@ -47,6 +47,9 @@ namespace PowerEditor.Misc
 
             FieldInfo field = targetType.GetField(property.name, bindingFlags);
 
+            if (field == null)
+                return new List<Attribute>();
+
             return new List<Attribute>(field.GetCustomAttributes(false) as Attribute[]);
         }
 
