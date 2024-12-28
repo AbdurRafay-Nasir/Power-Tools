@@ -179,7 +179,7 @@
 - Applicable on Transform[], Vector2[], Vector3[], List<Vector2> and List<Vector3> .
 - Requires UsePowerSceneAttribute.
 
-### :x: DrawRadius
+### :heavy_check_mark: DrawRadius
 - Displays a solid/wire sphere whose center is currentPosition.
 - Applicable on float and int.
 - Requires UsePowerSceneAttribute.

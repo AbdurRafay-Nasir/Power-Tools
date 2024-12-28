@@ -25,23 +25,26 @@ public class Tester2 : MonoBehaviour
     //    Debug.Log(file);
     //}
 
-    [SceneName]
-    public string scenes;
+    [DrawRadius]
+    public float val = 5f;
 
-    [DrawLine, PositionHandle]
-    public Vector3 target = new(15f, 15f, 15f);
+    //[ShowIf("val > 1")]
+    //public string scenes;
 
-    [DrawLine("#FFFFFF"), PositionHandle(true)]
-    public Transform t;
+    //[DrawLine, PositionHandle]
+    //public Vector3 target = new(15f, 15f, 15f);
 
-    [PrefabOnly]
-    public GameObject prefab;
+    //[DrawLine("#FFFFFF"), PositionHandle(true)]
+    //public Transform t;
 
-    [Button("PrintScene")]
-    public void PRINT()
-    {
-        Debug.Log(scenes);
-    }
+    //[PrefabOnly]
+    //public GameObject prefab;
+
+    //[Button("PrintScene")]
+    //public void PRINT()
+    //{
+    //    Debug.Log(scenes);
+    //}
 
     // [GetFromChild(true)]
     // public Tester t;

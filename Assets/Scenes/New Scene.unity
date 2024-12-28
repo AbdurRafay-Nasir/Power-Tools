@@ -427,10 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8ecf5bde0114d4fa777c8d453edca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenes: AAAAA
-  target: {x: 4.303508, y: -0.48032045, z: 6.1506357}
-  t: {fileID: 1154688901}
-  prefab: {fileID: 3796490014219765469, guid: ac7636a11b2631d40917ff17e1c144b2, type: 3}
+  val: 5.7
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

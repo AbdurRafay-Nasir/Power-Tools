@@ -14,6 +14,7 @@
     </engine:Foldout>
     <engine:TextField label="Text Field" placeholder-text="filler text" />
     <engine:TextField label="Text Field" placeholder-text="filler text" />
-    <editor:ObjectField label="Object Field" />
-    <editor:PropertyField />
+    <engine:Foldout text="Foldout" class="power-foldout">
+        <editor:ObjectField label="Object Field" />
+    </engine:Foldout>
 </engine:UXML>
