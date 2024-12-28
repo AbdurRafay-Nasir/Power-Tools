@@ -25,6 +25,9 @@ public class Tester2 : MonoBehaviour
     //    Debug.Log(file);
     //}
 
+    [SceneName]
+    public string scenes;
+
     [DrawLine, PositionHandle]
     public Vector3 target = new(15f, 15f, 15f);
 
@@ -34,10 +37,10 @@ public class Tester2 : MonoBehaviour
     [PrefabOnly]
     public GameObject prefab;
 
-    [Button("Name")]
+    [Button("PrintScene")]
     public void PRINT()
     {
-        Debug.Log(prefab.name);
+        Debug.Log(scenes);
     }
 
     // [GetFromChild(true)]

@@ -146,7 +146,7 @@
 - Displays a dropdown, having all Sorting Layers wihtin a project.
 - Applicable only on strings.
 
-### :x: SceneName
+### :heavy_check_mark: SceneName
 - Displays a dropdown, having all Scene names wihtin build settings.
 - Applicable only on strings.
 
