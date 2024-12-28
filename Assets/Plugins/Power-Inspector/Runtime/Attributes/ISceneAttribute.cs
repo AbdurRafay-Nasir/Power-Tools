@@ -5,5 +5,5 @@ public interface ISceneAttribute
     /// </summary>
     /// <param name="target">The Object Being Inspected.</param>
     /// <param name="property">Serialized Information about the Field on which this attribute is applied.</param>
-    void Draw(UnityEngine.Object target, UnityEditor.SerializedProperty property);
+    void Draw(UnityEngine.Object target, UnityEditor.SerializedProperty property, System.Reflection.FieldInfo field);
 }

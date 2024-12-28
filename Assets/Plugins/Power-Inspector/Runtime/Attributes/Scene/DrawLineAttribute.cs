@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ namespace PowerEditor.Attributes
             }
         }
 
-        public void Draw(UnityEngine.Object target, SerializedProperty property)
+        public void Draw(UnityEngine.Object target, SerializedProperty property, FieldInfo field)
         {
             Vector3 lineEnd;
 

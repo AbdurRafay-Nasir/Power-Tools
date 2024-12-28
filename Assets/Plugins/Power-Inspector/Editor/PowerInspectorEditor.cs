@@ -12,7 +12,7 @@ namespace PowerEditor.Attributes.Editor
     public class PowerInspectorEditor : UnityEditor.Editor
     {
         private List<SerializedProperty> serializedProperties = new();
-        private Dictionary<SerializedProperty, List<ISceneAttribute>> sceneAttributesDict = new();
+        private Dictionary<SerializedProperty, SceneAttributeData> sceneAttributesDict = new();
 
         private Type targetType;
 
@@ -42,7 +42,11 @@ namespace PowerEditor.Attributes.Editor
 
                 if (sceneAttributes.Count > 0)
                 {
-                    sceneAttributesDict.Add(property, sceneAttributes);
+                    SceneAttributeData data = new SceneAttributeData();
+                    data.fieldInfo = property.GetField();
+                    data.sceneAttributes = sceneAttributes;
+
+                    sceneAttributesDict.Add(property, data);
                 }
             }
 
@@ -115,35 +119,11 @@ namespace PowerEditor.Attributes.Editor
             {
                 SerializedProperty property = entry.Key;
 
-                List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property];
+                List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property].sceneAttributes;
                 foreach (var sceneAttr in sceneAttributes)
                 {
-                    sceneAttr.Draw(target, property);
+                    sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
                 }
-            }
-        }
-
-        private void SetVector3Value(FieldInfo field)
-        {
-            Vector3 oldVal = (Vector3)field.GetValue(target);
-            Vector3 newVal = Handles.PositionHandle(oldVal, Quaternion.identity);
-
-            if (newVal != oldVal)
-            {
-                Undo.RecordObject(target, "undo Vector3 value");
-                field.SetValue(target, newVal);
-            }
-        }
-
-        private void SetVector2Value(FieldInfo field)
-        {
-            Vector2 oldVal = (Vector2)field.GetValue(target);
-            Vector2 newVal = Handles.PositionHandle(oldVal, Quaternion.identity);
-
-            if (newVal != oldVal)
-            {
-                Undo.RecordObject(target, "undo Vector2 value");
-                field.SetValue(target, newVal);
             }
         }
 
@@ -151,7 +131,7 @@ namespace PowerEditor.Attributes.Editor
         {
             foreach (var entry in sceneAttributesDict)
             {
-                List<ISceneAttribute> attributes = sceneAttributesDict[entry.Key];
+                List<ISceneAttribute> attributes = sceneAttributesDict[entry.Key].sceneAttributes;
 
                 foreach (var attr in attributes)
                 {
@@ -159,6 +139,12 @@ namespace PowerEditor.Attributes.Editor
                 }
             }
         }
+    }
+
+    internal struct SceneAttributeData
+    {
+        public List<ISceneAttribute> sceneAttributes;
+        public FieldInfo fieldInfo;
     }
 
 }
