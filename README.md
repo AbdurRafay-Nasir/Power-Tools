@@ -164,7 +164,7 @@
 - Allows complete modification of a Property Field.
 - Can also use userdefined USS.
 
-### :x: PositionHandle
+### :heavy_check_mark: PositionHandle
 - Displays a Position Handle in scene view.
 - Applicable on Vector2 and Vector3. 
 - Requires UsePowerSceneAttribute.
