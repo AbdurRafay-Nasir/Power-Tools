@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-//using PowerEditor.Misc;
 
 namespace PowerEditor.Attributes
 {
@@ -10,16 +9,10 @@ namespace PowerEditor.Attributes
     {
         public void Draw(UnityEngine.Object target, SerializedProperty property)
         {
-            //Vector3 handlePosition = property.GetField();
+            //Vector3 handlePosition = (Vector3)field.GetValue(target);
 
             //if (property.propertyType == SerializedPropertyType.Vector3)
-            //Handles.PositionHandle()
-        }
-
-        public bool IsValid(SerializedProperty property)
-        {
-            return (property.propertyType == SerializedPropertyType.Vector3 ||
-                    property.propertyType == SerializedPropertyType.Vector2);
+            //    Handles.PositionHandle()
         }
     }
 }

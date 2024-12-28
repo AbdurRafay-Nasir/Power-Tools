@@ -63,17 +63,5 @@ namespace PowerEditor.Attributes
             Handles.DrawLine(transform.position, value, lineThickness);
             Handles.color = prevColor;
         }
-
-        public bool IsValid(SerializedProperty property)
-        {
-            if (property.propertyType == SerializedPropertyType.Vector3 ||
-                property.propertyType == SerializedPropertyType.Vector2 ||
-                property.objectReferenceValue.GetType() == typeof(Transform))
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }

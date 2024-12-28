@@ -15,29 +15,25 @@ namespace PowerEditor.Attributes.Editor
         /// Returns all Serialized Properties of this Serialized Object
         /// </summary>
         /// <remarks>Will not return null, empty List can be returned</remarks>
-        public static List<SerializedProperty> GetAllSerializedProperties(this SerializedObject serializedObject,
-                                                                          bool ignoreScriptReference = true)
+        public static List<SerializedProperty> GetAllSerializedProperties(this SerializedObject serializedObject)
+
         {
             List<SerializedProperty> serializedProperties = new();
 
             SerializedProperty iterator = serializedObject.GetIterator();
+            iterator.NextVisible(true);
 
-            bool isNextPropertyVisible = iterator.NextVisible(true);
-
-            if (ignoreScriptReference)
-            {
-                isNextPropertyVisible = iterator.NextVisible(false);
-            }
+            bool isNextPropertyVisible = iterator.NextVisible(false);
 
             while (isNextPropertyVisible)
             {
                 serializedProperties.Add(iterator.Copy());
+
                 isNextPropertyVisible = iterator.NextVisible(false);
             }
 
             return serializedProperties;
         }
-
 
         /// <returns>All Attributes this Serialized Property has</returns>
         public static List<Attribute> GetAttributes(this SerializedProperty property)
@@ -45,9 +41,6 @@ namespace PowerEditor.Attributes.Editor
             Type targetType = property.serializedObject.targetObject.GetType();
 
             FieldInfo field = targetType.GetField(property.name, bindingFlags);
-
-            if (field == null)
-                return new List<Attribute>();
 
             return new List<Attribute>(field.GetCustomAttributes(false) as Attribute[]);
         }

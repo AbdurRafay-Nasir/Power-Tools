@@ -26,7 +26,11 @@ namespace PowerEditor.Attributes.Editor
             hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
             hasUsePowerSceneAttribute = targetType.GetCustomAttribute<UsePowerSceneAttribute>() != null;
             
-            serializedProperties = serializedObject.GetAllSerializedProperties(false);
+            serializedProperties = serializedObject.GetAllSerializedProperties();
+            foreach (var prop in serializedProperties)
+            {
+                Debug.Log(prop.name);
+            }
 
             // If the class is not marked with UsePowerSceneAttribute,
             // then don't process it
@@ -54,23 +58,18 @@ namespace PowerEditor.Attributes.Editor
                 }
             }
 
-            PrintDictionary();
+            // PrintDictionary();
         }
 
         public override VisualElement CreateInspectorGUI()
         {
             VisualElement tree = new VisualElement();
-
-            PropertyField scriptField = new PropertyField(serializedProperties[0]);
-            scriptField.SetEnabled(false);
-
-            tree.Add(scriptField);
             
             if (!hasUsePowerInspectorAttribute)
             {
-                for (int i = 1; i < serializedProperties.Count; i++)
+                foreach (var prop in serializedProperties)
                 {
-                    tree.Add(new PropertyField(serializedProperties[i]));
+                    tree.Add(new PropertyField(prop));
                 }
 
                 MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -145,8 +144,7 @@ namespace PowerEditor.Attributes.Editor
 
                 foreach (var attr in sceneAttributes)
                 {
-                    if (attr.IsValid(property))
-                        attr.Draw(target, property);
+                    attr.Draw(target, property);
                 }
             }
         }
