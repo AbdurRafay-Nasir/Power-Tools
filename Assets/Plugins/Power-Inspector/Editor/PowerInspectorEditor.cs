@@ -12,10 +12,9 @@ namespace PowerEditor.Attributes.Editor
     public class PowerInspectorEditor : UnityEditor.Editor
     {
         private List<SerializedProperty> serializedProperties = new();
-        private Dictionary<SerializedProperty, List<ISceneAttribute>> sceneAttributesDict = null;
+        private Dictionary<SerializedProperty, List<ISceneAttribute>> sceneAttributesDict = new();
 
         private bool hasUsePowerInspectorAttribute;
-        private bool hasUsePowerSceneAttribute;
 
         private Type targetType;
 
@@ -23,21 +22,14 @@ namespace PowerEditor.Attributes.Editor
         {
             targetType = target.GetType();
 
-            hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
-            hasUsePowerSceneAttribute = targetType.GetCustomAttribute<UsePowerSceneAttribute>() != null;
-            
             serializedProperties = serializedObject.GetAllSerializedProperties();
-            foreach (var prop in serializedProperties)
-            {
-                Debug.Log(prop.name);
-            }
 
+            hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
+            
             // If the class is not marked with UsePowerSceneAttribute,
             // then don't process it
-            if (!hasUsePowerSceneAttribute)
+            if (targetType.GetCustomAttribute<UsePowerSceneAttribute>() == null)
                 return;
-
-            sceneAttributesDict = new();
 
             foreach (var property in serializedProperties)
             {
@@ -132,19 +124,17 @@ namespace PowerEditor.Attributes.Editor
 
         private void OnSceneGUI()
         {
-            if (!hasUsePowerSceneAttribute)
+            if (sceneAttributesDict.Count == 0)
                 return;
 
-            foreach (var property in serializedProperties)
+            foreach (var entry in sceneAttributesDict)
             {
-                if (!sceneAttributesDict.ContainsKey(property))
-                    continue;
+                SerializedProperty property = entry.Key;
 
                 List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property];
-
-                foreach (var attr in sceneAttributes)
+                foreach (var sceneAttr in sceneAttributes)
                 {
-                    attr.Draw(target, property);
+                    sceneAttr.Draw(target, property);
                 }
             }
         }
