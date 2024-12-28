@@ -14,8 +14,6 @@ namespace PowerEditor.Attributes.Editor
         private List<SerializedProperty> serializedProperties = new();
         private Dictionary<SerializedProperty, List<ISceneAttribute>> sceneAttributesDict = new();
 
-        private bool hasUsePowerInspectorAttribute;
-
         private Type targetType;
 
         private void OnEnable()
@@ -23,8 +21,6 @@ namespace PowerEditor.Attributes.Editor
             targetType = target.GetType();
 
             serializedProperties = serializedObject.GetAllSerializedProperties();
-
-            hasUsePowerInspectorAttribute = targetType.GetCustomAttribute<UsePowerInspectorAttribute>() != null;
             
             // If the class is not marked with UsePowerSceneAttribute,
             // then don't process it
@@ -56,43 +52,12 @@ namespace PowerEditor.Attributes.Editor
         public override VisualElement CreateInspectorGUI()
         {
             VisualElement tree = new VisualElement();
-            
-            if (!hasUsePowerInspectorAttribute)
-            {
-                foreach (var prop in serializedProperties)
-                {
-                    tree.Add(new PropertyField(prop));
-                }
-
-                MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                foreach (var method in methods)
-                {
-                    ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
-
-                    if (buttonAttribute == null)
-                        continue;
-
-                    Button button = new Button();
-                    button.text = buttonAttribute.text;
-
-                    button.RegisterCallback<ClickEvent>((callback) =>
-                    {
-                        method.Invoke(target, method.GetParameters());
-                    });
-
-                    tree.Add(button);                    
-                }
-
-                return tree;
-            }
-            
             Stack<VisualElement> parentStack = new Stack<VisualElement>();
 
             VisualElement currentParent = tree;
 
-            for (int i = 1; i < serializedProperties.Count; i++)
+            foreach (var property in serializedProperties)
             {
-                SerializedProperty property = serializedProperties[i];
                 List<Attribute> allAttributes = property.GetAttributes();
 
                 foreach (var attribute in allAttributes)
@@ -117,6 +82,25 @@ namespace PowerEditor.Attributes.Editor
                 currentParent.Add(new PropertyField(property));
             }
 
+            MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            foreach (var method in methods)
+            {
+                ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
+
+                if (buttonAttribute == null)
+                    continue;
+
+                Button button = new Button();
+                button.text = buttonAttribute.text;
+
+                button.RegisterCallback<ClickEvent>((callback) =>
+                {
+                    method.Invoke(target, method.GetParameters());
+                });
+
+                tree.Add(button);
+            }
+            
             parentStack.Clear();
 
             return tree;
