@@ -1,7 +1,6 @@
 using UnityEngine;
 using PowerEditor.Attributes;
 
-// [UsePowerInspector]
 [UsePowerScene]
 public class Tester2 : MonoBehaviour
 {

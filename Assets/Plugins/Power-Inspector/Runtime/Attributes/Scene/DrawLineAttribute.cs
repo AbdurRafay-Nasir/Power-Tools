@@ -43,24 +43,34 @@ namespace PowerEditor.Attributes
 
         public void Draw(UnityEngine.Object target, SerializedProperty property)
         {
+            Vector3 lineEnd;
+
+            if (property.propertyType == SerializedPropertyType.Vector3)
+            {
+                lineEnd = property.vector3Value;
+            }
+            else if (property.propertyType == SerializedPropertyType.Vector2)
+            {
+                lineEnd = property.vector2Value;
+            }
+            else if (property.propertyType == SerializedPropertyType.ObjectReference && 
+                     property.objectReferenceValue != null && 
+                     property.objectReferenceValue.GetType() == typeof(Transform))
+            {
+                Transform targetTransform = property.objectReferenceValue as Transform;
+                lineEnd = targetTransform.position;
+            }
+            else
+            {
+                return;
+            }
+
             Transform transform = (target as MonoBehaviour).transform;
 
             Color prevColor = Handles.color;
             Handles.color = lineColor;
 
-            Vector3 value;
-
-            if (property.propertyType == SerializedPropertyType.Vector3)
-                value = property.vector3Value;
-            else if (property.propertyType == SerializedPropertyType.Vector2)
-                value = property.vector2Value;
-            else
-            {
-                Transform targetTransform = property.objectReferenceValue as Transform;
-                value = targetTransform.position;
-            }
-
-            Handles.DrawLine(transform.position, value, lineThickness);
+            Handles.DrawLine(transform.position, lineEnd, lineThickness);
             Handles.color = prevColor;
         }
     }
