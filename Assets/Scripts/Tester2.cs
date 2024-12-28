@@ -25,10 +25,10 @@ public class Tester2 : MonoBehaviour
     //    Debug.Log(file);
     //}
 
-    [DrawLine]
+    [DrawLine, PositionHandle]
     public Vector3 target = new(15f, 15f, 15f);
 
-    [DrawLine("#FFFFFF")]
+    [DrawLine("#FFFFFF"), PositionHandle(true)]
     public Transform t;
 
     [PrefabOnly]
