@@ -2,7 +2,7 @@ using System;
 
 namespace PowerEditor.Attributes
 {
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class ShowIfAttribute : PowerAttribute
     {
         public string expression;

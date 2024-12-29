@@ -1,7 +1,5 @@
-.power-foldout {
+.power-foldout > .unity-foldout__toggle {
 }
 
-.power-foldout > .unity-foldout__toggle {
-    margin-left: 15px;
-    background-color: rgb(88, 58, 58);
+.power-foldout {
 }

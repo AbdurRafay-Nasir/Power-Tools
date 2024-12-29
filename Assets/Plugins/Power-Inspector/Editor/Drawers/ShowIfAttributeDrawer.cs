@@ -13,21 +13,30 @@ namespace PowerEditor.Attributes.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             ShowIfAttribute attr = (attribute as ShowIfAttribute);
+            System.Delegate lambda;
 
-            System.Delegate compiledLambda = DynamicExpressionParser
-                                           .ParseLambda(property.serializedObject.targetObject.GetType(), 
-                                                        typeof(bool), attr.expression)
-                                           .Compile();
-
-            bool result = (bool)compiledLambda.DynamicInvoke(property.serializedObject.targetObject);
+            try
+            {
+                lambda = DynamicExpressionParser.ParseLambda(property.serializedObject.targetObject.GetType(),
+                                                             typeof(bool), attr.expression).Compile();
+            }
+            catch (System.Exception e)
+            {
+                return new HelpBox("Error in expression on field: <color=yellow>" + 
+                                    property.name + "</color> The problem is: \n<color=cyan>" + e.Message,
+                                    HelpBoxMessageType.Error);
+            }
 
             PropertyField propertyField = new PropertyField(property);
-            propertyField.style.display = result ? DisplayStyle.Flex : DisplayStyle.None;
 
-            propertyField.RegisterValueChangeCallback((callback) =>
+            bool result = (bool)lambda.DynamicInvoke(property.serializedObject.targetObject);
+            propertyField.style.display = result ? DisplayStyle.Flex : DisplayStyle.None;
+         
+            propertyField.TrackSerializedObjectValue(property.serializedObject, ((_) =>
             {
-                propertyField.style.display = result ? DisplayStyle.Flex : DisplayStyle.None;
-            });
+                result = (bool)lambda.DynamicInvoke(property.serializedObject.targetObject);
+                propertyField.style.display = result ? DisplayStyle.Flex : DisplayStyle.None;                
+            }));
 
             return propertyField;
         }

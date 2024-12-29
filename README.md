@@ -9,34 +9,28 @@
 - Similar to Array's foldout.
 - Provides custom styling, which can be modified.
 - Supports user-defined USS.
-- Requires UsePowerAttributes on class.
 
 ### :x: BoxGroup
 - Provides a background box to grouped fields.
 - Provides custom styling, which can be modified.
 - Supports user-defined USS.
-- Requires UsePowerAttributes on class.
 
 ### :x: ToggleGroup
 - Provides Toggle buttons on top of inspector.
 - Similar to Tween Kit.
 - Allows customizing size of toggle buttons.
-- Requires UsePowerAttributes on class.
 
-### :x: ShowIfGroup
+### :heavy_check_mark: ShowIfGroup
 - Displays group of fields only when a given condition is true.
-- Requires UsePowerAttributes on class.
 
 ### :x: HideIfGroup
 - Hides a group of fields only when a given condition is true.
-- Requires UsePowerAttributes on class.
 
 ### :x: EndGroup 
 - Closes an open group.
 - Allows closing multiple open groups with one EndGroup attribute.
-- Requires UsePowerAttributes on class.
 
-### :x: ShowIf
+### :heavy_check_mark: ShowIf
 - Displays a field only when a given condition is true.
 
 ### :x: HideIf
