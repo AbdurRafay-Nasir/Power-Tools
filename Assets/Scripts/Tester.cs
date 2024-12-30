@@ -1,5 +1,6 @@
 using UnityEngine;
 using PowerEditor.Attributes;
+using System.Collections.Generic;
 
 // [UsePowerInspector, UsePowerScene]
 public class Tester : MonoBehaviour
@@ -19,4 +20,6 @@ public class Tester : MonoBehaviour
 
     //[PositionHandle]
     public Vector2 target2 = new Vector3(10, 10, 10);
+
+    public List<Vector2> vector2s;
 }

@@ -392,6 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482712810}
   - component: {fileID: 1482712811}
+  - component: {fileID: 1482712812}
   m_Layer: 0
   m_Name: Grand Parent
   m_TagString: Untagged
@@ -427,9 +428,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8ecf5bde0114d4fa777c8d453edca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  val: 4.690758
+  val: 10
   target: {x: -0.17, y: 0, z: -0.73}
   showIfExample: 8.12
+--- !u!114 &1482712812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482712808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78758f7e6c5b70b4f825d84cfdd2f4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target2: {x: 10, y: 10}
+  vector2s:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

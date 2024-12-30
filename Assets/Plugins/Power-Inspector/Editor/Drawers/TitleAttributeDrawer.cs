@@ -31,7 +31,8 @@ namespace PowerEditor.Attributes.Editor
             horizontalLine.style.backgroundColor = lightWhite;
             horizontalLine.style.height = 2;
             horizontalLine.style.marginBottom = 5f;
-            
+            horizontalLine.style.width = Length.Percent(100);
+
             root.Add(title);
             root.Add(description);
             root.Add(horizontalLine);

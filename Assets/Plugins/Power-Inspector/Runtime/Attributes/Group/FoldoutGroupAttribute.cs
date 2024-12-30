@@ -12,6 +12,8 @@ namespace PowerEditor.Attributes
             foldout.text = "F1";
 
             foldout.viewDataKey = "AAA";
+            foldout.AddToClassList("unity-list-view__foldout-header");
+            // foldout.AddToClassList("unity-box");
 
             return foldout;
         }

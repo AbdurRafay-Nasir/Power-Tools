@@ -4,15 +4,16 @@ using PowerEditor.Attributes;
 // [UsePowerScene]
 public class Tester2 : MonoBehaviour
 {
-
-    [Title("Title", "Sample Descriton do as you need to"), DrawRadius]
+    
+    [BoxGroup]
+    [Title("MAAAAAAAAAAAA", "MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAA", Alignment.Center), DrawRadius]
     public float val = 5f;
 
-    [PositionHandle, DrawLine]
+    [FoldoutGroup, PositionHandle, DrawLine]
     public Vector3 target;
 
     [ShowIf("target.z <= target.y")]
-    [ShowIf("val == 10f")]
+    [ShowIf("val == 10f")]    
     public float showIfExample = 5f;
 
     //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]

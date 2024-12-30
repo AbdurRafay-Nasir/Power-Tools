@@ -10,7 +10,7 @@
 - Provides custom styling, which can be modified.
 - Supports user-defined USS.
 
-### :x: BoxGroup
+### :heavy_check_mark: BoxGroup
 - Provides a background box to grouped fields.
 - Provides custom styling, which can be modified.
 - Supports user-defined USS.
@@ -99,7 +99,7 @@
 - Creates a preview of an asset in inspector
 - Applicable on AudioClip.
 
-### :x: Title
+### :heavy_check_mark: Title
 - Adds a title, sub-title on top of a field.
 
 ### :x: Separator
