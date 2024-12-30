@@ -1,11 +1,11 @@
 using UnityEngine;
 using PowerEditor.Attributes;
 
-[UsePowerScene]
+// [UsePowerScene]
 public class Tester2 : MonoBehaviour
 {
 
-    [DrawRadius]
+    [Title("Title", "Sample Descriton do as you need to"), DrawRadius]
     public float val = 5f;
 
     [PositionHandle, DrawLine]

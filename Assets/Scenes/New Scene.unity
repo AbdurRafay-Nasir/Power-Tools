@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8ecf5bde0114d4fa777c8d453edca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  val: 8.2
+  val: 4.690758
   target: {x: -0.17, y: 0, z: -0.73}
   showIfExample: 8.12
 --- !u!1001 &8481114790276849611
