@@ -4,7 +4,8 @@ using PowerEditor.Attributes;
 // [UsePowerScene]
 public class Tester2 : MonoBehaviour
 {
-    
+
+    [ReadOnlyGroup]
     [BoxGroup]
     [Title("MAAAAAAAAAAAA", "MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAA", Alignment.Center), DrawRadius]
     public float val = 5f;
@@ -13,7 +14,8 @@ public class Tester2 : MonoBehaviour
     public Vector3 target;
 
     [ShowIf("target.z <= target.y")]
-    [ShowIf("val == 10f")]    
+    [ShowIf("val == 10f")]
+    [EndGroup(3)]
     public float showIfExample = 5f;
 
     //[EndGroup]
