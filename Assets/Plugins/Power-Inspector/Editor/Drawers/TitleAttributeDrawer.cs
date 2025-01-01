@@ -18,12 +18,14 @@ namespace PowerEditor.Attributes.Editor
             title.style.unityFontStyleAndWeight = attr.boldTitle ? FontStyle.Bold : FontStyle.Normal;
             title.style.fontSize = attr.titleFontSize;
             title.style.paddingBottom = 1f;
+            title.style.whiteSpace = WhiteSpace.Normal;
+            title.style.overflow = Overflow.Visible;
 
             Label description = new Label(attr.description);
             description.style.color = lightWhite;
             description.style.alignSelf = (Align)(int)attr.alignment;
-            description.style.paddingBottom = 2f;
             description.style.fontSize = attr.titleFontSize * 0.75f; // Two Third
+            description.style.paddingBottom = 2f;
             description.style.whiteSpace = WhiteSpace.Normal;
             description.style.overflow = Overflow.Visible;
 

@@ -20,7 +20,7 @@
 - Similar to Tween Kit.
 - Allows customizing size of toggle buttons.
 
-### :heavy_check_mark: ShowIfGroup
+### :x: ShowIfGroup
 - Displays group of fields only when a given condition is true.
 
 ### :x: HideIfGroup

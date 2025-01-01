@@ -9,12 +9,16 @@ public class Tester2 : MonoBehaviour
     [Title("MAAAAAAAAAAAA", "MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAA", Alignment.Center), DrawRadius]
     public float val = 5f;
 
-    [FoldoutGroup, PositionHandle, DrawLine]
+    [FoldoutGroup("My Foldout"), PositionHandle, DrawLine]
     public Vector3 target;
 
     [ShowIf("target.z <= target.y")]
     [ShowIf("val == 10f")]    
     public float showIfExample = 5f;
+
+    //[EndGroup]
+    //[GetFromParent, ReadOnly]
+    //public Transform getFromParentExample;
 
     //[Helpbox("Type your info here", UnityEngine.UIElements.HelpBoxMessageType.Info), Required]
     //public GameObject go;

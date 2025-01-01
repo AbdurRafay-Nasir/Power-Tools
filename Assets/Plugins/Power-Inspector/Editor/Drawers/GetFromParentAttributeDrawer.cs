@@ -19,14 +19,14 @@ namespace PowerEditor.Attributes.Editor
             // Ensure the Property is Object Reference. Not allow int, float, bool, string etc
             if (property.propertyType != SerializedPropertyType.ObjectReference)
             {
-                root.Add(new HelpBox("GetFromParentAttribute: is only valid on Object Reference. ", HelpBoxMessageType.Error));
+                root.Add(new HelpBox("<color=green>[GetFromParent]</color> is only valid on Object Reference. ", HelpBoxMessageType.Error));
                 return root;
             }
 
             // Ensure Field is a Component. Not allow references such as: Sprite, Texture etc
             if (!typeof(Component).IsAssignableFrom(fieldInfo.FieldType))
             {
-                root.Add(new HelpBox("GetFromParentAttribute: is only valid on Component Reference. ", HelpBoxMessageType.Error));
+                root.Add(new HelpBox("<color=green>[GetFromParent]</color> is only valid for Component Reference. ", HelpBoxMessageType.Error));
                 return root;
             }
 
@@ -37,7 +37,7 @@ namespace PowerEditor.Attributes.Editor
 
                 if (transform.parent == null)
                 {
-                    root.Add(new HelpBox(transform.name + " does not have a parent", HelpBoxMessageType.Error));
+                    root.Add(new HelpBox("GameObject: <color=yellow>" + transform.name + "</color> does not have a parent", HelpBoxMessageType.Error));
                     return root;
                 }
 
