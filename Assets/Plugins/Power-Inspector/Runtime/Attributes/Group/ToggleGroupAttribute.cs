@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+using System.Text.RegularExpressions;
 using UnityEngine.UIElements;
 
 namespace PowerEditor.Attributes
@@ -16,31 +16,65 @@ namespace PowerEditor.Attributes
 
         public VisualElement CreateGroupGUI(in VisualElement parent)
         {
+            ToggleButtonGroup toggleButtonGroup = parent.Q<ToggleButtonGroup>();
+            VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
+
+            if (toggleButtonsContainer.childCount == 0)
+                return new VisualElement();
+
+            Button toggleButton = null;
+            string buttonNameWithoutIndex = null;
+            int index = -1;
+
+            foreach (Button button in toggleButtonsContainer.Children())
+            {
+                buttonNameWithoutIndex = Regex.Replace(button.name, @"^\d+", "");
+
+                if (toggleName.Equals(buttonNameWithoutIndex))
+                {
+                    // we found our button
+                    index = int.Parse(Regex.Match(button.name, @"^\d+").Value);
+                    toggleButton = button;
+                    break;
+                }
+            }
+
+            if (toggleButton == null)
+                return new VisualElement();
+
             VisualElement root = new VisualElement();
 
-            Button button = parent.Q<Button>(toggleName);
-            if (button == null)
-                return root;
+            // Setup for Initial display, we can't do it in CreateGroupGUI as we need to 
+            // know the state of toggle which is only valid once the Inspector is made
+            toggleButton.RegisterCallbackOnce<GeometryChangedEvent>
+            (
+                (evt) => SetDisplay(root, toggleButtonGroup, index)
+            );
 
-            button.RegisterCallback<ClickEvent>((evt) =>
-            {
-                Color bgColor = button.resolvedStyle.backgroundColor;
-                string hex = ColorUtility.ToHtmlStringRGB(bgColor);
-
-                root.style.display = (hex == "4F657F" || hex == "B0D2FC")
-                                     ? DisplayStyle.Flex
-                                     : DisplayStyle.None;
-            });
-
-            button.RegisterCallbackOnce<GeometryChangedEvent>((evt) =>
-            {
-                Color bgColor = button.resolvedStyle.backgroundColor;
-                string hex = ColorUtility.ToHtmlStringRGB(bgColor);
-
-                root.style.display = (hex == "46607C") ? DisplayStyle.Flex : DisplayStyle.None;
-            });
+            toggleButton.RegisterCallback<ClickEvent>
+            (
+                (evt) => SetDisplay(root, toggleButtonGroup, index)
+            );
 
             return root;
+        }
+
+        private void SetDisplay(VisualElement parent, ToggleButtonGroup toggleButtonGroup, int toggleIndex)
+        {
+            ToggleButtonGroupState state = toggleButtonGroup.value;
+            Span<int> activeOptions = state.GetActiveOptions(stackalloc int[state.length]);
+
+            foreach (var activeOption in activeOptions)
+            {
+                if (toggleIndex == activeOption)
+                {
+                    // Toggle was active
+                    parent.style.display = DisplayStyle.Flex;
+                    return;
+                }
+            }
+
+            parent.style.display = DisplayStyle.None;
         }
     }
 }
