@@ -25,7 +25,7 @@ namespace PowerEditor.Attributes
                                bordColor : new Color(0.19f, 0.19f, 0.19f);
         }
 
-        public VisualElement CreateGroupGUI()
+        public VisualElement CreateGroupGUI(in VisualElement parent)
         {
             Box box = new Box();
 

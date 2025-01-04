@@ -1,6 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/Editor/gg.uss?fileID=7433441132597879392&amp;guid=0478bcac2f0a03748bcab80d2dc7c7f0&amp;type=3#gg" />
     <engine:Foldout text="Foldout" class="power-foldout">
-        <engine:Vector2Field label="Vec2 Field" />
+        <engine:VisualElement style="flex-grow: 1; overflow: hidden; height: 50%; min-height: 0;">
+            <engine:Vector2Field label="Vec2 Field" />
+            <engine:Vector2Field label="Vec2 Field" />
+            <engine:Vector2Field label="Vec2 Field" />
+        </engine:VisualElement>
     </engine:Foldout>
 </engine:UXML>

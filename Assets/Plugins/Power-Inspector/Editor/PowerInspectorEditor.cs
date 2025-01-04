@@ -60,6 +60,12 @@ namespace PowerEditor.Attributes.Editor
 
             VisualElement currentParent = tree;
 
+            TogglesAttribute togglesAttribute = targetType.GetCustomAttribute<TogglesAttribute>();
+            if (togglesAttribute != null)
+            {
+                CreateToggles(currentParent, togglesAttribute.toggleNames);
+            }
+
             foreach (var property in serializedProperties)
             {
                 List<Attribute> allAttributes = property.GetAttributes();
@@ -68,7 +74,7 @@ namespace PowerEditor.Attributes.Editor
                 {
                     if (attribute is IGroupAttribute groupAttribute)
                     {
-                        VisualElement group = groupAttribute.CreateGroupGUI();
+                        VisualElement group = groupAttribute.CreateGroupGUI(currentParent);
 
                         currentParent.Add(group);
 
@@ -125,6 +131,37 @@ namespace PowerEditor.Attributes.Editor
                     sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
                 }
             }
+        }
+
+        private void CreateToggles(VisualElement parent, string[] toggleNames)
+        {
+            ToggleButtonGroup toggleButtonGroup = new ToggleButtonGroup();
+            toggleButtonGroup.isMultipleSelection = true;
+            toggleButtonGroup.allowEmptySelection = true;
+            toggleButtonGroup.viewDataKey = target.GetInstanceID().ToString();
+
+            // if number of buttons exceed available horizontal space,
+            // move them to next line
+            VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
+            toggleButtonsContainer.style.flexWrap = Wrap.Wrap;
+            toggleButtonsContainer.style.alignSelf = Align.Center;
+
+            foreach (string name in toggleNames)
+            {
+                Button button = new Button();
+                button.name = name;
+                button.text = name;
+                button.style.fontSize = 15f;
+                button.style.paddingBottom = 5f;
+                button.style.paddingTop = 5f;
+                button.style.paddingRight = 10f;
+                button.style.paddingLeft = 10f;
+                button.style.marginRight = 5f;
+
+                toggleButtonGroup.Add(button);
+            }
+
+            parent.Add(toggleButtonGroup);
         }
 
         private void PrintDictionary()

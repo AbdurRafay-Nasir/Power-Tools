@@ -11,7 +11,7 @@ namespace PowerEditor.Attributes
             
         }
 
-        public VisualElement CreateGroupGUI()
+        public VisualElement CreateGroupGUI(in VisualElement parent)
         {
             VisualElement root = new VisualElement();
 
