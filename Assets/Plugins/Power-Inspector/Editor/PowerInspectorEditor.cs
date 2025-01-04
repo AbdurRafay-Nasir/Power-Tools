@@ -83,7 +83,11 @@ namespace PowerEditor.Attributes.Editor
                     }
                     else if (attribute is EndGroupAttribute endGroupAttribute)
                     {
-                        for (int j = 0; j < endGroupAttribute.openGroupsToClose; j++)
+                        int groupsToClose = endGroupAttribute.openGroupsToClose > parentStack.Count
+                                            ? parentStack.Count
+                                            : endGroupAttribute.openGroupsToClose;
+
+                        for (int j = 0; j < groupsToClose; j++)
                             currentParent = parentStack.Pop();
                     }
                 }
@@ -146,11 +150,11 @@ namespace PowerEditor.Attributes.Editor
             toggleButtonsContainer.style.flexWrap = Wrap.Wrap;
             toggleButtonsContainer.style.alignSelf = Align.Center;
 
-            foreach (string name in toggleNames)
+            for (int i = 0; i < toggleNames.Length; i++)
             {
                 Button button = new Button();
-                button.name = name;
-                button.text = name;
+                button.name = i + toggleNames[i];
+                button.text = toggleNames[i];
                 button.style.fontSize = 15f;
                 button.style.paddingBottom = 5f;
                 button.style.paddingTop = 5f;
