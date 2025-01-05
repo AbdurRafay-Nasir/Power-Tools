@@ -17,6 +17,10 @@ namespace PowerEditor.Attributes
         public VisualElement CreateGroupGUI(in VisualElement parent)
         {
             ToggleButtonGroup toggleButtonGroup = parent.Q<ToggleButtonGroup>();
+            if (toggleButtonGroup == null)
+                return new HelpBox("<color=green>[ToggleGroup]</color> requires <color=green>[Toggles]</color> on class.", 
+                                    HelpBoxMessageType.Error);
+
             VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
 
             if (toggleButtonsContainer.childCount == 0)

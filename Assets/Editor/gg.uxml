@@ -18,14 +18,13 @@
     <engine:Foldout text="Foldout" class="power-foldout">
         <editor:ObjectField label="Object Field" />
     </engine:Foldout>
-    <engine:ToggleButtonGroup style="align-self: center; flex-wrap: nowrap; overflow: visible; visibility: visible; flex-direction: column;">
-        <engine:Button text="Button" />
-        <engine:Button text="bunakdwn" />
-        <engine:Button text="Button" />
-        <engine:Button text="awndand" />
-        <engine:Button text="Button" />
-        <engine:Button text="Button" />
-        <engine:Button text="aaaaaaa" />
-        <engine:Button text="Button" />
-    </engine:ToggleButtonGroup>
+    <engine:TabView>
+        <engine:Foldout text="Foldout" />
+        <engine:Tab label="Tab" name="Tab">
+            <engine:SliderInt label="SliderInt" value="42" high-value="100" />
+            <engine:SliderInt label="SliderInt" value="42" high-value="100" />
+        </engine:Tab>
+        <engine:Tab label="Tab" name="Tab" />
+        <engine:Tab label="Tab" name="Tab" />
+    </engine:TabView>
 </engine:UXML>

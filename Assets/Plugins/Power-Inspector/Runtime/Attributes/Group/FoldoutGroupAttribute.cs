@@ -11,7 +11,6 @@ namespace PowerEditor.Attributes
         public bool open;
 
         private Foldout foldout;
-        private bool isExpanded = false;
 
         public FoldoutGroupAttribute(string name = "", bool open = false)
         {

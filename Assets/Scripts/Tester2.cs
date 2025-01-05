@@ -1,21 +1,18 @@
 using UnityEngine;
 using PowerEditor.Attributes;
 
-// [UsePowerScene]
 [Toggles("Walk, Sprint, Swim")]
 public class Tester2 : MonoBehaviour
 {
-
     [ToggleGroup("Walk")]
-    [BoxGroup]
-    [Title("MAAAAAAAAAAAA", "MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAA", Alignment.Center), DrawRadius]
+    [TabView, TabGroup("A"), BoxGroup]
+    [Title("This is a title", "Sample description: lorem ipsum dolor sit amit it lit iss psi", Alignment.Center)]
     public float val = 5f;
 
-    [FoldoutGroup("My Foldout"), PositionHandle, DrawLine]
+    [EndGroup(2), TabGroup("B")]
+    [FoldoutGroup("My Foldout")]
     public Vector3 target;
 
-    [ShowIf("target.z <= target.y")]
-    [ShowIf("val == 10f")]
-    [EndGroup(4)]
+    [EndGroup(2), TabGroup("C")]
     public float showIfExample = 5f;
 }
