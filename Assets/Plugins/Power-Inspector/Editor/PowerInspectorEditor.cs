@@ -100,7 +100,7 @@ namespace PowerEditor.Attributes.Editor
                     }
                     else if (attribute is IGroupAttribute groupAttribute)
                     {
-                        VisualElement group = groupAttribute.CreateGroupGUI(currentParent);
+                        VisualElement group = groupAttribute.CreateGroupGUI();
 
                         currentParent.Add(group);
 

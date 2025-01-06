@@ -13,7 +13,7 @@ namespace PowerEditor.Attributes
             this.tabName = tabName;
         }
 
-        public VisualElement CreateGroupGUI(in VisualElement parent)
+        public VisualElement CreateGroupGUI()
         {
             return new Tab(tabName);
         }

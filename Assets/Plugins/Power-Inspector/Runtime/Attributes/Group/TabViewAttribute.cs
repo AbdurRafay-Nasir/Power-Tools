@@ -6,6 +6,6 @@ namespace PowerEditor.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class TabViewAttribute : PowerAttribute, IGroupAttribute
     {
-        public VisualElement CreateGroupGUI(in VisualElement parent) => new TabView();
+        public VisualElement CreateGroupGUI() => new TabView();
     }
 }
