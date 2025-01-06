@@ -27,4 +27,8 @@
         <engine:Tab label="Tab" name="Tab" />
         <engine:Tab label="Tab" name="Tab" />
     </engine:TabView>
+    <engine:ToggleButtonGroup label="Toggle Button Group">
+        <engine:Button text="Button" name="Button" />
+        <engine:Button text="Button" name="Button" />
+    </engine:ToggleButtonGroup>
 </engine:UXML>

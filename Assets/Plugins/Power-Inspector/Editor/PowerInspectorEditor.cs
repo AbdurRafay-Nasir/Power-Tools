@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using System.Text.RegularExpressions;
+using Codice.Client.BaseCommands.BranchExplorer;
 
 namespace PowerEditor.Attributes.Editor
 {
@@ -61,9 +63,11 @@ namespace PowerEditor.Attributes.Editor
             VisualElement currentParent = tree;
 
             TogglesAttribute togglesAttribute = targetType.GetCustomAttribute<TogglesAttribute>();
+            ToggleButtonGroup toggleButtonGroup = null;
             if (togglesAttribute != null)
             {
-                CreateToggles(currentParent, togglesAttribute.toggleNames);
+                toggleButtonGroup = CreateTogglesGUI(togglesAttribute.toggleNames);
+                currentParent.Add(toggleButtonGroup);
             }
 
             foreach (var property in serializedProperties)
@@ -72,7 +76,29 @@ namespace PowerEditor.Attributes.Editor
 
                 foreach (var attribute in allAttributes)
                 {
-                    if (attribute is IGroupAttribute groupAttribute)
+                    if (attribute is ToggleGroupAttribute toggleGroupAttribute)
+                    {
+                        if (toggleButtonGroup == null)
+                        {
+                            currentParent.Add(new HelpBox("<color=green>[ToggleGroup]</color> requires <color=green>[Toggles]</color> on class.", HelpBoxMessageType.Error));
+                            continue;
+                        }
+
+                        Button toggleButton = GetToggleButton(toggleButtonGroup, toggleGroupAttribute.toggleName,
+                                                              out int indexInToggleButtonGroup);
+
+                        VisualElement toggleGroupRoot = new VisualElement();
+
+                        toggleButton.RegisterCallbackOnce<GeometryChangedEvent>(
+                            (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
+                        toggleButton.RegisterCallback<ClickEvent>(
+                            (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
+
+                        currentParent.Add(toggleGroupRoot);
+                        parentStack.Push(currentParent);
+                        currentParent = toggleGroupRoot;
+                    }
+                    else if (attribute is IGroupAttribute groupAttribute)
                     {
                         VisualElement group = groupAttribute.CreateGroupGUI(currentParent);
 
@@ -97,22 +123,9 @@ namespace PowerEditor.Attributes.Editor
             }
 
             MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            foreach (var method in methods)
+            if (methods != null)
             {
-                ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
-
-                if (buttonAttribute == null)
-                    continue;
-
-                Button button = new Button();
-                button.text = buttonAttribute.text;
-
-                button.RegisterCallback<ClickEvent>((callback) =>
-                {
-                    method.Invoke(target, method.GetParameters());
-                });
-
-                tree.Add(button);
+                tree.Add(CreateMethodButtons(methods));
             }
             
             parentStack.Clear();
@@ -137,7 +150,11 @@ namespace PowerEditor.Attributes.Editor
             }
         }
 
-        private void CreateToggles(VisualElement parent, string[] toggleNames)
+        /// <summary>
+        /// Constructs Toggle Buttons at top of Component
+        /// </summary>
+        /// <returns>Group of Toggle Buttons</returns>
+        private ToggleButtonGroup CreateTogglesGUI(string[] toggleNames)
         {
             ToggleButtonGroup toggleButtonGroup = new ToggleButtonGroup();
             toggleButtonGroup.isMultipleSelection = true;
@@ -165,7 +182,77 @@ namespace PowerEditor.Attributes.Editor
                 toggleButtonGroup.Add(button);
             }
 
-            parent.Add(toggleButtonGroup);
+            return toggleButtonGroup;
+        }
+
+        /// <summary>
+        /// Retrieves the Toggle Button whose name is <b>toggleName</b>
+        /// </summary>
+        /// <param name="toggleButtonGroup">The group to which this button belongs</param>
+        /// <param name="toggleName">The Toggle name. Will be used to identify Toggle Button in ToggleButtonGroup</param>
+        /// <param name="index">Index of Button in given ToggleButtonGroup</param>
+        /// <returns>Toggle Button whose name is toggleName, null otherwise</returns>
+        private Button GetToggleButton(ToggleButtonGroup toggleButtonGroup, string toggleName, out int index)
+        {
+            VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
+            string buttonNameWithoutIndex;
+            index = -1;
+
+            foreach (Button button in toggleButtonsContainer.Children())
+            {
+                buttonNameWithoutIndex = Regex.Replace(button.name, @"^\d+", "");
+
+                if (buttonNameWithoutIndex.Equals(toggleName))
+                {
+                    index = int.Parse(Regex.Match(button.name, @"^\d+").Value);
+
+                    return button;
+                }
+            }
+
+            return null;
+        }
+      
+        private void SetToggleControlledGroupDisplay(VisualElement parent, ToggleButtonGroup toggleButtonGroup, int toggleIndex)
+        {
+            ToggleButtonGroupState state = toggleButtonGroup.value;
+            Span<int> activeOptions = state.GetActiveOptions(stackalloc int[state.length]);
+
+            foreach (var activeOption in activeOptions)
+            {
+                if (toggleIndex == activeOption)
+                {
+                    parent.style.display = DisplayStyle.Flex;
+                    return;
+                }
+            }
+
+            parent.style.display = DisplayStyle.None;
+        }
+
+        private VisualElement CreateMethodButtons(MethodInfo[] methods)
+        {
+            VisualElement buttons = new VisualElement();
+
+            foreach (var method in methods)
+            {
+                ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
+
+                if (buttonAttribute == null)
+                    continue;
+
+                Button button = new Button();
+                button.text = buttonAttribute.text;
+
+                button.RegisterCallback<ClickEvent>((callback) =>
+                {
+                    method.Invoke(target, method.GetParameters());
+                });
+
+                buttons.Add(button);
+            }
+
+            return buttons;
         }
 
         private void PrintDictionary()
