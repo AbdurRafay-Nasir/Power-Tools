@@ -8,10 +8,10 @@ public class Tester : MonoBehaviour
 {
     // General Settings
     [ToggleGroup("General")]
-    [BoxGroup("Basic Info")]
+    [BoxGroup]
     public string playerName;
 
-    [BoxGroup("Basic Info")]
+    [BoxGroup]
     [Required]
     public int playerID;
 

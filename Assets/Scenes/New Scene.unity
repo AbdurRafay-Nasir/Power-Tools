@@ -433,7 +433,7 @@ MonoBehaviour:
   showIfExample: 8.12
   f1: 0
   f2: 0
-  f3: 0
+  f3: 0.34
 --- !u!114 &1482712812
 MonoBehaviour:
   m_ObjectHideFlags: 0

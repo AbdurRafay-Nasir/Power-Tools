@@ -15,6 +15,7 @@ public class Tester2 : MonoBehaviour
     public float showIfExample = 5f;
 
     [EndGroup(3), ToggleGroup("Sprint")]
+    [BoxGroup]
     public float f1;
 
     [FoldoutGroup("AWDAW")]

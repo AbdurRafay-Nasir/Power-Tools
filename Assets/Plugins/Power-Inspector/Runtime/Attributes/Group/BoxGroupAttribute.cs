@@ -8,70 +8,29 @@ namespace PowerEditor.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class BoxGroupAttribute : PowerAttribute, IGroupAttribute
     {
-        private readonly Box box = new Box();
+        public string BorderColor { get; set; } = "#808080";
+        public string BgColor { get; set; } = "#303030";
+        public float Radius { get; set; } = 5f;
+        public float Width { get; set; } = 1f;
 
-        public BoxGroupAttribute()
-        {
-            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
-
-            box.SetBorderRadius(5f);
-            box.SetBorderWidth(1f);
-            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
-        }
-        public BoxGroupAttribute(float radius)
-        {
-            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
-
-            box.SetBorderRadius(radius);
-            box.SetBorderWidth(1f);
-            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
-        }
-        public BoxGroupAttribute(string bgColor)
-        {
-            box.style.backgroundColor = ColorUtility.TryParseHtmlString(bgColor, out var color) ?
-                                        color : new Color(0.19f, 0.19f, 0.19f);
-
-            box.SetBorderRadius(5f);
-            box.SetBorderWidth(1f);
-            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
-        }
-        public BoxGroupAttribute(float radius, float width)
-        {
-            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
-
-            box.SetBorderRadius(radius);
-            box.SetBorderWidth(width);
-            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
-        }
-        public BoxGroupAttribute(float radius, float width, string borderColor)
-        {
-            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
-
-            box.SetBorderRadius(radius);
-            box.SetBorderWidth(width);
-
-            Color color = ColorUtility.TryParseHtmlString(borderColor, out var bordColor) ?
-                          bordColor : new Color(0.19f, 0.19f, 0.19f);
-            box.SetBorderColor(color);
-        }
-        public BoxGroupAttribute(float radius, float width,
-                                 string borderColor, string bgColor)
-        {
-
-            box.style.backgroundColor = ColorUtility.TryParseHtmlString(bgColor, out var color) ?
-                                        color : new Color(0.19f, 0.19f, 0.19f);
-
-            Color bdColor = ColorUtility.TryParseHtmlString(borderColor, out var bordColor) ?
-                            bordColor : new Color(0.5f, 0.5f, 0.5f);
-            box.SetBorderColor(bdColor);
-
-            box.SetBorderRadius(radius);
-            box.SetBorderWidth(width);
-        }
+        public new float PaddingRight { get; set; } = 2f;
+        public new float PaddingTop { get; set; } = 2f;
+        public new float PaddingBottom { get; set; } = 2f;
 
         public VisualElement CreateGroupGUI()
         {
-            box.SetPadding(0f, 2f, 2f, 2f);
+            Box box = new Box();
+
+            box.style.backgroundColor = ColorUtility.TryParseHtmlString(BgColor, out var color) ?
+                                        color : new Color(0.19f, 0.19f, 0.19f);
+
+            box.SetBorderColor(ColorUtility.TryParseHtmlString(BorderColor, out var bordColor) ?
+                               bordColor : new Color(0.19f, 0.19f, 0.19f));
+
+            box.SetBorderRadius(Radius);
+            box.SetBorderWidth(Width);
+            box.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
+            box.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
 
             return box;
         }
