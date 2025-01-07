@@ -8,61 +8,25 @@ namespace PowerEditor.Attributes
     public class FoldoutGroupAttribute : PowerAttribute, IGroupAttribute
     {
         private readonly string name;
-        private readonly Foldout foldout = new Foldout();
+        private readonly bool open;
 
-        #region Constructors
-
-        public FoldoutGroupAttribute(string name)
+        public FoldoutGroupAttribute(string name, bool open = false)
         {
             this.name = name;
+            this.open = open;
         }
-
-        public FoldoutGroupAttribute(string name, float padding)
-        {
-            this.name = name;
-
-            foldout.SetPadding(padding);
-        }
-
-        public FoldoutGroupAttribute(string name, float padding, float margin)
-        {
-            this.name = name;
-
-            foldout.SetPadding(padding);
-            foldout.SetMargin(margin);
-        }
-
-        public FoldoutGroupAttribute(string name,
-                             float paddingHorizontal, float paddingVertical,
-                             float marginHorizontal, float marginVertical)
-        {
-            this.name = name;
-
-            foldout.SetPadding(paddingHorizontal, paddingVertical);
-            foldout.SetMargin(marginHorizontal, marginVertical);
-        }
-
-        public FoldoutGroupAttribute(string name,
-                             float paddingLeft, float paddingRight,
-                             float paddingTop, float paddingBottom,
-                             float marginLeft, float marginRight,
-                             float marginTop, float marginBottom)
-        {
-            this.name = name;
-
-            foldout.SetPadding(paddingLeft, paddingRight, paddingTop, paddingBottom);
-            foldout.SetPadding(marginLeft, marginRight, marginTop, marginBottom);
-        }
-
-        #endregion
 
         public VisualElement CreateGroupGUI()
         {
+            Foldout foldout = new Foldout();
             foldout.AddToClassList("unity-list-view__foldout-header");
 
             foldout.text = name;
-            foldout.value = false;
+            foldout.value = open;
             foldout.viewDataKey = $"{name}_foldout";
+
+            foldout.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
+            foldout.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
 
             return foldout;
         }
