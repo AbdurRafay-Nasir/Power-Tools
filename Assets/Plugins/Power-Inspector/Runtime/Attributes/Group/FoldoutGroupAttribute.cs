@@ -8,7 +8,6 @@ namespace PowerEditor.Attributes
     public class FoldoutGroupAttribute : PowerAttribute, IGroupAttribute
     {
         private readonly string name;
-
         private readonly Foldout foldout = new Foldout();
 
         #region Constructors

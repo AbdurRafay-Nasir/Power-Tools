@@ -3,6 +3,7 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 
@@ -54,6 +55,66 @@ namespace PowerEditor.Attributes.Editor
             v.style.marginRight = right;
             v.style.marginTop = top;
             v.style.marginBottom = bottom;
+        }
+
+        public static void SetBorderRadius(this VisualElement v, float radius)
+        {
+            v.style.borderTopLeftRadius = radius;
+            v.style.borderTopRightRadius = radius;
+            v.style.borderBottomLeftRadius = radius;
+            v.style.borderBottomRightRadius = radius;
+        }
+        public static void SetBorderRadius(this VisualElement v, float topLeft, float topRight,
+                                           float bottomLeft, float bottomRight)
+        {
+            v.style.borderTopLeftRadius = topLeft;
+            v.style.borderTopRightRadius = topRight;
+            v.style.borderBottomLeftRadius = bottomLeft;
+            v.style.borderBottomRightRadius = bottomRight;
+        }
+
+        public static void SetBorderWidth(this VisualElement v, float width)
+        {
+            v.style.borderLeftWidth = width;
+            v.style.borderRightWidth = width;
+            v.style.borderTopWidth = width;
+            v.style.borderBottomWidth = width;
+        }
+        public static void SetBorderWidth(this VisualElement v, float horizontal, float vertical)
+        {
+            v.style.borderLeftWidth = horizontal;
+            v.style.borderRightWidth = horizontal;
+            v.style.borderTopWidth = vertical;
+            v.style.borderBottomWidth = vertical;
+        }
+        public static void SetBorderWidth(this VisualElement v, float left, float right, float top, float bottom)
+        {
+            v.style.borderLeftWidth = left;
+            v.style.borderRightWidth = right;
+            v.style.borderTopWidth = top;
+            v.style.borderBottomWidth = bottom;
+        }
+
+        public static void SetBorderColor(this VisualElement v, Color color)
+        {
+            v.style.borderLeftColor = color;
+            v.style.borderRightColor = color;
+            v.style.borderTopColor = color;
+            v.style.borderBottomColor = color;
+        }
+        public static void SetBorderColor(this VisualElement v, Color leftRight, Color topBottom)
+        {
+            v.style.borderLeftColor = leftRight;
+            v.style.borderRightColor = leftRight;
+            v.style.borderTopColor = topBottom;
+            v.style.borderBottomColor = topBottom;
+        }
+        public static void SetBorderColor(this VisualElement v, Color left, Color right, Color top, Color bottom)
+        {
+            v.style.borderLeftColor = left;
+            v.style.borderRightColor = right;
+            v.style.borderTopColor = top;
+            v.style.borderBottomColor = bottom;
         }
 
         #endregion

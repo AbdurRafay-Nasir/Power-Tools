@@ -1,3 +1,4 @@
+using PowerEditor.Attributes.Editor;
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,48 +8,70 @@ namespace PowerEditor.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class BoxGroupAttribute : PowerAttribute, IGroupAttribute
     {
-        public readonly Color backgroundColor;
-        public readonly float borderRadius;
-        public readonly float borderWidth;
-        public readonly Color borderColor;
+        private readonly Box box = new Box();
 
-        public BoxGroupAttribute(string backgroundColor = "#303030", float borderRadius = 5f, 
-                                 float borderWidth = 1f, string borderColor = "#808080")
+        public BoxGroupAttribute()
         {
-            this.backgroundColor = ColorUtility.TryParseHtmlString(backgroundColor, out var bgColor) ? 
-                                   bgColor : new Color(0.19f, 0.19f, 0.19f);
+            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
 
-            this.borderRadius = borderRadius;
-            this.borderWidth = borderWidth;
+            box.SetBorderRadius(5f);
+            box.SetBorderWidth(1f);
+            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
+        }
+        public BoxGroupAttribute(float radius)
+        {
+            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
 
-            this.borderColor = ColorUtility.TryParseHtmlString(borderColor, out var bordColor) ?
-                               bordColor : new Color(0.19f, 0.19f, 0.19f);
+            box.SetBorderRadius(radius);
+            box.SetBorderWidth(1f);
+            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
+        }
+        public BoxGroupAttribute(string bgColor)
+        {
+            box.style.backgroundColor = ColorUtility.TryParseHtmlString(bgColor, out var color) ?
+                                        color : new Color(0.19f, 0.19f, 0.19f);
+
+            box.SetBorderRadius(5f);
+            box.SetBorderWidth(1f);
+            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
+        }
+        public BoxGroupAttribute(float radius, float width)
+        {
+            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
+
+            box.SetBorderRadius(radius);
+            box.SetBorderWidth(width);
+            box.SetBorderColor(new Color(0.5f, 0.5f, 0.5f));
+        }
+        public BoxGroupAttribute(float radius, float width, string borderColor)
+        {
+            box.style.backgroundColor = new Color(0.19f, 0.19f, 0.19f);
+
+            box.SetBorderRadius(radius);
+            box.SetBorderWidth(width);
+
+            Color color = ColorUtility.TryParseHtmlString(borderColor, out var bordColor) ?
+                          bordColor : new Color(0.19f, 0.19f, 0.19f);
+            box.SetBorderColor(color);
+        }
+        public BoxGroupAttribute(float radius, float width,
+                                 string borderColor, string bgColor)
+        {
+
+            box.style.backgroundColor = ColorUtility.TryParseHtmlString(bgColor, out var color) ?
+                                        color : new Color(0.19f, 0.19f, 0.19f);
+
+            Color bdColor = ColorUtility.TryParseHtmlString(borderColor, out var bordColor) ?
+                            bordColor : new Color(0.5f, 0.5f, 0.5f);
+            box.SetBorderColor(bdColor);
+
+            box.SetBorderRadius(radius);
+            box.SetBorderWidth(width);
         }
 
         public VisualElement CreateGroupGUI()
         {
-            Box box = new Box();
-
-            box.style.backgroundColor = backgroundColor;
-
-            box.style.borderBottomLeftRadius = borderRadius;
-            box.style.borderBottomRightRadius = borderRadius;
-            box.style.borderTopLeftRadius = borderRadius;
-            box.style.borderTopRightRadius = borderRadius;
-
-            box.style.borderLeftWidth = borderWidth;
-            box.style.borderRightWidth = borderWidth;
-            box.style.borderTopWidth = borderWidth;
-            box.style.borderBottomWidth = borderWidth;
-
-            box.style.borderRightColor = borderColor;
-            box.style.borderLeftColor = borderColor;
-            box.style.borderTopColor = borderColor;
-            box.style.borderBottomColor = borderColor;
-
-            box.style.paddingTop = 2f;
-            box.style.paddingRight = 2f;
-            box.style.paddingBottom = 2f;
+            box.SetPadding(0f, 2f, 2f, 2f);
 
             return box;
         }
