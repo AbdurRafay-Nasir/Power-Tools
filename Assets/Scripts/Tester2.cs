@@ -16,6 +16,8 @@ public class Tester2 : MonoBehaviour
 
     [EndGroup(3), ToggleGroup("Sprint")]
     public float f1;
+
+    [FoldoutGroup("AWDAW")]
     public float f2;
     public float f3;
 }

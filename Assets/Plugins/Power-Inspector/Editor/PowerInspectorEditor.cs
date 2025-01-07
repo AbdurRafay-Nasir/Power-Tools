@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 using System.Text.RegularExpressions;
-using Codice.Client.BaseCommands.BranchExplorer;
 
 namespace PowerEditor.Attributes.Editor
 {
@@ -17,6 +16,8 @@ namespace PowerEditor.Attributes.Editor
         private Dictionary<SerializedProperty, SceneAttributeData> sceneAttributesDict = new();
 
         private Type targetType;
+
+        #region Unity Functions
 
         private void OnEnable()
         {
@@ -150,6 +151,10 @@ namespace PowerEditor.Attributes.Editor
             }
         }
 
+        #endregion
+
+        #region Custom Functions
+
         /// <summary>
         /// Constructs Toggle Buttons at top of Component
         /// </summary>
@@ -254,6 +259,8 @@ namespace PowerEditor.Attributes.Editor
 
             return buttons;
         }
+
+        #endregion
 
         private void PrintDictionary()
         {

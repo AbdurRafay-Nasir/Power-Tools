@@ -393,7 +393,6 @@ GameObject:
   - component: {fileID: 1482712810}
   - component: {fileID: 1482712811}
   - component: {fileID: 1482712812}
-  - component: {fileID: 1482712813}
   m_Layer: 0
   m_Name: Grand Parent
   m_TagString: Untagged
@@ -410,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 1482712808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.61, y: 0, z: -2.02}
+  m_LocalPosition: {x: 8.53, y: 0.18, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -432,6 +431,9 @@ MonoBehaviour:
   val: 11.35
   target: {x: -0.17, y: 0, z: -0.73}
   showIfExample: 8.12
+  f1: 0
+  f2: 0
+  f3: 0
 --- !u!114 &1482712812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,37 +446,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78758f7e6c5b70b4f825d84cfdd2f4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target2: {x: 10, y: 10}
-  vector2s:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
---- !u!54 &1482712813
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482712808}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  playerName: 
+  playerID: 0
+  health: 100
+  stamina: 100
+  enableShadows: 1
+  enablePostProcessing: 0
+  masterVolume: 0.544
+  musicVolume: 0
+  jumpKey: 0
+  shootKey: 271
+  debugInfo: 
+  showDebugLogs: 0
+  configFilePath: 
+  saveDataFolderPath: 
+  advancedOptionValue: 0
+  showAdvancedOptions: 1
+  pointA: {x: 0, y: 0, z: 0}
+  pointB: {x: 0, y: 0, z: 0}
+  centerPoint: {x: 0, y: 0, z: 0}
+  handlePosition: {x: 0.3716402, y: 0, z: 2.1246958}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,9 +13,7 @@ namespace PowerEditor.Attributes
             this.tabName = tabName;
         }
 
-        public VisualElement CreateGroupGUI()
-        {
-            return new Tab(tabName);
-        }
+        // viewDataKey doesn't work for Tab
+        public VisualElement CreateGroupGUI() => new Tab(tabName);
     }
 }

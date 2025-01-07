@@ -1,14 +1,65 @@
 #if UNITY_EDITOR
 
 using System;
-using System.Collections.Generic;
 using System.Reflection;
+using System.Collections.Generic;
+using UnityEngine.UIElements;
 using UnityEditor;
 
 namespace PowerEditor.Attributes.Editor
 {
     public static class Extensions
     {
+        #region Visual Elements Helper Functions
+
+        public static void SetPadding(this VisualElement v, float padding)
+        {
+            v.style.paddingLeft = padding;
+            v.style.paddingRight = padding;
+            v.style.paddingTop = padding;
+            v.style.paddingBottom = padding;
+        }
+        public static void SetPadding(this VisualElement v, float horizontal, float vertical)
+        {
+            v.style.paddingLeft = horizontal;
+            v.style.paddingRight = horizontal;
+            v.style.paddingTop = vertical;
+            v.style.paddingBottom = vertical;
+        }
+        public static void SetPadding(this VisualElement v, float left, float right, float top, float bottom)
+        {
+            v.style.paddingLeft = left;
+            v.style.paddingRight = right;
+            v.style.paddingTop = top;
+            v.style.paddingBottom = bottom;
+        }
+
+        public static void SetMargin(this VisualElement v, float margin)
+        {
+            v.style.marginLeft = margin;
+            v.style.marginRight = margin;
+            v.style.marginTop = margin;
+            v.style.marginBottom = margin;
+        }
+        public static void SetMargin(this VisualElement v, float horizontal, float vertical)
+        {
+            v.style.marginLeft = horizontal;
+            v.style.marginRight = horizontal;
+            v.style.marginTop = vertical;
+            v.style.marginBottom = vertical;
+        }
+        public static void SetMargin(this VisualElement v, float left, float right, float top, float bottom)
+        {
+            v.style.marginLeft = left;
+            v.style.marginRight = right;
+            v.style.marginTop = top;
+            v.style.marginBottom = bottom;
+        }
+
+        #endregion
+
+        #region Serialized Object / Properties Helper Functions
+
         const BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
 
         /// <summary>
@@ -61,6 +112,8 @@ namespace PowerEditor.Attributes.Editor
             Type targetType = property.serializedObject.targetObject.GetType();
             return targetType.GetField(property.name, bindingFlags);
         }
+
+        #endregion
     }
 }
 
