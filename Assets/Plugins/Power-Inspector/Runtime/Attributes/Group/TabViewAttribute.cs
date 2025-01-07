@@ -1,5 +1,6 @@
 using System;
 using UnityEngine.UIElements;
+using PowerEditor.Attributes.Editor;
 
 namespace PowerEditor.Attributes
 {
@@ -7,6 +8,14 @@ namespace PowerEditor.Attributes
     public class TabViewAttribute : PowerAttribute, IGroupAttribute
     {
         // viewDataKey doesn't work for TabView
-        public VisualElement CreateGroupGUI() => new TabView();
+        public VisualElement CreateGroupGUI()
+        {
+            TabView tabView = new TabView();
+
+            tabView.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
+            tabView.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
+
+            return tabView;
+        }
     }
 }

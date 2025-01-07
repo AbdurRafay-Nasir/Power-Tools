@@ -6,20 +6,10 @@ namespace PowerEditor.Attributes
     public class TogglesAttribute : PowerAttribute
     {
         public string[] ToggleNames { get; }
-
         public Alignment Alignment { get; set; }
-
-        public float FontSize { get; set; }
-
-        public float PaddingLeft { get; set; }
-        public float PaddingRight { get; set; }
-        public float PaddingTop { get; set; }
-        public float PaddingBottom { get; set; }
-
-        public float MarginLeft { get; set; }
-        public float MarginRight { get; set; }
-        public float MarginTop { get; set; }
-        public float MarginBottom { get; set; }
+        public float FontSize { get; set; } = 15f;
+        public new float PaddingLeft { get; set; } = 6f;
+        public new float PaddingRight { get; set; } = 6f;
 
         public TogglesAttribute(string toggles)
         {

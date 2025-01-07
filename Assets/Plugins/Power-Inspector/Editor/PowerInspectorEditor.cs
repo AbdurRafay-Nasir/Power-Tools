@@ -90,6 +90,12 @@ namespace PowerEditor.Attributes.Editor
 
                         VisualElement toggleGroupRoot = new VisualElement();
 
+                        toggleGroupRoot.SetPadding(toggleGroupAttribute.PaddingLeft, toggleGroupAttribute.PaddingRight,
+                                                   toggleGroupAttribute.PaddingTop, toggleGroupAttribute.PaddingBottom);
+
+                        toggleGroupRoot.SetMargin(toggleGroupAttribute.MarginLeft, toggleGroupAttribute.MarginRight,
+                                                   toggleGroupAttribute.MarginTop, toggleGroupAttribute.MarginBottom);
+
                         toggleButton.RegisterCallbackOnce<GeometryChangedEvent>(
                             (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
                         toggleButton.RegisterCallback<ClickEvent>(

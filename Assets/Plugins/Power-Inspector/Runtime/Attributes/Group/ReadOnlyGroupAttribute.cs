@@ -1,5 +1,6 @@
 using System;
 using UnityEngine.UIElements;
+using PowerEditor.Attributes.Editor;
 
 namespace PowerEditor.Attributes
 {
@@ -11,6 +12,9 @@ namespace PowerEditor.Attributes
             VisualElement root = new VisualElement();
 
             root.SetEnabled(false);
+
+            root.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
+            root.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
 
             return root;
         }
