@@ -3,7 +3,7 @@ using PowerEditor.Attributes;
 using UnityEngine.UIElements;
 
 [UsePowerScene]
-[Toggles("General, Advanced, Debug")]
+[Toggles("General, Advanced, Debug", PaddingBottom = 2f)]
 public class Tester : MonoBehaviour
 {
     // General Settings

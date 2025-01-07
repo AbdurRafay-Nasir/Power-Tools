@@ -67,7 +67,7 @@ namespace PowerEditor.Attributes.Editor
             ToggleButtonGroup toggleButtonGroup = null;
             if (togglesAttribute != null)
             {
-                toggleButtonGroup = CreateTogglesGUI(togglesAttribute.toggleNames);
+                toggleButtonGroup = CreateTogglesGUI(togglesAttribute);
                 currentParent.Add(toggleButtonGroup);
             }
 
@@ -159,7 +159,7 @@ namespace PowerEditor.Attributes.Editor
         /// Constructs Toggle Buttons at top of Component
         /// </summary>
         /// <returns>Group of Toggle Buttons</returns>
-        private ToggleButtonGroup CreateTogglesGUI(string[] toggleNames)
+        private ToggleButtonGroup CreateTogglesGUI(TogglesAttribute attr)
         {
             ToggleButtonGroup toggleButtonGroup = new ToggleButtonGroup();
             toggleButtonGroup.isMultipleSelection = true;
@@ -170,19 +170,18 @@ namespace PowerEditor.Attributes.Editor
             // move them to next line
             VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
             toggleButtonsContainer.style.flexWrap = Wrap.Wrap;
-            toggleButtonsContainer.style.alignSelf = Align.Center;
+            toggleButtonsContainer.style.alignSelf = (Align)(int)attr.Alignment;
 
-            for (int i = 0; i < toggleNames.Length; i++)
+            for (int i = 0; i < attr.ToggleNames.Length; i++)
             {
                 Button button = new Button();
-                button.name = i + toggleNames[i];
-                button.text = toggleNames[i];
-                button.style.fontSize = 15f;
-                button.style.paddingBottom = 5f;
-                button.style.paddingTop = 5f;
-                button.style.paddingRight = 10f;
-                button.style.paddingLeft = 10f;
-                button.style.marginRight = 5f;
+
+                button.name = i + attr.ToggleNames[i];
+                button.text = attr.ToggleNames[i];
+
+                button.style.fontSize = attr.FontSize;
+                button.SetPadding(attr.PaddingLeft, attr.PaddingRight, attr.PaddingTop, attr.PaddingBottom);
+                button.SetMargin(attr.MarginLeft, attr.MarginRight, attr.MarginTop, attr.MarginBottom);
 
                 toggleButtonGroup.Add(button);
             }
