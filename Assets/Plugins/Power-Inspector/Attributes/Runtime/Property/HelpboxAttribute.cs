@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace PowerTools.Attributes
 {
@@ -8,9 +7,9 @@ namespace PowerTools.Attributes
     public class HelpboxAttribute : PropertyAttribute
     {
         public string message;
-        public HelpBoxMessageType messageType;
+        public MessageType messageType;
 
-        public HelpboxAttribute(string message, HelpBoxMessageType messageType)
+        public HelpboxAttribute(string message, MessageType messageType)
         {
             this.message = message;
             this.messageType = messageType;

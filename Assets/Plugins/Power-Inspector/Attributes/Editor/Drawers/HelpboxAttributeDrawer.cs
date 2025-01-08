@@ -14,7 +14,7 @@ namespace PowerTools.Attributes.Editor
             HelpboxAttribute attr = (attribute as HelpboxAttribute);
 
             VisualElement root = new VisualElement();
-            root.Add(new HelpBox(attr.message, attr.messageType));
+            root.Add(new HelpBox(attr.message, (HelpBoxMessageType)(int)attr.messageType));
             root.Add(new PropertyField(property));
 
             return root;

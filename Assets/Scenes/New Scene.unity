@@ -446,6 +446,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78758f7e6c5b70b4f825d84cfdd2f4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  playerID: 0
+  health: 0
+  stamina: 0
+  enableShadows: 0
+  enablePostProcessing: 0
+  masterVolume: 0.428
+  musicVolume: 0
+  jumpKey: 0
+  shootKey: 0
+  debugInfo: 
+  showDebugLogs: 0
+  configFilePath: 
+  saveDataFolderPath: 
+  advancedOptionValue: 0
+  showAdvancedOptions: 1
+  pointA: {x: 0, y: 0, z: 0}
+  pointB: {x: 0, y: 0, z: 0}
+  centerPoint: {x: 0, y: 0, z: 0}
+  handlePosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

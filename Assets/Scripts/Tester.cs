@@ -1,117 +1,117 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using PowerEditor.Attributes;
+using PowerTools.Attributes;
 
 //[UsePowerScene]
-//[Toggles("General, Advanced, Debug")]
-public class Tester : MonoBehaviour
+[Toggles("General, Advanced, Debug")]
+public class Tester : PowerMonoBehaviour
 {
-    //// General Settings
-    //[ToggleGroup("General")]
-    //[BoxGroup]
-    //public string playerName;
+    // General Settings
+    [ToggleGroup("General")]
+    [BoxGroup]
+    public string playerName;
 
-    //[BoxGroup]
-    //[Required]
-    //public int playerID;
+    [BoxGroup]
+    [Required]
+    public int playerID;
 
-    //[ToggleGroup("General")]
-    //[FoldoutGroup("Gameplay Settings")]
-    //[Range(0, 100)]
-    //public float health;
+    [ToggleGroup("General")]
+    [FoldoutGroup("Gameplay Settings")]
+    [Range(0, 100)]
+    public float health;
 
-    //[FoldoutGroup("Gameplay Settings")]
-    //[Range(0, 100)]
-    //public float stamina;
+    [FoldoutGroup("Gameplay Settings")]
+    [Range(0, 100)]
+    public float stamina;
 
-    //[EndGroup] // Ends FoldoutGroup "Gameplay Settings"
-    //[EndGroup] // Ends ToggleGroup "General"
+    [EndGroup] // Ends FoldoutGroup "Gameplay Settings"
+    [EndGroup] // Ends ToggleGroup "General"
 
-    //// Advanced Settings
-    //[ToggleGroup("Advanced")]
-    //[TabView(align = Alignment.Center)]
-    //[TabGroup("Graphics")]
-    //public bool enableShadows;
+    // Advanced Settings
+    [ToggleGroup("Advanced")]
+    [TabView(align = Alignment.Center)]
+    [TabGroup("Graphics")]
+    public bool enableShadows;
 
-    //[EndGroup, TabGroup("Graphics")]
-    //public bool enablePostProcessing;
+    [EndGroup, TabGroup("Graphics")]
+    public bool enablePostProcessing;
 
-    //[EndGroup, TabGroup("Audio")]
-    //[Range(0, 1)]
-    //public float masterVolume;
+    [EndGroup, TabGroup("Audio")]
+    [Range(0, 1)]
+    public float masterVolume;
 
-    //[EndGroup, TabGroup("Audio")]
-    //[Range(0, 1)]
-    //public float musicVolume;
+    [EndGroup, TabGroup("Audio")]
+    [Range(0, 1)]
+    public float musicVolume;
 
-    //[EndGroup, TabGroup("Controls")]
-    //public KeyCode jumpKey;
+    [EndGroup, TabGroup("Controls")]
+    public KeyCode jumpKey;
 
-    //[EndGroup, TabGroup("Controls")]
-    //public KeyCode shootKey;
+    [EndGroup, TabGroup("Controls")]
+    public KeyCode shootKey;
 
-    //[EndGroup(3)] // Ends TabView
+    [EndGroup(3)] // Ends TabView
 
-    //// Debug Settings
-    //[ToggleGroup("Debug")]
-    //[ReadOnly]
-    //public string debugInfo;
+    // Debug Settings
+    [ToggleGroup("Debug")]
+    [ReadOnly]
+    public string debugInfo;
 
-    //[ToggleGroup("Debug")]
-    //[Helpbox("This is a debug variable for testing purposes.", HelpBoxMessageType.Info)]
-    //public bool showDebugLogs;
+    [ToggleGroup("Debug")]
+    [Helpbox("This is a debug variable for testing purposes.", MessageType.None)]
+    public bool showDebugLogs;
 
-    //[EndGroup] // Ends ToggleGroup "Debug"
+    [EndGroup] // Ends ToggleGroup "Debug"
 
-    //// Scene References (Casued Problems)
-    ////[SceneName]
-    ////public string mainScene;
+    // Scene References (Casued Problems)
+    //[SceneName]
+    //public string mainScene;
 
-    ////[SceneName]
-    ////public string gameOverScene;
+    //[SceneName]
+    //public string gameOverScene;
 
-    //// File and Folder Paths
-    //[FilePath]
-    //public string configFilePath;
+    // File and Folder Paths
+    [FilePath]
+    public string configFilePath;
 
-    //[FolderPath]
-    //public string saveDataFolderPath;
+    [FolderPath]
+    public string saveDataFolderPath;
 
-    //// Conditional Display
-    //[ShowIf("showAdvancedOptions")]
-    //public int advancedOptionValue;
+    // Conditional Display
+    [ShowIf("showAdvancedOptions")]
+    public int advancedOptionValue;
 
-    //public bool showAdvancedOptions = true;
+    public bool showAdvancedOptions = true;
 
-    //// Gizmo Drawing
-    //[DrawLine]
-    //public Vector3 pointA;
+    // Gizmo Drawing
+    [DrawLine]
+    public Vector3 pointA;
 
-    //[DrawLine]
-    //public Vector3 pointB;
+    [DrawLine]
+    public Vector3 pointB;
 
-    //[DrawRadius]
-    //public Vector3 centerPoint;
+    [DrawRadius]
+    public Vector3 centerPoint;
 
-    //// Position Handles
-    //[PositionHandle]
-    //public Vector3 handlePosition;
+    // Position Handles
+    [PositionHandle]
+    public Vector3 handlePosition;
 
-    //// Methods
-    //[Button("GG")]
-    //public void ResetPlayerStats()
-    //{
-    //    health = 100f;
-    //    stamina = 100f;
-    //    Debug.Log("Player stats reset.");
-    //}
+    // Methods
+    [Button("GG")]
+    public void ResetPlayerStats()
+    {
+        health = 100f;
+        stamina = 100f;
+        Debug.Log("Player stats reset.");
+    }
 
-    //[Button("BB")]
-    //public void LoadMainScene()
-    //{
-    //    // Logic to load the main scene
-    //    Debug.Log("Loading main scene...");
-    //}
+    [Button("BB")]
+    public void LoadMainScene()
+    {
+        // Logic to load the main scene
+        Debug.Log("Loading main scene...");
+    }
 
     ///* // Inherited from Joint
     //public Rigidbody connectedBody;
@@ -185,6 +185,6 @@ public class Tester : MonoBehaviour
     //// Miscellaneous
     //public bool configuredInWorldSpace;
     //public bool swapBodies;
-    
+
     //*/
 }
