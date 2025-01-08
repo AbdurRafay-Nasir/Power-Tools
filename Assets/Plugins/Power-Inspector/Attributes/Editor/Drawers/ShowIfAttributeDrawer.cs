@@ -3,7 +3,7 @@
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
-// using System.Linq.Dynamic.Core;
+using System.Linq.Dynamic.Core;
 
 namespace PowerTools.Attributes.Editor
 {
@@ -15,17 +15,17 @@ namespace PowerTools.Attributes.Editor
             ShowIfAttribute attr = (attribute as ShowIfAttribute);
             System.Delegate lambda = null;
 
-            //try
-            //{
-            //    lambda = DynamicExpressionParser.ParseLambda(property.serializedObject.targetObject.GetType(),
-            //                                                 typeof(bool), attr.expression).Compile();
-            //}
-            //catch (System.Exception e)
-            //{
-            //    return new HelpBox("Error in expression on field: <color=yellow>" + 
-            //                        property.name + "</color> The problem is: \n<color=cyan>" + e.Message,
-            //                        HelpBoxMessageType.Error);
-            //}
+            try
+            {
+                lambda = DynamicExpressionParser.ParseLambda(property.serializedObject.targetObject.GetType(),
+                                                             typeof(bool), attr.expression).Compile();
+            }
+            catch (System.Exception e)
+            {
+                return new HelpBox("Error in expression on field: <color=yellow>" +
+                                    property.name + "</color> The problem is: \n<color=cyan>" + e.Message,
+                                    HelpBoxMessageType.Error);
+            }
 
             PropertyField propertyField = new PropertyField(property);
 

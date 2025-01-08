@@ -1,20 +1,22 @@
 #if UNITY_EDITOR
 
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System.Reflection;
 
 namespace PowerTools.Attributes.Editor
 {
-    [CustomEditor(typeof(PowerMonoBehaviour))]
+    [CustomEditor(typeof(PowerMonoBehaviour), true)]
     public class PowerMonoBehaviourEditor : PowerEditor
     {
         private Dictionary<SerializedProperty, SceneAttributeData> sceneAttributesDict = new();
 
         protected override void OnEnable()
         {
+            base.OnEnable();
+
             foreach (var property in serializedProperties)
             {
                 List<Attribute> allAttributes = property.GetAttributes();

@@ -12,8 +12,7 @@ namespace PowerTools.Attributes.Editor
 {
     public class PowerEditor : UnityEditor.Editor
     {
-        protected List<SerializedProperty> serializedProperties = new();
-        
+        protected List<SerializedProperty> serializedProperties = new();        
         private Type targetType;
 
         #region Unity Functions
@@ -21,7 +20,6 @@ namespace PowerTools.Attributes.Editor
         protected virtual void OnEnable()
         {
             targetType = target.GetType();
-
             serializedProperties = serializedObject.GetAllSerializedProperties();
         }
 

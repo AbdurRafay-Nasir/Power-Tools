@@ -428,12 +428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8ecf5bde0114d4fa777c8d453edca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  val: 11.35
-  target: {x: -0.17, y: 0, z: -0.73}
-  showIfExample: 8.12
+  val: 5
+  target: {x: 0, y: 0, z: 0}
+  showIfExample: 5
   f1: 0
-  f2: 13.87
-  f3: 0.34
+  f2: 16.1
+  f3: 1.54
 --- !u!114 &1482712812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,26 +446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78758f7e6c5b70b4f825d84cfdd2f4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  playerID: 0
-  health: 100
-  stamina: 100
-  enableShadows: 1
-  enablePostProcessing: 0
-  masterVolume: 0.544
-  musicVolume: 0
-  jumpKey: 0
-  shootKey: 271
-  debugInfo: 
-  showDebugLogs: 0
-  configFilePath: 
-  saveDataFolderPath: 
-  advancedOptionValue: 0
-  showAdvancedOptions: 1
-  pointA: {x: 0, y: 0, z: 0}
-  pointB: {x: 0, y: 0, z: 0}
-  centerPoint: {x: 0, y: 0, z: 0}
-  handlePosition: {x: 0.51133394, y: 0, z: -1.2639225}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0
