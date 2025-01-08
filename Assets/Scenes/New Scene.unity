@@ -432,7 +432,7 @@ MonoBehaviour:
   target: {x: -0.17, y: 0, z: -0.73}
   showIfExample: 8.12
   f1: 0
-  f2: 0
+  f2: 13.87
   f3: 0.34
 --- !u!114 &1482712812
 MonoBehaviour:

@@ -1,7 +1,0 @@
-.power-box-group {
-    background-color: rgb(39, 39, 39);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}

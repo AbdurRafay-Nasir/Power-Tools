@@ -1,0 +1,18 @@
+{
+    "name": "powertools.attributes.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:99b2b8d88c74ccd4b9025f378b7f3256"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

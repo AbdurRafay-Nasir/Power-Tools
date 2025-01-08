@@ -12,279 +12,279 @@ namespace PowerEditor.Attributes.Editor
     [CustomEditor(typeof(MonoBehaviour), true)]
     public class PowerInspectorEditor : UnityEditor.Editor
     {
-        private List<SerializedProperty> serializedProperties = new();
-        private Dictionary<SerializedProperty, SceneAttributeData> sceneAttributesDict = new();
+        //    private List<SerializedProperty> serializedProperties = new();
+        //    private Dictionary<SerializedProperty, SceneAttributeData> sceneAttributesDict = new();
 
-        private Type targetType;
+        //    private Type targetType;
 
-        #region Unity Functions
+        //    #region Unity Functions
 
-        private void OnEnable()
-        {
-            targetType = target.GetType();
+        //    private void OnEnable()
+        //    {
+        //        targetType = target.GetType();
 
-            serializedProperties = serializedObject.GetAllSerializedProperties();
-            
-            // If the class is not marked with UsePowerSceneAttribute,
-            // then don't process it
-            if (targetType.GetCustomAttribute<UsePowerSceneAttribute>() == null)
-                return;
+        //        serializedProperties = serializedObject.GetAllSerializedProperties();
 
-            foreach (var property in serializedProperties)
-            {
-                List<Attribute> allAttributes = property.GetAttributes();
-                List<ISceneAttribute> sceneAttributes = new();
+        //        // If the class is not marked with UsePowerSceneAttribute,
+        //        // then don't process it
+        //        if (targetType.GetCustomAttribute<UsePowerSceneAttribute>() == null)
+        //            return;
 
-                foreach (var attr in allAttributes)
-                {
-                    if (attr is ISceneAttribute sceneAttr)
-                    {
-                        sceneAttributes.Add(sceneAttr);
-                    }
-                }
+        //        foreach (var property in serializedProperties)
+        //        {
+        //            List<Attribute> allAttributes = property.GetAttributes();
+        //            List<ISceneAttribute> sceneAttributes = new();
 
-                if (sceneAttributes.Count > 0)
-                {
-                    SceneAttributeData data = new SceneAttributeData();
-                    data.fieldInfo = property.GetField();
-                    data.sceneAttributes = sceneAttributes;
+        //            foreach (var attr in allAttributes)
+        //            {
+        //                if (attr is ISceneAttribute sceneAttr)
+        //                {
+        //                    sceneAttributes.Add(sceneAttr);
+        //                }
+        //            }
 
-                    sceneAttributesDict.Add(property, data);
-                }
-            }
+        //            if (sceneAttributes.Count > 0)
+        //            {
+        //                SceneAttributeData data = new SceneAttributeData();
+        //                data.fieldInfo = property.GetField();
+        //                data.sceneAttributes = sceneAttributes;
 
-            // PrintDictionary();
-        }
+        //                sceneAttributesDict.Add(property, data);
+        //            }
+        //        }
 
-        public override VisualElement CreateInspectorGUI()
-        {
-            VisualElement tree = new VisualElement();
-            Stack<VisualElement> parentStack = new Stack<VisualElement>();
+        //        // PrintDictionary();
+        //    }
 
-            VisualElement currentParent = tree;
+        //    public override VisualElement CreateInspectorGUI()
+        //    {
+        //        VisualElement tree = new VisualElement();
+        //        Stack<VisualElement> parentStack = new Stack<VisualElement>();
 
-            TogglesAttribute togglesAttribute = targetType.GetCustomAttribute<TogglesAttribute>();
-            ToggleButtonGroup toggleButtonGroup = null;
-            if (togglesAttribute != null)
-            {
-                toggleButtonGroup = CreateTogglesGUI(togglesAttribute);
-                currentParent.Add(toggleButtonGroup);
-            }
+        //        VisualElement currentParent = tree;
 
-            foreach (var property in serializedProperties)
-            {
-                List<Attribute> allAttributes = property.GetAttributes();
+        //        TogglesAttribute togglesAttribute = targetType.GetCustomAttribute<TogglesAttribute>();
+        //        ToggleButtonGroup toggleButtonGroup = null;
+        //        if (togglesAttribute != null)
+        //        {
+        //            toggleButtonGroup = CreateTogglesGUI(togglesAttribute);
+        //            currentParent.Add(toggleButtonGroup);
+        //        }
 
-                foreach (var attribute in allAttributes)
-                {
-                    if (attribute is ToggleGroupAttribute toggleGroupAttribute)
-                    {
-                        if (toggleButtonGroup == null)
-                        {
-                            currentParent.Add(new HelpBox("<color=green>[ToggleGroup]</color> requires <color=green>[Toggles]</color> on class.", HelpBoxMessageType.Error));
-                            continue;
-                        }
+        //        foreach (var property in serializedProperties)
+        //        {
+        //            List<Attribute> allAttributes = property.GetAttributes();
 
-                        Button toggleButton = GetToggleButton(toggleButtonGroup, toggleGroupAttribute.toggleName,
-                                                              out int indexInToggleButtonGroup);
+        //            foreach (var attribute in allAttributes)
+        //            {
+        //                if (attribute is ToggleGroupAttribute toggleGroupAttribute)
+        //                {
+        //                    if (toggleButtonGroup == null)
+        //                    {
+        //                        currentParent.Add(new HelpBox("<color=green>[ToggleGroup]</color> requires <color=green>[Toggles]</color> on class.", HelpBoxMessageType.Error));
+        //                        continue;
+        //                    }
 
-                        VisualElement toggleGroupRoot = new VisualElement();
+        //                    Button toggleButton = GetToggleButton(toggleButtonGroup, toggleGroupAttribute.toggleName,
+        //                                                          out int indexInToggleButtonGroup);
 
-                        toggleGroupRoot.SetPadding(toggleGroupAttribute.PaddingLeft, toggleGroupAttribute.PaddingRight,
-                                                   toggleGroupAttribute.PaddingTop, toggleGroupAttribute.PaddingBottom);
+        //                    VisualElement toggleGroupRoot = new VisualElement();
 
-                        toggleGroupRoot.SetMargin(toggleGroupAttribute.MarginLeft, toggleGroupAttribute.MarginRight,
-                                                   toggleGroupAttribute.MarginTop, toggleGroupAttribute.MarginBottom);
+        //                    toggleGroupRoot.SetPadding(toggleGroupAttribute.PaddingLeft, toggleGroupAttribute.PaddingRight,
+        //                                               toggleGroupAttribute.PaddingTop, toggleGroupAttribute.PaddingBottom);
 
-                        toggleButton.RegisterCallbackOnce<GeometryChangedEvent>(
-                            (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
-                        toggleButton.RegisterCallback<ClickEvent>(
-                            (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
+        //                    toggleGroupRoot.SetMargin(toggleGroupAttribute.MarginLeft, toggleGroupAttribute.MarginRight,
+        //                                               toggleGroupAttribute.MarginTop, toggleGroupAttribute.MarginBottom);
 
-                        currentParent.Add(toggleGroupRoot);
-                        parentStack.Push(currentParent);
-                        currentParent = toggleGroupRoot;
-                    }
-                    else if (attribute is IGroupAttribute groupAttribute)
-                    {
-                        VisualElement group = groupAttribute.CreateGroupGUI();
+        //                    toggleButton.RegisterCallbackOnce<GeometryChangedEvent>(
+        //                        (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
+        //                    toggleButton.RegisterCallback<ClickEvent>(
+        //                        (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));
 
-                        currentParent.Add(group);
+        //                    currentParent.Add(toggleGroupRoot);
+        //                    parentStack.Push(currentParent);
+        //                    currentParent = toggleGroupRoot;
+        //                }
+        //                else if (attribute is IGroupAttribute groupAttribute)
+        //                {
+        //                    VisualElement group = groupAttribute.CreateGroupGUI();
 
-                        parentStack.Push(currentParent);
-                        currentParent = group;
-                    }
-                    else if (attribute is EndGroupAttribute endGroupAttribute)
-                    {
-                        int groupsToClose = endGroupAttribute.openGroupsToClose > parentStack.Count
-                                            ? parentStack.Count
-                                            : endGroupAttribute.openGroupsToClose;
+        //                    currentParent.Add(group);
 
-                        for (int j = 0; j < groupsToClose; j++)
-                            currentParent = parentStack.Pop();
-                    }
-                }
+        //                    parentStack.Push(currentParent);
+        //                    currentParent = group;
+        //                }
+        //                else if (attribute is EndGroupAttribute endGroupAttribute)
+        //                {
+        //                    int groupsToClose = endGroupAttribute.openGroupsToClose > parentStack.Count
+        //                                        ? parentStack.Count
+        //                                        : endGroupAttribute.openGroupsToClose;
 
-                // Finally, add the property field to the current parent
-                currentParent.Add(new PropertyField(property));
-            }
+        //                    for (int j = 0; j < groupsToClose; j++)
+        //                        currentParent = parentStack.Pop();
+        //                }
+        //            }
 
-            MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (methods != null)
-            {
-                tree.Add(CreateMethodButtons(methods));
-            }
-            
-            parentStack.Clear();
+        //            // Finally, add the property field to the current parent
+        //            currentParent.Add(new PropertyField(property));
+        //        }
 
-            return tree;
-        }
+        //        MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        //        if (methods != null)
+        //        {
+        //            tree.Add(CreateMethodButtons(methods));
+        //        }
 
-        private void OnSceneGUI()
-        {
-            if (sceneAttributesDict.Count == 0)
-                return;
+        //        parentStack.Clear();
 
-            foreach (var entry in sceneAttributesDict)
-            {
-                SerializedProperty property = entry.Key;
+        //        return tree;
+        //    }
 
-                List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property].sceneAttributes;
-                foreach (var sceneAttr in sceneAttributes)
-                {
-                    sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
-                }
-            }
-        }
+        //    private void OnSceneGUI()
+        //    {
+        //        if (sceneAttributesDict.Count == 0)
+        //            return;
 
-        #endregion
+        //        foreach (var entry in sceneAttributesDict)
+        //        {
+        //            SerializedProperty property = entry.Key;
 
-        #region Custom Functions
+        //            List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property].sceneAttributes;
+        //            foreach (var sceneAttr in sceneAttributes)
+        //            {
+        //                sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
+        //            }
+        //        }
+        //    }
 
-        /// <summary>
-        /// Constructs Toggle Buttons at top of Component
-        /// </summary>
-        /// <returns>Group of Toggle Buttons</returns>
-        private ToggleButtonGroup CreateTogglesGUI(TogglesAttribute attr)
-        {
-            ToggleButtonGroup toggleButtonGroup = new ToggleButtonGroup();
-            toggleButtonGroup.isMultipleSelection = true;
-            toggleButtonGroup.allowEmptySelection = true;
-            toggleButtonGroup.viewDataKey = target.GetInstanceID().ToString();
+        //    #endregion
 
-            // if number of buttons exceed available horizontal space,
-            // move them to next line
-            VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
-            toggleButtonsContainer.style.flexWrap = Wrap.Wrap;
-            toggleButtonsContainer.style.alignSelf = (Align)(int)attr.Alignment;
+        //    #region Custom Functions
 
-            for (int i = 0; i < attr.ToggleNames.Length; i++)
-            {
-                Button button = new Button();
+        //    /// <summary>
+        //    /// Constructs Toggle Buttons at top of Component
+        //    /// </summary>
+        //    /// <returns>Group of Toggle Buttons</returns>
+        //    private ToggleButtonGroup CreateTogglesGUI(TogglesAttribute attr)
+        //    {
+        //        ToggleButtonGroup toggleButtonGroup = new ToggleButtonGroup();
+        //        toggleButtonGroup.isMultipleSelection = true;
+        //        toggleButtonGroup.allowEmptySelection = true;
+        //        toggleButtonGroup.viewDataKey = target.GetInstanceID().ToString();
 
-                button.name = i + attr.ToggleNames[i];
-                button.text = attr.ToggleNames[i];
+        //        // if number of buttons exceed available horizontal space,
+        //        // move them to next line
+        //        VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
+        //        toggleButtonsContainer.style.flexWrap = Wrap.Wrap;
+        //        toggleButtonsContainer.style.alignSelf = (Align)(int)attr.Alignment;
 
-                button.style.fontSize = attr.FontSize;
-                button.SetPadding(attr.PaddingLeft, attr.PaddingRight, attr.PaddingTop, attr.PaddingBottom);
-                button.SetMargin(attr.MarginLeft, attr.MarginRight, attr.MarginTop, attr.MarginBottom);
+        //        for (int i = 0; i < attr.ToggleNames.Length; i++)
+        //        {
+        //            Button button = new Button();
 
-                toggleButtonGroup.Add(button);
-            }
+        //            button.name = i + attr.ToggleNames[i];
+        //            button.text = attr.ToggleNames[i];
 
-            return toggleButtonGroup;
-        }
+        //            button.style.fontSize = attr.FontSize;
+        //            button.SetPadding(attr.PaddingLeft, attr.PaddingRight, attr.PaddingTop, attr.PaddingBottom);
+        //            button.SetMargin(attr.MarginLeft, attr.MarginRight, attr.MarginTop, attr.MarginBottom);
 
-        /// <summary>
-        /// Retrieves the Toggle Button whose name is <b>toggleName</b>
-        /// </summary>
-        /// <param name="toggleButtonGroup">The group to which this button belongs</param>
-        /// <param name="toggleName">The Toggle name. Will be used to identify Toggle Button in ToggleButtonGroup</param>
-        /// <param name="index">Index of Button in given ToggleButtonGroup</param>
-        /// <returns>Toggle Button whose name is toggleName, null otherwise</returns>
-        private Button GetToggleButton(ToggleButtonGroup toggleButtonGroup, string toggleName, out int index)
-        {
-            VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
-            string buttonNameWithoutIndex;
-            index = -1;
+        //            toggleButtonGroup.Add(button);
+        //        }
 
-            foreach (Button button in toggleButtonsContainer.Children())
-            {
-                buttonNameWithoutIndex = Regex.Replace(button.name, @"^\d+", "");
+        //        return toggleButtonGroup;
+        //    }
 
-                if (buttonNameWithoutIndex.Equals(toggleName))
-                {
-                    index = int.Parse(Regex.Match(button.name, @"^\d+").Value);
+        //    /// <summary>
+        //    /// Retrieves the Toggle Button whose name is <b>toggleName</b>
+        //    /// </summary>
+        //    /// <param name="toggleButtonGroup">The group to which this button belongs</param>
+        //    /// <param name="toggleName">The Toggle name. Will be used to identify Toggle Button in ToggleButtonGroup</param>
+        //    /// <param name="index">Index of Button in given ToggleButtonGroup</param>
+        //    /// <returns>Toggle Button whose name is toggleName, null otherwise</returns>
+        //    private Button GetToggleButton(ToggleButtonGroup toggleButtonGroup, string toggleName, out int index)
+        //    {
+        //        VisualElement toggleButtonsContainer = toggleButtonGroup.Q<VisualElement>("unity-toggle-button-group__container");
+        //        string buttonNameWithoutIndex;
+        //        index = -1;
 
-                    return button;
-                }
-            }
+        //        foreach (Button button in toggleButtonsContainer.Children())
+        //        {
+        //            buttonNameWithoutIndex = Regex.Replace(button.name, @"^\d+", "");
 
-            return null;
-        }
-      
-        private void SetToggleControlledGroupDisplay(VisualElement parent, ToggleButtonGroup toggleButtonGroup, int toggleIndex)
-        {
-            ToggleButtonGroupState state = toggleButtonGroup.value;
-            Span<int> activeOptions = state.GetActiveOptions(stackalloc int[state.length]);
+        //            if (buttonNameWithoutIndex.Equals(toggleName))
+        //            {
+        //                index = int.Parse(Regex.Match(button.name, @"^\d+").Value);
 
-            foreach (var activeOption in activeOptions)
-            {
-                if (toggleIndex == activeOption)
-                {
-                    parent.style.display = DisplayStyle.Flex;
-                    return;
-                }
-            }
+        //                return button;
+        //            }
+        //        }
 
-            parent.style.display = DisplayStyle.None;
-        }
+        //        return null;
+        //    }
 
-        private VisualElement CreateMethodButtons(MethodInfo[] methods)
-        {
-            VisualElement buttons = new VisualElement();
+        //    private void SetToggleControlledGroupDisplay(VisualElement parent, ToggleButtonGroup toggleButtonGroup, int toggleIndex)
+        //    {
+        //        ToggleButtonGroupState state = toggleButtonGroup.value;
+        //        Span<int> activeOptions = state.GetActiveOptions(stackalloc int[state.length]);
 
-            foreach (var method in methods)
-            {
-                ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
+        //        foreach (var activeOption in activeOptions)
+        //        {
+        //            if (toggleIndex == activeOption)
+        //            {
+        //                parent.style.display = DisplayStyle.Flex;
+        //                return;
+        //            }
+        //        }
 
-                if (buttonAttribute == null)
-                    continue;
+        //        parent.style.display = DisplayStyle.None;
+        //    }
 
-                Button button = new Button();
-                button.text = buttonAttribute.text;
+        //    private VisualElement CreateMethodButtons(MethodInfo[] methods)
+        //    {
+        //        VisualElement buttons = new VisualElement();
 
-                button.RegisterCallback<ClickEvent>((callback) =>
-                {
-                    method.Invoke(target, method.GetParameters());
-                });
+        //        foreach (var method in methods)
+        //        {
+        //            ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
 
-                buttons.Add(button);
-            }
+        //            if (buttonAttribute == null)
+        //                continue;
 
-            return buttons;
-        }
+        //            Button button = new Button();
+        //            button.text = buttonAttribute.text;
 
-        #endregion
+        //            button.RegisterCallback<ClickEvent>((callback) =>
+        //            {
+        //                method.Invoke(target, method.GetParameters());
+        //            });
 
-        private void PrintDictionary()
-        {
-            foreach (var entry in sceneAttributesDict)
-            {
-                List<ISceneAttribute> attributes = sceneAttributesDict[entry.Key].sceneAttributes;
+        //            buttons.Add(button);
+        //        }
 
-                foreach (var attr in attributes)
-                {
-                    Debug.Log(entry.Key.name + ": has " + attr.GetType().Name);
-                }
-            }
-        }
+        //        return buttons;
+        //    }
+
+        //    #endregion
+
+        //    private void PrintDictionary()
+        //    {
+        //        foreach (var entry in sceneAttributesDict)
+        //        {
+        //            List<ISceneAttribute> attributes = sceneAttributesDict[entry.Key].sceneAttributes;
+
+        //            foreach (var attr in attributes)
+        //            {
+        //                Debug.Log(entry.Key.name + ": has " + attr.GetType().Name);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //internal struct SceneAttributeData
+        //{
+        //    public List<ISceneAttribute> sceneAttributes;
+        //    public FieldInfo fieldInfo;
+        //}
     }
-
-    internal struct SceneAttributeData
-    {
-        public List<ISceneAttribute> sceneAttributes;
-        public FieldInfo fieldInfo;
-    }
-
 }
