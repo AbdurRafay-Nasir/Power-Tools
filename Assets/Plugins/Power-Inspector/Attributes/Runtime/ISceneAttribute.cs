@@ -2,6 +2,8 @@ namespace PowerTools.Attributes
 {
     public interface ISceneAttribute
     {
+        public bool hideWhenInspectorIsClosed { get; set; }
+
         /// <summary>
         /// Implement this to tell Power Editor what to draw in Scene View.
         /// </summary>

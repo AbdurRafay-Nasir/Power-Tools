@@ -10,6 +10,8 @@ namespace PowerTools.Attributes
     {
         public bool useLocalOrientation;
 
+        public bool hideWhenInspectorIsClosed { get; set; }
+
         public PositionHandleAttribute()
         {
 

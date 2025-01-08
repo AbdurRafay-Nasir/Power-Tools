@@ -10,6 +10,8 @@ namespace PowerTools.Attributes
     {
         private readonly Color lineColor;
 
+        public bool hideWhenInspectorIsClosed { get; set; }
+
         public DrawRadiusAttribute()
         {
             lineColor = Color.green;

@@ -53,6 +53,12 @@ namespace PowerTools.Attributes.Editor
                 List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property].sceneAttributes;
                 foreach (var sceneAttr in sceneAttributes)
                 {
+                    if (sceneAttr.hideWhenInspectorIsClosed)
+                    {
+                        if (!UnityEditorInternal.InternalEditorUtility.GetIsInspectorExpanded(target))
+                            continue;
+                    }
+
                     sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
                 }
             }

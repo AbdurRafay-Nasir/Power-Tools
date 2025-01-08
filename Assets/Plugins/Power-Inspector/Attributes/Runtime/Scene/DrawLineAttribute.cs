@@ -11,6 +11,8 @@ namespace PowerTools.Attributes
         private readonly float lineThickness;
         private readonly Color lineColor;
 
+        public bool hideWhenInspectorIsClosed { get; set; }
+
         public DrawLineAttribute()
         {
             lineThickness = 2f;

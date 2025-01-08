@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using PowerTools.Attributes;
 
-//[UsePowerScene]
 [Toggles("General, Advanced, Debug")]
 public class Tester : PowerMonoBehaviour
 {
@@ -86,9 +85,6 @@ public class Tester : PowerMonoBehaviour
     // Gizmo Drawing
     [DrawLine]
     public Vector3 pointA;
-
-    [DrawLine]
-    public Vector3 pointB;
 
     [DrawRadius]
     public Vector3 centerPoint;

@@ -409,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 1482712808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.53, y: 0.18, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -462,10 +462,9 @@ MonoBehaviour:
   saveDataFolderPath: 
   advancedOptionValue: 0
   showAdvancedOptions: 1
-  pointA: {x: 0, y: 0, z: 0}
-  pointB: {x: 0, y: 0, z: 0}
+  pointA: {x: -3.74, y: 0, z: 0}
   centerPoint: {x: 0, y: 0, z: 0}
-  handlePosition: {x: 0, y: 0, z: 0}
+  handlePosition: {x: 0, y: 0, z: 8.021633}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0
