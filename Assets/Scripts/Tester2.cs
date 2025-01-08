@@ -1,32 +1,32 @@
 using UnityEngine;
-using PowerEditor.Attributes;
+using PowerTools.Attributes;
 
-// [Toggles("Walk, Sprint")]
-public class Tester2 : MonoBehaviour
+[Toggles("Walk, Sprint")]
+public class Tester2 : PowerMonoBehaviour
 {
-    //[ToggleGroup("Walk")]
-    //    [TabView(Alignment.Left)]
-    //        [TabGroup("A")]
-    //            public float val = 5f;
-    //        [EndGroup]        
-            
-    //        [TabGroup("B")]
-    //            public Vector3 target;
-    //        [EndGroup]
+    [ToggleGroup("Walk")]
+    [TabView(Alignment.Left)]
+    [TabGroup("A")]
+    public float val = 5f;
+    [EndGroup]
 
-    //        [TabGroup("C")]
-    //        public float showIfExample = 5f;
-    //        [EndGroup]
-    //    [EndGroup]
-    //[EndGroup]
+    [TabGroup("B")]
+    public Vector3 target;
+    [EndGroup]
 
-    //[ToggleGroup("Sprint")]
-    //[BoxGroup]
-    //public float f1;
+    [TabGroup("C")]
+    public float showIfExample = 5f;
+    [EndGroup]
+    [EndGroup]
+    [EndGroup]
 
-    //[FoldoutGroup("AWDAW")]
-    //public float f2;
+    [ToggleGroup("Sprint")]
+    [BoxGroup]
+    public float f1;
 
-    //[ShowIf("f2 > 10f")]
-    //public float f3;
+    [FoldoutGroup("AWDAW")]
+    public float f2;
+
+    [ShowIf("f2 > 10f")]
+    public float f3;
 }

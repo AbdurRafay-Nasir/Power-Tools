@@ -3,7 +3,6 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -13,48 +12,17 @@ namespace PowerTools.Attributes.Editor
 {
     public class PowerEditor : UnityEditor.Editor
     {
-        private List<SerializedProperty> serializedProperties = new();
-        private Dictionary<SerializedProperty, SceneAttributeData> sceneAttributesDict = new();
-
+        protected List<SerializedProperty> serializedProperties = new();
+        
         private Type targetType;
 
         #region Unity Functions
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             targetType = target.GetType();
 
             serializedProperties = serializedObject.GetAllSerializedProperties();
-
-            // If the class is not marked with UsePowerSceneAttribute,
-            // then don't process it
-            if (targetType.GetCustomAttribute<UsePowerSceneAttribute>() == null)
-                return;
-
-            foreach (var property in serializedProperties)
-            {
-                List<Attribute> allAttributes = property.GetAttributes();
-                List<ISceneAttribute> sceneAttributes = new();
-
-                foreach (var attr in allAttributes)
-                {
-                    if (attr is ISceneAttribute sceneAttr)
-                    {
-                        sceneAttributes.Add(sceneAttr);
-                    }
-                }
-
-                if (sceneAttributes.Count > 0)
-                {
-                    SceneAttributeData data = new SceneAttributeData();
-                    data.fieldInfo = property.GetField();
-                    data.sceneAttributes = sceneAttributes;
-
-                    sceneAttributesDict.Add(property, data);
-                }
-            }
-
-            // PrintDictionary();
         }
 
         public override VisualElement CreateInspectorGUI()
@@ -141,26 +109,34 @@ namespace PowerTools.Attributes.Editor
             return tree;
         }
 
-        private void OnSceneGUI()
-        {
-            if (sceneAttributesDict.Count == 0)
-                return;
-
-            foreach (var entry in sceneAttributesDict)
-            {
-                SerializedProperty property = entry.Key;
-
-                List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property].sceneAttributes;
-                foreach (var sceneAttr in sceneAttributes)
-                {
-                    sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
-                }
-            }
-        }
-
         #endregion
 
         #region Custom Functions
+
+        private VisualElement CreateMethodButtons(MethodInfo[] methods)
+        {
+            VisualElement buttons = new VisualElement();
+
+            foreach (var method in methods)
+            {
+                ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
+
+                if (buttonAttribute == null)
+                    continue;
+
+                Button button = new Button();
+                button.text = buttonAttribute.text;
+
+                button.RegisterCallback<ClickEvent>((callback) =>
+                {
+                    method.Invoke(target, method.GetParameters());
+                });
+
+                buttons.Add(button);
+            }
+
+            return buttons;
+        }
 
         /// <summary>
         /// Constructs Toggle Buttons at top of Component
@@ -241,53 +217,8 @@ namespace PowerTools.Attributes.Editor
             parent.style.display = DisplayStyle.None;
         }
 
-        private VisualElement CreateMethodButtons(MethodInfo[] methods)
-        {
-            VisualElement buttons = new VisualElement();
-
-            foreach (var method in methods)
-            {
-                ButtonAttribute buttonAttribute = method.GetCustomAttribute<ButtonAttribute>();
-
-                if (buttonAttribute == null)
-                    continue;
-
-                Button button = new Button();
-                button.text = buttonAttribute.text;
-
-                button.RegisterCallback<ClickEvent>((callback) =>
-                {
-                    method.Invoke(target, method.GetParameters());
-                });
-
-                buttons.Add(button);
-            }
-
-            return buttons;
-        }
-
         #endregion
-
-        private void PrintDictionary()
-        {
-            foreach (var entry in sceneAttributesDict)
-            {
-                List<ISceneAttribute> attributes = sceneAttributesDict[entry.Key].sceneAttributes;
-
-                foreach (var attr in attributes)
-                {
-                    Debug.Log(entry.Key.name + ": has " + attr.GetType().Name);
-                }
-            }
-        }
     }
-
-    internal struct SceneAttributeData
-    {
-        public List<ISceneAttribute> sceneAttributes;
-        public FieldInfo fieldInfo;
-    }
-
 }
 
 #endif
