@@ -5,16 +5,22 @@ using PowerEditor.Attributes;
 public class Tester2 : MonoBehaviour
 {
     [ToggleGroup("Walk")]
-    [TabView, TabGroup("A")]
-    public float val = 5f;
+        [TabView(Alignment.Left)]
+            [TabGroup("A")]
+                public float val = 5f;
+            [EndGroup]        
+            
+            [TabGroup("B")]
+                public Vector3 target;
+            [EndGroup]
 
-    [EndGroup, TabGroup("B")]
-    public Vector3 target;
+            [TabGroup("C")]
+            public float showIfExample = 5f;
+            [EndGroup]
+        [EndGroup]
+    [EndGroup]
 
-    [EndGroup, TabGroup("C")]
-    public float showIfExample = 5f;
-
-    [EndGroup(3), ToggleGroup("Sprint")]
+    [ToggleGroup("Sprint")]
     [BoxGroup]
     public float f1;
 

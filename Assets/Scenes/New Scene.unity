@@ -465,7 +465,7 @@ MonoBehaviour:
   pointA: {x: 0, y: 0, z: 0}
   pointB: {x: 0, y: 0, z: 0}
   centerPoint: {x: 0, y: 0, z: 0}
-  handlePosition: {x: 1.6255224, y: 0, z: 2.5572214}
+  handlePosition: {x: 0.51133394, y: 0, z: -1.2639225}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

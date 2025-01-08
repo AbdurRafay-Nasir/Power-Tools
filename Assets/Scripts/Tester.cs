@@ -29,7 +29,7 @@ public class Tester : MonoBehaviour
 
     // Advanced Settings
     [ToggleGroup("Advanced")]
-    [TabView]
+    [TabView(align = Alignment.Center)]
     [TabGroup("Graphics")]
     public bool enableShadows;
 
