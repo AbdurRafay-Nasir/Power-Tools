@@ -392,7 +392,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1482712810}
   - component: {fileID: 1482712811}
-  - component: {fileID: 1482712812}
   m_Layer: 0
   m_Name: Grand Parent
   m_TagString: Untagged
@@ -434,37 +433,6 @@ MonoBehaviour:
   f1: 0
   f2: 16.1
   f3: 1.54
---- !u!114 &1482712812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482712808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78758f7e6c5b70b4f825d84cfdd2f4fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: 
-  playerID: 0
-  health: 100
-  stamina: 68.5
-  enableShadows: 0
-  enablePostProcessing: 0
-  masterVolume: 0.428
-  musicVolume: 0
-  jumpKey: 0
-  shootKey: 0
-  debugInfo: 
-  showDebugLogs: 0
-  configFilePath: 
-  saveDataFolderPath: 
-  advancedOptionValue: 0
-  showAdvancedOptions: 1
-  pointA: {x: -3.5280516, y: 0, z: -0.12687302}
-  centerPoint: 1.75
-  handlePosition: {x: 0, y: 0, z: 8.021633}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

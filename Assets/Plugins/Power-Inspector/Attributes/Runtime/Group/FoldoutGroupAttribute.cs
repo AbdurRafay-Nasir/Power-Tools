@@ -9,10 +9,14 @@ namespace PowerTools.Attributes
         private readonly string name;
         private readonly bool open;
 
+        private readonly string guidString;
+
         public FoldoutGroupAttribute(string name, bool open = false)
         {
             this.name = name;
             this.open = open;
+
+            guidString = Guid.NewGuid().ToString();
         }
 
         public VisualElement CreateGroupGUI()
@@ -22,7 +26,7 @@ namespace PowerTools.Attributes
 
             foldout.text = name;
             foldout.value = open;
-            foldout.viewDataKey = $"{name}_foldout";
+            foldout.viewDataKey = guidString;
 
             foldout.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
             foldout.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
