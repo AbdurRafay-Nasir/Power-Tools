@@ -409,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 1482712808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.41, y: 0, z: -3.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -448,8 +448,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   playerID: 0
-  health: 0
-  stamina: 0
+  health: 100
+  stamina: 68.5
   enableShadows: 0
   enablePostProcessing: 0
   masterVolume: 0.428
@@ -462,8 +462,8 @@ MonoBehaviour:
   saveDataFolderPath: 
   advancedOptionValue: 0
   showAdvancedOptions: 1
-  pointA: {x: -3.74, y: 0, z: 0}
-  centerPoint: {x: 0, y: 0, z: 0}
+  pointA: {x: -3.5280516, y: 0, z: -0.12687302}
+  centerPoint: 1.75
   handlePosition: {x: 0, y: 0, z: 8.021633}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
