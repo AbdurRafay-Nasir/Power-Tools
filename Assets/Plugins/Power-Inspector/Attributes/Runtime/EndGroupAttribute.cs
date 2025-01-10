@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class EndGroupAttribute : PropertyAttribute
+    public class EndGroupAttribute : PowerAttribute
     {
         public int openGroupsToClose;
 

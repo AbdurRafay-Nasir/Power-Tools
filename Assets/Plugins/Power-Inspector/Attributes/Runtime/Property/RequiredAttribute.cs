@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class RequiredAttribute : PropertyAttribute
+    public class RequiredAttribute : PowerAttribute
     {
         public string message;
 

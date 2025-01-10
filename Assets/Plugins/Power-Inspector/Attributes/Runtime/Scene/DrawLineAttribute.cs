@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class DrawLineAttribute : PropertyAttribute, ISceneAttribute
+    public class DrawLineAttribute : PowerAttribute, ISceneAttribute
     {
         private readonly float lineThickness;
         private readonly Color lineColor;

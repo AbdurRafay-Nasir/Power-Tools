@@ -6,9 +6,9 @@ using UnityEngine;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class PositionHandleAttribute : PropertyAttribute, ISceneAttribute
+    public class PositionHandleAttribute : PowerAttribute, ISceneAttribute
     {
-        public bool useLocalOrientation;
+        private bool useLocalOrientation;
 
         public bool hideWhenInspectorIsClosed { get; set; }
 

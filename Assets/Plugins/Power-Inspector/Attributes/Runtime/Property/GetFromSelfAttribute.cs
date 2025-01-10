@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class GetFromSelfAttribute : PropertyAttribute
+    public class GetFromSelfAttribute : PowerAttribute
     {
         public GetFromSelfAttribute()
         {

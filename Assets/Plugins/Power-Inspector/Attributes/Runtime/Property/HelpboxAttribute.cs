@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class HelpboxAttribute : PropertyAttribute
+    public class HelpboxAttribute : PowerAttribute
     {
         public string message;
         public MessageType messageType;

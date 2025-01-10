@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class ShowIfAttribute : PropertyAttribute
+    public class ShowIfAttribute : PowerAttribute
     {
         public string expression;
 

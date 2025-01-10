@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class DrawRadiusAttribute : PropertyAttribute, ISceneAttribute
+    public class DrawRadiusAttribute : PowerAttribute, ISceneAttribute
     {
         private readonly Color lineColor;
 

@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class GetFromChildAttribute : PropertyAttribute
+    public class GetFromChildAttribute : PowerAttribute
     {
         public bool searchAllSuccessors;
 
