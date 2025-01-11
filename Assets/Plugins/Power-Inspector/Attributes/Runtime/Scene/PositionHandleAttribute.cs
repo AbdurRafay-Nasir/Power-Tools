@@ -2,36 +2,43 @@ using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class PositionHandleAttribute : PowerAttribute, ISceneAttribute
+    public class PositionHandleAttribute : PropertyAttribute, ISceneAttribute
     {
+        public bool HideWhenInspectorIsClosed { get; set; }
+
         private bool useLocalOrientation;
 
-        public bool hideWhenInspectorIsClosed { get; set; }
+        private Object target;
+        private SerializedProperty property;
+        private FieldInfo fieldInfo;
 
-        public PositionHandleAttribute()
-        {
-
-        }
-
-        public PositionHandleAttribute(bool useLocalOrientation)
+        public PositionHandleAttribute(bool useLocalOrientation = false)
         {
             this.useLocalOrientation = useLocalOrientation;
         }
 
-        public void Draw(UnityEngine.Object target, SerializedProperty property, FieldInfo field)
+        public void Setup(Object target, SerializedProperty property, FieldInfo field)
+        {
+            this.target = target;
+            this.property = property;
+            fieldInfo = field;
+        }
+
+        public void Draw()
         {
             if (property.propertyType == SerializedPropertyType.Vector3)
             {
-                SetVector3Value(target, field);
+                SetVector3Value(target, fieldInfo);
             }
 
             else if (property.propertyType == SerializedPropertyType.Vector2)
             {
-                SetVector2Value(target, field);
+                SetVector2Value(target, fieldInfo);
             }
 
             else if (property.propertyType == SerializedPropertyType.ObjectReference ||
@@ -42,7 +49,7 @@ namespace PowerTools.Attributes
             }
         }
 
-        private void SetVector3Value(UnityEngine.Object target, FieldInfo field)
+        private void SetVector3Value(Object target, FieldInfo field)
         {
             Vector3 oldVal = (Vector3)field.GetValue(target);
             Vector3 newVal = Handles.PositionHandle(oldVal, Quaternion.identity);
@@ -54,7 +61,7 @@ namespace PowerTools.Attributes
             }
         }
 
-        private void SetVector2Value(UnityEngine.Object target, FieldInfo field)
+        private void SetVector2Value(Object target, FieldInfo field)
         {
             Vector2 oldVal = (Vector2)field.GetValue(target);
             Vector2 newVal = Handles.PositionHandle(oldVal, Quaternion.identity);

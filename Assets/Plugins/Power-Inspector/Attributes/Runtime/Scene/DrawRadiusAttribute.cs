@@ -2,15 +2,22 @@ using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class DrawRadiusAttribute : PowerAttribute, ISceneAttribute
+    public class DrawRadiusAttribute : PropertyAttribute, ISceneAttribute
     {
         private readonly Color lineColor;
 
-        public bool hideWhenInspectorIsClosed { get; set; }
+        public bool HideWhenInspectorIsClosed { get; set; }
+
+        private Object target;
+        private SerializedProperty property;
+        private FieldInfo fieldInfo;
+
+        #region Constructors
 
         public DrawRadiusAttribute()
         {
@@ -29,13 +36,22 @@ namespace PowerTools.Attributes
             }
         }
 
-        public void Draw(UnityEngine.Object target, SerializedProperty property, FieldInfo field)
+        #endregion
+
+        public void Setup(Object target, SerializedProperty property, FieldInfo field)
+        {
+            this.target = target;
+            this.property = property;
+            fieldInfo = field;
+        }
+
+        public void Draw()
         {
             Transform transform = (target as MonoBehaviour).transform;
 
             if (property.propertyType == SerializedPropertyType.Float)
             {
-                float oldVal = (float)field.GetValue(target);
+                float oldVal = (float)fieldInfo.GetValue(target);
 
                 Color oldColor = Handles.color;
                 Handles.color = lineColor;
@@ -45,7 +61,7 @@ namespace PowerTools.Attributes
                 if (newVal != oldVal)
                 {
                     Undo.RecordObject(target, "undo float value");
-                    field.SetValue(target, newVal);
+                    fieldInfo.SetValue(target, newVal);
                 }
             }
         }

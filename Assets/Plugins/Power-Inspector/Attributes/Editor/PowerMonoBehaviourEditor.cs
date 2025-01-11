@@ -39,6 +39,14 @@ namespace PowerTools.Attributes.Editor
                     sceneAttributesDict.Add(property, data);
                 }
             }
+
+            foreach (var entry in sceneAttributesDict)
+            {
+                foreach (var sceneAttr in entry.Value.sceneAttributes)
+                {
+                    sceneAttr.Setup(target, entry.Key, entry.Value.fieldInfo);
+                }
+            }
         }
 
         private void OnSceneGUI()
@@ -49,17 +57,17 @@ namespace PowerTools.Attributes.Editor
             foreach (var entry in sceneAttributesDict)
             {
                 SerializedProperty property = entry.Key;
+                List<ISceneAttribute> sceneAttributes = entry.Value.sceneAttributes;
 
-                List<ISceneAttribute> sceneAttributes = sceneAttributesDict[property].sceneAttributes;
                 foreach (var sceneAttr in sceneAttributes)
                 {
-                    if (sceneAttr.hideWhenInspectorIsClosed)
+                    if (sceneAttr.HideWhenInspectorIsClosed)
                     {
                         if (!UnityEditorInternal.InternalEditorUtility.GetIsInspectorExpanded(target))
                             continue;
                     }
 
-                    sceneAttr.Draw(target, property, sceneAttributesDict[property].fieldInfo);
+                    sceneAttr.Draw();
                 }
             }
         }

@@ -5,16 +5,21 @@ using UnityEngine.UIElements;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class BoxGroupAttribute : PowerAttribute, IGroupAttribute
+    public class BoxGroupAttribute : PropertyAttribute, IGroupAttribute, IPaddingMargin
     {
         public string BorderColorHex { get; set; } = "#808080";
         public string BgColorHex { get; set; } = "#303030";
         public float Radius { get; set; } = 5f;
         public float Width { get; set; } = 1f;
 
-        public new float PaddingRight { get; set; } = 2f;
-        public new float PaddingTop { get; set; } = 2f;
-        public new float PaddingBottom { get; set; } = 2f;
+        public float PaddingLeft { get; set; }
+        public float PaddingRight { get; set; }
+        public float PaddingTop { get; set; }
+        public float PaddingBottom { get; set; }
+        public float MarginLeft { get; set; }
+        public float MarginRight { get; set; }
+        public float MarginTop { get; set; }
+        public float MarginBottom { get; set; }
 
         public VisualElement CreateGroupGUI()
         {

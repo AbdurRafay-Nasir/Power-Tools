@@ -2,16 +2,22 @@ using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class DrawLineAttribute : PowerAttribute, ISceneAttribute
+    public class DrawLineAttribute : PropertyAttribute, ISceneAttribute
     {
+        public bool HideWhenInspectorIsClosed { get; set; } = true;
+
         private readonly float lineThickness;
         private readonly Color lineColor;
 
-        public bool hideWhenInspectorIsClosed { get; set; }
+        private Transform transform;
+        private SerializedProperty property;
+
+        #region Constructors
 
         public DrawLineAttribute()
         {
@@ -44,7 +50,15 @@ namespace PowerTools.Attributes
             }
         }
 
-        public void Draw(UnityEngine.Object target, SerializedProperty property, FieldInfo field)
+        #endregion
+
+        public void Setup(Object target, SerializedProperty property, FieldInfo field)
+        {
+            transform = (target as MonoBehaviour).transform;
+            this.property = property;
+        }
+
+        public void Draw()
         {
             Vector3 lineEnd;
 
@@ -56,8 +70,8 @@ namespace PowerTools.Attributes
             {
                 lineEnd = property.vector2Value;
             }
-            else if (property.propertyType == SerializedPropertyType.ObjectReference && 
-                     property.objectReferenceValue != null && 
+            else if (property.propertyType == SerializedPropertyType.ObjectReference &&
+                     property.objectReferenceValue != null &&
                      property.objectReferenceValue.GetType() == typeof(Transform))
             {
                 Transform targetTransform = property.objectReferenceValue as Transform;
@@ -67,8 +81,6 @@ namespace PowerTools.Attributes
             {
                 return;
             }
-
-            Transform transform = (target as MonoBehaviour).transform;
 
             Color prevColor = Handles.color;
             Handles.color = lineColor;

@@ -21,7 +21,7 @@ public class Tester2 : PowerMonoBehaviour
     [EndGroup]
 
     [ToggleGroup("Sprint")]
-    [BoxGroup]
+    [BoxGroup] 
     public float f1;
 
     [FoldoutGroup("AWDAW")]

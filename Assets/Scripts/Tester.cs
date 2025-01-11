@@ -83,14 +83,14 @@ public class Tester : PowerMonoBehaviour
     public bool showAdvancedOptions = true;
 
     // Gizmo Drawing
-    [DrawLine(hideWhenInspectorIsClosed = true), PositionHandle(hideWhenInspectorIsClosed = true)]
+    [DrawLine(HideWhenInspectorIsClosed = true), PositionHandle(HideWhenInspectorIsClosed = true)]
     public Vector3 pointA;
 
-    [DrawRadius(hideWhenInspectorIsClosed = true)]
+    [DrawRadius(HideWhenInspectorIsClosed = true)]
     public float centerPoint;
 
     // Position Handles
-    [PositionHandle(hideWhenInspectorIsClosed = true)]
+    [PositionHandle(HideWhenInspectorIsClosed = true)]
     public Vector3 handlePosition;
 
     // Methods
