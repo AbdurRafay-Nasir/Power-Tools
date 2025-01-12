@@ -12,7 +12,8 @@ namespace PowerTools.Attributes.Editor
 {
     public class PowerEditor : UnityEditor.Editor
     {
-        protected List<SerializedProperty> serializedProperties = new();        
+        protected List<SerializedProperty> serializedProperties = new();
+        private readonly List<PropertyField> propertyFields = new();
         private Type targetType;
 
         #region Unity Functions
@@ -36,6 +37,24 @@ namespace PowerTools.Attributes.Editor
             {
                 toggleButtonGroup = CreateTogglesGUI(togglesAttribute);
                 currentParent.Add(toggleButtonGroup);
+            }
+
+            SearchableAttribute searchableAttribute = targetType.GetCustomAttribute<SearchableAttribute>();
+            if (searchableAttribute != null)
+            {
+                ToolbarSearchField searchField = new ToolbarSearchField();
+                searchField.style.alignSelf = Align.Center;
+                currentParent.Add(searchField);
+
+                searchField.RegisterValueChangedCallback((evt) =>
+                {
+                    foreach (PropertyField propField in propertyFields)
+                    {
+                        propField.style.display = propField.name.StartsWith(evt.newValue.ToLower())
+                                                  ? DisplayStyle.Flex
+                                                  : DisplayStyle.None;
+                    }
+                });
             }
 
             foreach (var property in serializedProperties)
@@ -92,8 +111,12 @@ namespace PowerTools.Attributes.Editor
                     }
                 }
 
+                PropertyField propertyField = new PropertyField(property);
+                propertyField.name = property.name;
+                propertyFields.Add(propertyField);
+
                 // Finally, add the property field to the current parent
-                currentParent.Add(new PropertyField(property));
+                currentParent.Add(propertyField);
             }
 
             MethodInfo[] methods = targetType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
