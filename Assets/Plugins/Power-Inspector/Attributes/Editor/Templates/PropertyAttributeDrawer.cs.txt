@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 
-namespace PowerEditor.Attributes.Editor
+namespace PowerTools.Attributes.Editor
 {
     [CustomPropertyDrawer(typeof(#ATTRIBUTENAME#))]
     public class #ATTRIBUTENAME#Drawer : PropertyDrawer

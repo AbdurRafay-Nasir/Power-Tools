@@ -8,9 +8,9 @@ namespace PowerEditor.Attributes.Editor
 { 
     public class ScriptsCreator
     {
-        private const string PROPERTY_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/PropertyAttribute.cs.txt";
-        private const string GROUP_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/GroupAttribute.cs.txt";
-        private const string DRAWER_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Editor/Templates/PropertyAttributeDrawer.cs.txt";
+        private const string PROPERTY_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Attributes/Editor/Templates/PropertyAttribute.cs.txt";
+        private const string GROUP_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Attributes/Editor/Templates/GroupAttribute.cs.txt";
+        private const string DRAWER_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Attributes/Editor/Templates/PropertyAttributeDrawer.cs.txt";
 
         #region Create Attribute
 

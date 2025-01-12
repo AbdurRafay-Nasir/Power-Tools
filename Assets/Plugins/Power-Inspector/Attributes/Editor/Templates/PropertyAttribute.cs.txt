@@ -1,6 +1,6 @@
 using System;
 
-namespace PowerEditor.Attributes
+namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class #SCRIPTNAME# : PowerAttribute

@@ -1,8 +1,10 @@
 using UnityEngine;
 using PowerTools.Attributes;
 
+[Searchable] 
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
+    [BoxGroup] 
     [DrawRadius("#FFFF00")]
     public float blastRadius = 10f;
 

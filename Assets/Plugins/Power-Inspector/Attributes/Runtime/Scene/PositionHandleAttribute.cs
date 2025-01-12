@@ -11,7 +11,7 @@ namespace PowerTools.Attributes
     {
         public bool HideWhenInspectorIsClosed { get; set; }
 
-        private bool useLocalOrientation;
+        private readonly bool useLocalOrientation;
 
         private Object target;
         private SerializedProperty property;

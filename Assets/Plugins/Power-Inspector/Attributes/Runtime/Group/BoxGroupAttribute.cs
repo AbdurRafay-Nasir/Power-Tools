@@ -13,9 +13,9 @@ namespace PowerTools.Attributes
         public float Width { get; set; } = 1f;
 
         public float PaddingLeft { get; set; }
-        public float PaddingRight { get; set; }
-        public float PaddingTop { get; set; }
-        public float PaddingBottom { get; set; }
+        public float PaddingRight { get; set; } = 2f;
+        public float PaddingTop { get; set; } = 2f;
+        public float PaddingBottom { get; set; } = 2f;
         public float MarginLeft { get; set; }
         public float MarginRight { get; set; }
         public float MarginTop { get; set; }
