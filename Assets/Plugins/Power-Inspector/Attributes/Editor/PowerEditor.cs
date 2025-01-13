@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace PowerTools.Attributes.Editor
 {
@@ -53,6 +54,7 @@ namespace PowerTools.Attributes.Editor
                 {
                     foreach (PropertyField propField in propertyFields)
                     {
+                        // TODO - search breaks when custom label is found
                         propField.style.display = propField.name.StartsWith(evt.newValue.ToLower())
                                                   ? DisplayStyle.Flex
                                                   : DisplayStyle.None;
@@ -116,6 +118,17 @@ namespace PowerTools.Attributes.Editor
 
                 PropertyField propertyField = new PropertyField(property);
                 propertyField.name = property.name;
+
+                GUIAttribute guiAttribute = property.GetAttribute<GUIAttribute>();
+                if (guiAttribute != null)
+                {
+                    // TODO - search breaks when custom label is found
+                    propertyField.name = string.IsNullOrEmpty(guiAttribute.label) ? property.name : guiAttribute.label;
+                    propertyField.label = string.IsNullOrEmpty(guiAttribute.label) ? propertyField.label : guiAttribute.label;
+                    propertyField.SetMargin(guiAttribute.MarginLeft, guiAttribute.MarginRight,
+                                            guiAttribute.MarginTop, guiAttribute.MarginBottom);
+                }
+
                 propertyFields.Add(propertyField);
 
                 // Finally, add the property field to the current parent
