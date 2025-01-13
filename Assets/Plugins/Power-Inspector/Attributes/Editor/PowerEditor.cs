@@ -44,6 +44,9 @@ namespace PowerTools.Attributes.Editor
             {
                 ToolbarSearchField searchField = new ToolbarSearchField();
                 searchField.style.alignSelf = Align.Center;
+                searchField.SetMargin(searchableAttribute.MarginLeft, searchableAttribute.MarginRight,
+                                      searchableAttribute.MarginTop, searchableAttribute.MarginBottom);
+
                 currentParent.Add(searchField);
 
                 searchField.RegisterValueChangedCallback((evt) =>

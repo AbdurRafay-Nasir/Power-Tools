@@ -5,6 +5,7 @@ using PowerTools.Attributes;
 [Searchable] 
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
+    [ToggleGroup("A")]
     [TabView]
     [TabGroup("A")]
     [BoxGroup] 
