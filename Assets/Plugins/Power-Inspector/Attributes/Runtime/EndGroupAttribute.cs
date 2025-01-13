@@ -3,7 +3,7 @@ using System;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class EndGroupAttribute : PowerAttribute
+    public class EndGroupAttribute : UnityEngine.PropertyAttribute
     {
         public int openGroupsToClose;
 
