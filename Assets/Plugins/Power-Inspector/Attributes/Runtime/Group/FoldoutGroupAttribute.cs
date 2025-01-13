@@ -1,11 +1,10 @@
 using System;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class FoldoutGroupAttribute : PropertyAttribute, IGroupAttribute
+    public class FoldoutGroupAttribute : UnityEngine.PropertyAttribute, IGroupAttribute
     {
         #region Padding
 
