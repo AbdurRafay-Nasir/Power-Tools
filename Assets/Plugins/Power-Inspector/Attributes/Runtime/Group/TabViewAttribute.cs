@@ -14,6 +14,8 @@ namespace PowerTools.Attributes
         }
 
         // viewDataKey doesn't work for TabView
+        // Padding, Margin was not added as their can easily be created
+        // by adding padding/margin on other attributes
         public VisualElement CreateGroupGUI()
         {
             TabView tabView = new TabView();
@@ -22,9 +24,6 @@ namespace PowerTools.Attributes
             tabsContainer.style.flexWrap = Wrap.Wrap;
 
             tabsContainer.style.alignSelf = (Align)(int)align;
-
-            tabView.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
-            tabView.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
 
             return tabView;
         }
