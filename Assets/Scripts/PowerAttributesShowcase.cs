@@ -4,6 +4,8 @@ using PowerTools.Attributes;
 [Searchable] 
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
+    [TabView]
+    [TabGroup("A")]
     [BoxGroup] 
     [DrawRadius("#FFFF00")]
     public float blastRadius = 10f;

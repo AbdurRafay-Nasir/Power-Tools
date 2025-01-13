@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class TabGroupAttribute : PowerAttribute, IGroupAttribute
+    public class TabGroupAttribute : UnityEngine.PropertyAttribute, IGroupAttribute
     {
         private readonly string tabName;
 
@@ -13,15 +13,7 @@ namespace PowerTools.Attributes
             this.tabName = tabName;
         }
 
-        // viewDataKey doesn't work for Tab
-        public VisualElement CreateGroupGUI()
-        {
-            Tab tab = new Tab(tabName);
-
-            tab.SetPadding(PaddingLeft, PaddingRight, PaddingTop, PaddingBottom);
-            tab.SetMargin(MarginLeft, MarginRight, MarginTop, MarginBottom);
-
-            return tab;
-        }
+        // viewDataKey, Padding, margin doesn't work for Tab
+        public VisualElement CreateGroupGUI() => new Tab(tabName);
     }
 }
