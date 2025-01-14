@@ -18,21 +18,25 @@ namespace PowerTools.Attributes.Editor
             }
 
             HelpBox helpbox = new HelpBox((attribute as RequiredAttribute).message, HelpBoxMessageType.Error);
+            helpbox.style.display = property.objectReferenceValue == null
+                                    ? DisplayStyle.Flex
+                                    : DisplayStyle.None;
+
             PropertyField propertyField = new PropertyField(property);
 
             propertyField.RegisterValueChangeCallback(callback =>
             {
                 if (property.objectReferenceValue == null)
                 {
-                    root.Insert(0, helpbox);
+                    helpbox.style.display = DisplayStyle.Flex;
                 }
                 else
                 {
-                    if (root.Contains(helpbox))
-                        root.Remove(helpbox);
+                    helpbox.style.display = DisplayStyle.None;
                 }
             });
 
+            root.Add(helpbox);
             root.Add(propertyField);
 
             return root;

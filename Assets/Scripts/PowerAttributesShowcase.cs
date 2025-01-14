@@ -10,13 +10,12 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     [TabGroup("A")]
     [BoxGroup] 
     [DrawRadius("#FFFF00")]
-    [GUI(MarginVertical = 50f)]
     public float blastRadius = 10f;
 
     [DrawLine]
     [PositionHandle]
     public Vector2 vector2;
 
-    [GetFromSelf]
+    [GetFromSelf, Required("Required Bro")]
     public MeshRenderer meshRenderer;
 }
