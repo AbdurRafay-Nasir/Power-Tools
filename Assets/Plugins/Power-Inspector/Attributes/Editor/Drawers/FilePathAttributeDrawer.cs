@@ -3,6 +3,7 @@
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 
 namespace PowerTools.Attributes.Editor
 {
@@ -23,8 +24,8 @@ namespace PowerTools.Attributes.Editor
             Undo.undoRedoPerformed += OnUndoRedoPerformed;
             
             prop = property;
-            objectField = new ObjectField(property.name) 
-            { 
+            objectField = new ObjectField(property.displayName) 
+            {
                 allowSceneObjects = false
             };
 
@@ -67,6 +68,8 @@ namespace PowerTools.Attributes.Editor
 
         private void OnUndoRedoPerformed()
         {
+            Debug.Log(prop == null);
+            Debug.Log(prop.serializedObject == null);
             prop.serializedObject.Update();
 
             objectField.value = string.IsNullOrEmpty(prop.stringValue) ? null

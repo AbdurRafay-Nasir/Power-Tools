@@ -23,7 +23,7 @@ namespace PowerTools.Attributes.Editor
                 return root;
             }
 
-            // Ensure Field is a Component. Not allow references such as: Sprite, Texture etc
+            // Ensure Field is a Component. Don't allow references such as: Sprite, Texture etc
             if (!typeof(Component).IsAssignableFrom(fieldInfo.FieldType))
             {
                 root.Add(new HelpBox("GetFromChildAttribute: is only valid on Component Reference. ", HelpBoxMessageType.Error));

@@ -430,7 +430,8 @@ MonoBehaviour:
   blastRadius: 5.62961
   vector2: {x: 0, y: 0}
   vector3: {x: 0, y: 0, z: 0}
-  filePath: Assets/Imediate parent.prefab
+  folderPath: Assets/Plugins/Power-Inspector/Attributes/Runtime/Scene
+  filePath: Assets/Plugins/Power-Inspector/Attributes/Runtime/EndGroupAttribute.cs
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

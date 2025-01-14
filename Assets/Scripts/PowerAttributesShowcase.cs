@@ -20,8 +20,17 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     // [DrawLine]
     public Vector3 vector3;
 
-    [FilePath, GUI("File for ref")]
+    [FilePath]
     public string filePath;
+    [FolderPath]
+    public string folderPath;
+
+
+    [Button(nameof(PrintFolderPath))]
+    private void PrintFolderPath()
+    {
+        Debug.Log(folderPath);
+    }
 
     [Button(nameof(PrintFilePath))]
     private void PrintFilePath()
