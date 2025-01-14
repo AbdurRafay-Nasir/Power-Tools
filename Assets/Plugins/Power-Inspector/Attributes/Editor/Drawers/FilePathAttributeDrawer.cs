@@ -20,26 +20,29 @@ namespace PowerTools.Attributes.Editor
                                    HelpBoxMessageType.Error);
             }
 
-            prop = property;
-
             Undo.undoRedoPerformed += OnUndoRedoPerformed;
-
-            objectField = new ObjectField(property.name);
-            objectField.allowSceneObjects = false;
+            
+            prop = property;
+            objectField = new ObjectField(property.name) 
+            { 
+                allowSceneObjects = false
+            };
 
             // By default unity adds this class on Child Fields of PropertyField
             // Since this field is added as a child of PropertyField through code
-            // we need to add it manaully. 
-            // NOTE - The root that we are returning will become child of PropertyField
-            // which is Added in PowerInspectorEditor.cs. For more info refer to:
+            // we need to add it manaully. For more info refer to:
             // https://docs.unity3d.com/6000.0/Documentation/Manual/UIE-uxml-element-PropertyField.html#:~:text=Align%20a%20PropertyField,consistency%20and%20compatibility.
             objectField.AddToClassList("unity-base-field__aligned");
 
-            objectField.RegisterValueChangedCallback((callback) =>
+            // Set the start value for ObjectField
+            objectField.value = string.IsNullOrEmpty(prop.stringValue) ? null
+                                : AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(prop.stringValue);
+
+            objectField.RegisterValueChangedCallback((evt) =>
             {
-                if (objectField.value != null)
+                if (evt.newValue != null)
                 {
-                    string path = AssetDatabase.GetAssetPath(objectField.value);
+                    string path = AssetDatabase.GetAssetPath(evt.newValue);
 
                     if (AssetDatabase.IsValidFolder(path))
                     {
@@ -52,6 +55,11 @@ namespace PowerTools.Attributes.Editor
                         property.serializedObject.ApplyModifiedProperties();
                     }
                 }
+                else
+                {
+                    property.stringValue = "";
+                    property.serializedObject.ApplyModifiedProperties();
+                }
             });
 
             return objectField;
@@ -61,9 +69,8 @@ namespace PowerTools.Attributes.Editor
         {
             prop.serializedObject.Update();
 
-            objectField.value = !string.IsNullOrEmpty(prop.stringValue)
-                                ? AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(prop.stringValue)
-                                : null;
+            objectField.value = string.IsNullOrEmpty(prop.stringValue) ? null
+                                : AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(prop.stringValue);
         }
 
         public void Dispose()

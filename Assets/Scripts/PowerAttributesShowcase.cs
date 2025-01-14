@@ -17,6 +17,15 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     [PositionHandle]
     public Vector2 vector2;
 
-    [DrawLine]
+    // [DrawLine]
     public Vector3 vector3;
+
+    [FilePath, GUI("File for ref")]
+    public string filePath;
+
+    [Button(nameof(PrintFilePath))]
+    private void PrintFilePath()
+    {
+        Debug.Log(filePath);
+    }
 }

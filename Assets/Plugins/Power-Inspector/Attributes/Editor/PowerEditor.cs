@@ -43,23 +43,7 @@ namespace PowerTools.Attributes.Editor
             SearchableAttribute searchableAttribute = targetType.GetCustomAttribute<SearchableAttribute>();
             if (searchableAttribute != null)
             {
-                ToolbarSearchField searchField = new ToolbarSearchField();
-                searchField.style.alignSelf = Align.Center;
-                searchField.SetMargin(searchableAttribute.MarginLeft, searchableAttribute.MarginRight,
-                                      searchableAttribute.MarginTop, searchableAttribute.MarginBottom);
-
-                searchField.RegisterValueChangedCallback((evt) =>
-                {
-                    foreach (PropertyField propField in propertyFields)
-                    {
-                        // TODO - search breaks when custom label is found
-                        propField.style.display = propField.name.StartsWith(evt.newValue, true, null)
-                                                  ? DisplayStyle.Flex
-                                                  : DisplayStyle.None;
-                    }
-                });
-
-                currentParent.Add(searchField);
+                currentParent.Add(CreateSearchField(searchableAttribute));
             }
 
             foreach (var property in serializedProperties)
@@ -150,6 +134,27 @@ namespace PowerTools.Attributes.Editor
         #endregion
 
         #region Custom Functions
+
+        private ToolbarSearchField CreateSearchField(SearchableAttribute attr)
+        {
+            ToolbarSearchField searchField = new ToolbarSearchField();
+            searchField.style.alignSelf = Align.Center;
+            searchField.SetMargin(attr.MarginLeft, attr.MarginRight,
+                                  attr.MarginTop, attr.MarginBottom);
+
+            searchField.RegisterValueChangedCallback((evt) =>
+            {
+                foreach (PropertyField propField in propertyFields)
+                {
+                    // TODO - search breaks when custom label is found
+                    propField.style.display = propField.name.StartsWith(evt.newValue, true, null)
+                                              ? DisplayStyle.Flex
+                                              : DisplayStyle.None;
+                }
+            });
+
+            return searchField;
+        }
 
         private VisualElement CreateMethodButtons(MethodInfo[] methods)
         {
