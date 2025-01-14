@@ -10,7 +10,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     [TabGroup("A")]
     [BoxGroup] 
     [DrawRadius("#FFFF00")]
-    [GUI(MarginTop = 50f)]
+    [GUI(MarginVertical = 50f)]
     public float blastRadius = 10f;
 
     [DrawLine]

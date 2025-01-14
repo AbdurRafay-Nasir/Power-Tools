@@ -13,7 +13,7 @@ namespace PowerTools.Attributes
         public float PaddingBottom { get; set; } = 2f;
         public float PaddingHorizontal
         {
-            set
+            get => 0f; set
             {
                 PaddingLeft = value;
                 PaddingRight = value;
@@ -21,7 +21,7 @@ namespace PowerTools.Attributes
         }
         public float PaddingVertical
         {
-            set
+            get => 0f; set
             {
                 PaddingTop = value;
                 PaddingBottom = value;
@@ -29,7 +29,7 @@ namespace PowerTools.Attributes
         }
         public float Padding
         {
-            set
+            get => 0f; set
             {
                 PaddingLeft = value;
                 PaddingRight = value;
@@ -48,7 +48,7 @@ namespace PowerTools.Attributes
         public float MarginBottom { get; set; }
         public float MarginHorizontal
         {
-            set
+            get => 0f; set
             {
                 MarginLeft = value;
                 MarginRight = value;
@@ -56,7 +56,7 @@ namespace PowerTools.Attributes
         }
         public float MarginVertical
         {
-            set
+            get => 0f; set
             {
                 MarginTop = value;
                 MarginBottom = value;
@@ -64,7 +64,7 @@ namespace PowerTools.Attributes
         }
         public float Margin
         {
-            set
+            get => 0f; set
             {
                 MarginLeft = value;
                 MarginRight = value;

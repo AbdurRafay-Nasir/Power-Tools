@@ -15,14 +15,16 @@ namespace PowerTools.Attributes
         public float PaddingBottom { get; set; } = 2f;
         public float PaddingHorizontal
         {
+            get => 0f;
             set
             {
                 PaddingLeft = value;
                 PaddingRight = value;
-            } 
+            }
         }
         public float PaddingVertical
         {
+            get => 0f;
             set
             {
                 PaddingTop = value;
@@ -31,6 +33,7 @@ namespace PowerTools.Attributes
         }
         public float Padding
         {
+            get => 0f;
             set
             {
                 PaddingLeft = value;
@@ -50,6 +53,7 @@ namespace PowerTools.Attributes
         public float MarginBottom { get; set; }
         public float MarginHorizontal
         {
+            get => 0f;
             set
             {
                 MarginLeft = value;
@@ -58,6 +62,7 @@ namespace PowerTools.Attributes
         }
         public float MarginVertical
         {
+            get => 0f;
             set
             {
                 MarginTop = value;
@@ -66,6 +71,8 @@ namespace PowerTools.Attributes
         }
         public float Margin
         {
+
+            get => 0f;
             set
             {
                 MarginLeft = value;
@@ -83,8 +90,8 @@ namespace PowerTools.Attributes
         public string BorderColorRightHex { get; set; } = "#808080";
         public string BorderColorTopHex { get; set; } = "#808080";
         public string BorderColorBottomHex { get; set; } = "#808080";
-        public string BorderColorHorizontalHex 
-        { 
+        public string BorderColorHorizontalHex
+        {
             set
             {
                 BorderColorLeftHex = value;
@@ -98,7 +105,7 @@ namespace PowerTools.Attributes
                 BorderColorTopHex = value;
                 BorderColorBottomHex = value;
             }
-        }        
+        }
         public string BorderColorHex
         {
             set
@@ -114,13 +121,13 @@ namespace PowerTools.Attributes
 
         #region Border Radius
 
-        public float BorderRadiusTopLeft { get; set; }  = 5f;
+        public float BorderRadiusTopLeft { get; set; } = 5f;
         public float BorderRadiusTopRight { get; set; } = 5f;
         public float BorderRadiusBottomLeft { get; set; } = 5f;
         public float BorderRadiusBottomRight { get; set; } = 5f;
-        public float BorderRadiusTop 
+        public float BorderRadiusTop
         {
-            set
+            get => 0f; set
             {
                 BorderRadiusTopLeft = value;
                 BorderRadiusTopRight = value;
@@ -128,6 +135,7 @@ namespace PowerTools.Attributes
         }
         public float BorderRadiusBottom
         {
+            get => 0f; 
             set
             {
                 BorderRadiusBottomLeft = value;
@@ -136,6 +144,7 @@ namespace PowerTools.Attributes
         }
         public float BorderRadius
         {
+            get => 0f;
             set
             {
                 BorderRadiusTopLeft = value;
@@ -153,16 +162,18 @@ namespace PowerTools.Attributes
         public float BorderWidthRight { get; set; } = 1f;
         public float BorderWidthTop { get; set; } = 1f;
         public float BorderWidthBottom { get; set; } = 1f;
-        public float BorderWidthHorizontal 
-        { 
+        public float BorderWidthHorizontal
+        {
+            get => 0f; 
             set
             {
                 BorderWidthLeft = value;
                 BorderWidthRight = value;
-            } 
+            }
         }
         public float BorderWidthVertical
         {
+            get => 0f; 
             set
             {
                 BorderWidthTop = value;
@@ -171,6 +182,7 @@ namespace PowerTools.Attributes
         }
         public float BorderWidth
         {
+            get => 0f; 
             set
             {
                 BorderWidthLeft = value;
@@ -183,7 +195,7 @@ namespace PowerTools.Attributes
         #endregion
 
         public string BgColorHex { get; set; } = "#303030";
-        
+
         public VisualElement CreateGroupGUI()
         {
             Box box = new Box();
@@ -191,7 +203,7 @@ namespace PowerTools.Attributes
             box.style.backgroundColor = ColorUtility.TryParseHtmlString(BgColorHex, out var color) ?
                                         color : new Color(0.19f, 0.19f, 0.19f);
 
-            Color borderLeftColor = ColorUtility.TryParseHtmlString(BorderColorLeftHex, out var left) 
+            Color borderLeftColor = ColorUtility.TryParseHtmlString(BorderColorLeftHex, out var left)
                                    ? left
                                    : new Color(0.19f, 0.19f, 0.19f);
 
@@ -209,7 +221,7 @@ namespace PowerTools.Attributes
 
             box.SetBorderColor(borderLeftColor, borderRightColor, borderTopColor, borderBottomColor);
 
-            box.SetBorderRadius(BorderRadiusTopLeft, BorderRadiusTopRight, 
+            box.SetBorderRadius(BorderRadiusTopLeft, BorderRadiusTopRight,
                                 BorderRadiusBottomLeft, BorderRadiusBottomRight);
 
             box.SetBorderWidth(BorderWidthLeft, BorderWidthRight, BorderWidthTop, BorderWidthBottom);

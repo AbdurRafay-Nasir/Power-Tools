@@ -13,6 +13,7 @@ namespace PowerTools.Attributes
         public float MarginBottom { get; set; }
         public float MarginHorizontal
         {
+            get => 0f;
             set
             {
                 MarginLeft = value;
@@ -21,6 +22,7 @@ namespace PowerTools.Attributes
         }
         public float MarginVertical
         {
+            get => 0f;
             set
             {
                 MarginTop = value;
@@ -29,6 +31,7 @@ namespace PowerTools.Attributes
         }
         public float Margin
         {
+            get => 0f;
             set
             {
                 MarginLeft = value;
