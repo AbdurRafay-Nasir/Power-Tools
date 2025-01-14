@@ -10,31 +10,13 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     [TabGroup("A")]
     [BoxGroup] 
     [DrawRadius("#FFFF00")]
-    [GUI("What is BlastRadius?")]
+    [GUI(MarginTop = 50f)]
     public float blastRadius = 10f;
 
     [DrawLine]
     [PositionHandle]
     public Vector2 vector2;
 
-    // [DrawLine]
-    public Vector3 vector3;
-
-    [FilePath]
-    public string filePath;
-    [FolderPath]
-    public string folderPath;
-
-
-    [Button(nameof(PrintFolderPath))]
-    private void PrintFolderPath()
-    {
-        Debug.Log(folderPath);
-    }
-
-    [Button(nameof(PrintFilePath))]
-    private void PrintFilePath()
-    {
-        Debug.Log(filePath);
-    }
+    [GetFromSelf]
+    public MeshRenderer meshRenderer;
 }

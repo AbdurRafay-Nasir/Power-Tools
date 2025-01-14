@@ -106,10 +106,6 @@ namespace PowerTools.Attributes.Editor
                 GUIAttribute guiAttribute = property.GetAttribute<GUIAttribute>();
                 if (guiAttribute != null)
                 {
-                    // TODO - search breaks when custom label is found
-                    propertyField.name = string.IsNullOrEmpty(guiAttribute.label) ? propertyField.name : guiAttribute.label;
-                    propertyField.label = string.IsNullOrEmpty(guiAttribute.label) ? propertyField.label : guiAttribute.label;
-
                     propertyField.SetMargin(guiAttribute.MarginLeft, guiAttribute.MarginRight,
                                             guiAttribute.MarginTop, guiAttribute.MarginBottom);
                 }

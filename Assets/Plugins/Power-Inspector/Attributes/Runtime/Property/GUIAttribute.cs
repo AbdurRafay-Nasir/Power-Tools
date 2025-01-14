@@ -39,13 +39,5 @@ namespace PowerTools.Attributes
         }
 
         #endregion
-
-        // TODO - search breaks when custom label is found
-        public readonly string label;
-
-        public GUIAttribute(string label = "")
-        {
-            this.label = label;
-        }
     }
 }
