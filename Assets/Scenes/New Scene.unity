@@ -427,9 +427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8781f47abc7896e4a856d983380275d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastRadius: 7.69
-  vector2: {x: -10.682311, y: 3.8128278}
-  vector3: {x: 3.03, y: 0, z: 0}
+  blastRadius: 5.62961
+  vector2: {x: 0, y: 0}
+  vector3: {x: 0, y: 0, z: 0}
 --- !u!1001 &8481114790276849611
 PrefabInstance:
   m_ObjectHideFlags: 0

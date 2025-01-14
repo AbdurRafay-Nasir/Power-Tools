@@ -48,18 +48,18 @@ namespace PowerTools.Attributes.Editor
                 searchField.SetMargin(searchableAttribute.MarginLeft, searchableAttribute.MarginRight,
                                       searchableAttribute.MarginTop, searchableAttribute.MarginBottom);
 
-                currentParent.Add(searchField);
-
                 searchField.RegisterValueChangedCallback((evt) =>
                 {
                     foreach (PropertyField propField in propertyFields)
                     {
                         // TODO - search breaks when custom label is found
-                        propField.style.display = propField.name.StartsWith(evt.newValue.ToLower())
+                        propField.style.display = propField.name.StartsWith(evt.newValue, true, null)
                                                   ? DisplayStyle.Flex
                                                   : DisplayStyle.None;
                     }
                 });
+
+                currentParent.Add(searchField);
             }
 
             foreach (var property in serializedProperties)
@@ -123,8 +123,9 @@ namespace PowerTools.Attributes.Editor
                 if (guiAttribute != null)
                 {
                     // TODO - search breaks when custom label is found
-                    propertyField.name = string.IsNullOrEmpty(guiAttribute.label) ? property.name : guiAttribute.label;
+                    propertyField.name = string.IsNullOrEmpty(guiAttribute.label) ? propertyField.name : guiAttribute.label;
                     propertyField.label = string.IsNullOrEmpty(guiAttribute.label) ? propertyField.label : guiAttribute.label;
+
                     propertyField.SetMargin(guiAttribute.MarginLeft, guiAttribute.MarginRight,
                                             guiAttribute.MarginTop, guiAttribute.MarginBottom);
                 }
