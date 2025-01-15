@@ -6,7 +6,7 @@ namespace PowerTools.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class GetFromParentAttribute : UnityEngine.PropertyAttribute
     {
-        public bool searchAllPredecessors;
+        public readonly bool searchAllPredecessors;
 
         public GetFromParentAttribute(bool searchAllPredecessors = false)
         {
