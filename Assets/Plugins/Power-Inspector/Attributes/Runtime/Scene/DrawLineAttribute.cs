@@ -15,9 +15,6 @@ namespace PowerTools.Attributes
         private readonly float lineThickness;
         private readonly Color lineColor;
 
-        private Transform transform;
-        private SerializedProperty property;
-
         #region Constructors
 
         public DrawLineAttribute()
@@ -52,6 +49,11 @@ namespace PowerTools.Attributes
         }
 
         #endregion
+
+#if UNITY_EDITOR
+
+        private Transform transform;
+        private SerializedProperty property;
 
         public void Setup(Object target, SerializedProperty property, FieldInfo field)
         {
@@ -89,5 +91,7 @@ namespace PowerTools.Attributes
             Handles.DrawLine(transform.position, lineEnd, lineThickness);
             Handles.color = prevColor;
         }
+
+#endif
     }
 }

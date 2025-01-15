@@ -8,6 +8,8 @@ namespace PowerTools.Attributes
         /// </summary>
         public bool HideWhenInspectorIsClosed { get; set; }
 
+#if UNITY_EDITOR
+
         /// <summary>
         /// Use this method for initialization.
         /// </summary>
@@ -24,5 +26,7 @@ namespace PowerTools.Attributes
         /// Implement this to tell Power Editor what to draw in Scene View.
         /// </summary>
         void Draw();
+
+#endif
     }
 }

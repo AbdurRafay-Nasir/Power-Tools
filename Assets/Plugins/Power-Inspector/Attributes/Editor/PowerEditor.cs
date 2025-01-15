@@ -39,7 +39,7 @@ namespace PowerTools.Attributes.Editor
             {
                 PropertyField scriptField = new PropertyField(serializedObject.FindProperty("m_Script"));
                 scriptField.SetEnabled(false);
-                scriptField.style.marginBottom = 2f;
+                scriptField.SetMargin(2f, 0f);
 
                 currentParent.Add(scriptField);
             }

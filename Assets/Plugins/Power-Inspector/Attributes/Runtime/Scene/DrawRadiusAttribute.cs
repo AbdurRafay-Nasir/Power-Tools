@@ -13,16 +13,18 @@ namespace PowerTools.Attributes
         public bool HideWhenInspectorIsClosed { get; set; }
 
         private readonly Color lineColor;
-
-        private Object target;
-        private SerializedProperty property;
-        private FieldInfo fieldInfo;
                 
         public DrawRadiusAttribute(string lineColorHex = "#1FDD1F")
         {
             lineColor = ColorUtility.TryParseHtmlString(lineColorHex, out Color color) ?
                         color : Color.green;
         }
+
+#if UNITY_EDITOR
+
+        private Object target;
+        private SerializedProperty property;
+        private FieldInfo fieldInfo;
 
         public void Setup(Object target, SerializedProperty property, FieldInfo field)
         {
@@ -51,5 +53,7 @@ namespace PowerTools.Attributes
                 }
             }
         }
+
+#endif
     }
 }

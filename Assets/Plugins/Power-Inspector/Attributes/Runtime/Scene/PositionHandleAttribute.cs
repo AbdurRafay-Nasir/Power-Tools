@@ -14,14 +14,16 @@ namespace PowerTools.Attributes
 
         private readonly bool useLocalOrientation;
 
-        private Object target;
-        private SerializedProperty property;
-        private FieldInfo fieldInfo;
-
         public PositionHandleAttribute(bool useLocalOrientation = false)
         {
             this.useLocalOrientation = useLocalOrientation;
         }
+
+#if UNITY_EDITOR
+
+        private Object target;
+        private SerializedProperty property;
+        private FieldInfo fieldInfo;
 
         public void Setup(Object target, SerializedProperty property, FieldInfo field)
         {
@@ -90,5 +92,7 @@ namespace PowerTools.Attributes
                 transform.position = newVal;
             }
         }
+
+#endif
     }
 }
