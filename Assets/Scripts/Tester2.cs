@@ -27,6 +27,5 @@ public class Tester2 : PowerMonoBehaviour
     [FoldoutGroup("AWDAW")]
     public float f2;
 
-    [ShowIf("f2 > 10f")]
     public float f3;
 }

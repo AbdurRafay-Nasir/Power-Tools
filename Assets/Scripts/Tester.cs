@@ -77,7 +77,6 @@ public class Tester : PowerMonoBehaviour
     public string saveDataFolderPath;
 
     // Conditional Display
-    [ShowIf("showAdvancedOptions")]
     public int advancedOptionValue;
 
     public bool showAdvancedOptions = true;
