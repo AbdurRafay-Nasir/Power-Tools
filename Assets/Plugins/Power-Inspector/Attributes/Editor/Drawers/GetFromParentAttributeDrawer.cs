@@ -52,7 +52,7 @@ namespace PowerTools.Attributes.Editor
                         break;
                     }
 
-                    currentParent = attr.searchAllPredecessors ? currentParent.parent : null;
+                    currentParent = attr.SearchAllPredecessors ? currentParent.parent : null;
                 }
 
                 if (component != null)

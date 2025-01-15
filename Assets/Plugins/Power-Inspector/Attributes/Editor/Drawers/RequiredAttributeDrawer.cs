@@ -17,7 +17,7 @@ namespace PowerTools.Attributes.Editor
                 return root;
             }
 
-            HelpBox helpbox = new HelpBox((attribute as RequiredAttribute).message, HelpBoxMessageType.Error);
+            HelpBox helpbox = new HelpBox((attribute as RequiredAttribute).Message, HelpBoxMessageType.Error);
             helpbox.style.display = property.objectReferenceValue == null
                                     ? DisplayStyle.Flex
                                     : DisplayStyle.None;

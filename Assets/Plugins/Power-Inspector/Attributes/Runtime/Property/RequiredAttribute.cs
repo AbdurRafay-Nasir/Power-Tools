@@ -6,11 +6,11 @@ namespace PowerTools.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class RequiredAttribute : UnityEngine.PropertyAttribute
     {
-        public string message;
+        public string Message { get; }
 
         public RequiredAttribute(string message = "This is Required")
         {
-            this.message = message;
+            Message = message;
         }
     }
 }

@@ -91,13 +91,13 @@ namespace PowerTools.Attributes
         public float DescriptionFontSize { get; set; } = 12f;
         public bool AddHorizontalLine { get; set; } = true;
 
-        public readonly string title;
-        public readonly string description;
+        public string Title { get; }
+        public string Description { get; }
 
         public TitleAttribute(string title, string description = "")
         {
-            this.title = title;
-            this.description = description;
+            Title = title;
+            Description = description;
         }
     }
 }

@@ -158,7 +158,7 @@ namespace PowerTools.Attributes.Editor
                     continue;
 
                 Button button = new Button();
-                button.text = buttonAttribute.text;
+                button.text = buttonAttribute.Text;
 
                 button.RegisterCallback<ClickEvent>((callback) =>
                 {

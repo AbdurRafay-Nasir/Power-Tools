@@ -12,7 +12,7 @@ namespace PowerTools.Attributes.Editor
         {
             HelpboxAttribute attr = (attribute as HelpboxAttribute);
 
-            return new HelpBox(attr.message, (HelpBoxMessageType)(int)attr.messageType);
+            return new HelpBox(attr.Message, (HelpBoxMessageType)(int)attr.MessageType);
         }
     }
 }

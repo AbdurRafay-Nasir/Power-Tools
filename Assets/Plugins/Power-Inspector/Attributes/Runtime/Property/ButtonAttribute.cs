@@ -6,11 +6,11 @@ namespace PowerTools.Attributes
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class ButtonAttribute : UnityEngine.PropertyAttribute
     {
-        public string text;
+        public string Text { get; }
 
         public ButtonAttribute(string buttonText)
         {
-            text = buttonText;
+            Text = buttonText;
         }
     }
 }

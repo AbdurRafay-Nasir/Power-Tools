@@ -6,13 +6,13 @@ namespace PowerTools.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class HelpboxAttribute : UnityEngine.PropertyAttribute
     {
-        public readonly string message;
-        public readonly MessageType messageType;
+        public string Message { get; }
+        public MessageType MessageType { get; }
 
         public HelpboxAttribute(string message, MessageType messageType)
         {
-            this.message = message;
-            this.messageType = messageType;
+            Message = message;
+            MessageType = messageType;
         }
     }
 }

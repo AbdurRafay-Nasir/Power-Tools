@@ -18,7 +18,7 @@ namespace PowerTools.Attributes.Editor
             root.SetPadding(attr.PaddingLeft, attr.PaddingRight, attr.PaddingTop, attr.PaddingBottom);
             root.SetMargin(attr.MarginLeft, attr.MarginRight, attr.MarginTop, attr.MarginBottom);
 
-            Label title = new Label(attr.title);
+            Label title = new Label(attr.Title);
             title.style.alignSelf = (Align)(int)attr.TitleAlignment;
             title.style.unityFontStyleAndWeight = attr.BoldTitle ? FontStyle.Bold : FontStyle.Normal;
             title.style.fontSize = attr.TitleFontSize;
@@ -28,9 +28,9 @@ namespace PowerTools.Attributes.Editor
 
             root.Add(title);
 
-            if (!string.IsNullOrEmpty(attr.description))
+            if (!string.IsNullOrEmpty(attr.Description))
             {
-                Label description = new Label(attr.description);
+                Label description = new Label(attr.Description);
                 description.style.color = lightWhite;
                 description.style.alignSelf = (Align)(int)attr.DescriptionAlignment;
                 description.style.fontSize = attr.DescriptionFontSize;

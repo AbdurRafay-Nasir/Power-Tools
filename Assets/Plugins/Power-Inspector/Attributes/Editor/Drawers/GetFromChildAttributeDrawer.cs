@@ -41,7 +41,7 @@ namespace PowerTools.Attributes.Editor
                     return root;
                 }
 
-                if (attr.searchAllSuccessors)
+                if (attr.SearchAllSuccessors)
                 {
                     SearchAllChilds(property, transform, root);
                 }

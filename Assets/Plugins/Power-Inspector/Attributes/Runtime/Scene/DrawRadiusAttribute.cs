@@ -10,34 +10,19 @@ namespace PowerTools.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class DrawRadiusAttribute : PropertyAttribute, ISceneAttribute
     {
-        private readonly Color lineColor;
-
         public bool HideWhenInspectorIsClosed { get; set; }
+
+        private readonly Color lineColor;
 
         private Object target;
         private SerializedProperty property;
         private FieldInfo fieldInfo;
-
-        #region Constructors
-
-        public DrawRadiusAttribute()
+                
+        public DrawRadiusAttribute(string lineColorHex = "#1FDD1F")
         {
-            lineColor = Color.green;
+            lineColor = ColorUtility.TryParseHtmlString(lineColorHex, out Color color) ?
+                        color : Color.green;
         }
-
-        public DrawRadiusAttribute(string hex)
-        {
-            if (ColorUtility.TryParseHtmlString(hex, out Color color))
-            {
-                lineColor = color;
-            }
-            else
-            {
-                lineColor = Color.green;
-            }
-        }
-
-        #endregion
 
         public void Setup(Object target, SerializedProperty property, FieldInfo field)
         {
