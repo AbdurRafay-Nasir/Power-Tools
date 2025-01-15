@@ -28,7 +28,7 @@ public class Tester : PowerMonoBehaviour
 
     // Advanced Settings
     [ToggleGroup("Advanced")]
-    [TabView(align = Alignment.Center)]
+    [TabView(Alignment.Left)]
     [TabGroup("Graphics")]
     public bool enableShadows;
 

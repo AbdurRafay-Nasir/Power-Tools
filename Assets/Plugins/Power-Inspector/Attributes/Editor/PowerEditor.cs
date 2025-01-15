@@ -60,16 +60,10 @@ namespace PowerTools.Attributes.Editor
                             continue;
                         }
 
-                        Button toggleButton = GetToggleButton(toggleButtonGroup, toggleGroupAttribute.toggleName,
+                        Button toggleButton = GetToggleButton(toggleButtonGroup, toggleGroupAttribute.ToggleName,
                                                               out int indexInToggleButtonGroup);
 
                         VisualElement toggleGroupRoot = new VisualElement();
-
-                        toggleGroupRoot.SetPadding(toggleGroupAttribute.PaddingLeft, toggleGroupAttribute.PaddingRight,
-                                                   toggleGroupAttribute.PaddingTop, toggleGroupAttribute.PaddingBottom);
-
-                        toggleGroupRoot.SetMargin(toggleGroupAttribute.MarginLeft, toggleGroupAttribute.MarginRight,
-                                                   toggleGroupAttribute.MarginTop, toggleGroupAttribute.MarginBottom);
 
                         toggleButton.RegisterCallbackOnce<GeometryChangedEvent>(
                             (evt) => SetToggleControlledGroupDisplay(toggleGroupRoot, toggleButtonGroup, indexInToggleButtonGroup));

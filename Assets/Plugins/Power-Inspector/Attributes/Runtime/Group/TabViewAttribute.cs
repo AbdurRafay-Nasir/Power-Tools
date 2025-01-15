@@ -7,7 +7,7 @@ namespace PowerTools.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class TabViewAttribute : UnityEngine.PropertyAttribute, IGroupAttribute
     {
-        public Alignment align;
+        private readonly Alignment align;
 
         public TabViewAttribute(Alignment align = Alignment.Center)
         {

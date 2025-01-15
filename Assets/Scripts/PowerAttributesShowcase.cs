@@ -6,7 +6,7 @@ using PowerTools.Attributes;
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
     [ToggleGroup("A")]
-    [TabView]
+    [TabView(Alignment.Left)]
     [TabGroup("A")]
     [BoxGroup] 
     [DrawRadius("#FFFF00")]

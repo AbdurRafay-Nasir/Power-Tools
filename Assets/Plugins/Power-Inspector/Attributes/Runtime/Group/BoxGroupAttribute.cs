@@ -201,24 +201,22 @@ namespace PowerTools.Attributes
         {
             Box box = new Box();
 
+            Color fallbackColor = new Color(0.19f, 0.19f, 0.19f);
+
             box.style.backgroundColor = ColorUtility.TryParseHtmlString(BgColorHex, out var color) ?
-                                        color : new Color(0.19f, 0.19f, 0.19f);
+                                        color : fallbackColor;
 
             Color borderLeftColor = ColorUtility.TryParseHtmlString(BorderColorLeftHex, out var left)
-                                   ? left
-                                   : new Color(0.19f, 0.19f, 0.19f);
+                                   ? left : fallbackColor;
 
             Color borderRightColor = ColorUtility.TryParseHtmlString(BorderColorRightHex, out var right)
-                                   ? right
-                                   : new Color(0.19f, 0.19f, 0.19f);
+                                   ? right : fallbackColor;
 
             Color borderTopColor = ColorUtility.TryParseHtmlString(BorderColorTopHex, out var top)
-                                   ? top
-                                   : new Color(0.19f, 0.19f, 0.19f);
+                                   ? top : fallbackColor;
 
             Color borderBottomColor = ColorUtility.TryParseHtmlString(BorderColorBottomHex, out var bottom)
-                                    ? bottom
-                                    : new Color(0.19f, 0.19f, 0.19f);
+                                    ? bottom : fallbackColor;
 
             box.SetBorderColor(borderLeftColor, borderRightColor, borderTopColor, borderBottomColor);
 

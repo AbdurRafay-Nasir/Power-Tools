@@ -77,14 +77,7 @@ namespace PowerTools.Attributes
 
         #endregion
 
-        /// <summary>
-        /// Text displayed after foldout arrow
-        /// </summary>
         private readonly string name;
-
-        /// <summary>
-        /// Initial state of Foldout. Defaults to false
-        /// </summary>
         private readonly bool open;
 
         public FoldoutGroupAttribute(string name, bool open = false)
