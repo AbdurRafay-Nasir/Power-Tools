@@ -431,6 +431,7 @@ MonoBehaviour:
   blastRadius: 5.62961
   vector2: {x: 0, y: 0}
   meshRenderer: {fileID: 1482712812}
+  scene: test
 --- !u!23 &1482712812
 MeshRenderer:
   m_ObjectHideFlags: 0

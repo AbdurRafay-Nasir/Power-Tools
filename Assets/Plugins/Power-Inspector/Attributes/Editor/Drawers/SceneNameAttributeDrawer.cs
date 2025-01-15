@@ -18,8 +18,8 @@ namespace PowerTools.Attributes.Editor
             if (property.propertyType != SerializedPropertyType.String)
                 return new HelpBox("<color=green>[SceneName]</color> is only valid on strings.", HelpBoxMessageType.Error);
 
-            prop = property;
             Undo.undoRedoPerformed += OnUndoRedoPerformed;
+            prop = property;
 
             List<string> sceneNames = new();
 
@@ -31,17 +31,21 @@ namespace PowerTools.Attributes.Editor
                 sceneNames.Add(sceneName);
             }
 
-            dropDown = new DropdownField(property.name, sceneNames, property.stringValue);
+            string defaultValue = string.IsNullOrEmpty(property.stringValue) ? sceneNames[0]
+                                  : property.stringValue;
+
+            dropDown = new DropdownField(property.displayName, sceneNames, defaultValue);
             dropDown.AddToClassList("unity-base-field__aligned");
 
-            dropDown.RegisterValueChangedCallback((callback) =>
+            property.stringValue = dropDown.value;
+            property.serializedObject.ApplyModifiedProperties();
+
+            dropDown.RegisterValueChangedCallback((evt) =>
             {
                 property.stringValue = dropDown.value;
                 property.serializedObject.ApplyModifiedProperties();
             });
-
-            property.stringValue = dropDown.value;
-             
+                         
             return dropDown;
         }
 

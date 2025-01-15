@@ -10,6 +10,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     [TabGroup("A")]
     [BoxGroup] 
     [DrawRadius("#FFFF00")]
+    [Title("This is SPARTAAAAA!", "Assemble brodars")]
     public float blastRadius = 10f;
 
     [DrawLine]
@@ -18,4 +19,13 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 
     [GetFromSelf, Required("Required Bro")]
     public MeshRenderer meshRenderer;
+
+    [SceneName]
+    public string scene;
+
+    [Button("Print Scene")]
+    public void PrintScene()
+    {
+        Debug.Log(scene);
+    }
 }
