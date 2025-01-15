@@ -4,7 +4,7 @@ namespace PowerTools.Attributes
 {
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class GetFromChildAttribute : PowerAttribute
+    public class GetFromChildAttribute : UnityEngine.PropertyAttribute
     {
         public bool searchAllSuccessors;
 

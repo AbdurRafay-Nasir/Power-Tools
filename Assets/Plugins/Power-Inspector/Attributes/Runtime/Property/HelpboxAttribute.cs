@@ -4,7 +4,7 @@ namespace PowerTools.Attributes
 {
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class HelpboxAttribute : PowerAttribute
+    public class HelpboxAttribute : UnityEngine.PropertyAttribute
     {
         public string message;
         public MessageType messageType;

@@ -4,7 +4,7 @@ namespace PowerTools.Attributes
 {
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-    public class FolderPathAttribute : PowerAttribute
+    public class FolderPathAttribute : UnityEngine.PropertyAttribute
     {
 
     }

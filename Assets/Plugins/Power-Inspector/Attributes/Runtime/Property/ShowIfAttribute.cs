@@ -3,7 +3,7 @@ using System;
 namespace PowerTools.Attributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class ShowIfAttribute : PowerAttribute
+    public class ShowIfAttribute : UnityEngine.PropertyAttribute
     {
         public string expression;
 
