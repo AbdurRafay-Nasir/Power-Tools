@@ -2,7 +2,8 @@ using UnityEngine;
 using PowerTools.Attributes;
 
 [Toggles("A, B, C")]
-[Searchable] 
+[Searchable]
+[DisplayScriptField]
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
     [ToggleGroup("A")]
@@ -15,12 +16,13 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 
     [DrawLine]
     [PositionHandle]
+    [FoldoutGroup("AA")]
     public Vector2 vector2;
 
     [GetFromSelf, Required("Required Bro")]
     public MeshRenderer meshRenderer;
 
-    [SceneName]
+    [Path, EndGroup]
     public string scene;
 
     [Button("Print Scene")]

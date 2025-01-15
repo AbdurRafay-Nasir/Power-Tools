@@ -8,6 +8,7 @@ using UnityEditor;
 
 namespace PowerTools.Attributes.Editor
 {
+    [CanEditMultipleObjects]
     [CustomEditor(typeof(PowerMonoBehaviour), true)]
     public class PowerMonoBehaviourEditor : PowerEditor
     {

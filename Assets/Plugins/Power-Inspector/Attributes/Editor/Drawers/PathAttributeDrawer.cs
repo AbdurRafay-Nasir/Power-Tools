@@ -3,6 +3,7 @@
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 
 namespace PowerTools.Attributes.Editor
 {
@@ -16,17 +17,13 @@ namespace PowerTools.Attributes.Editor
         {
             if (property.propertyType != SerializedPropertyType.String)
             {
-                return new HelpBox("<color=green>[FilePath]</color> is applicable only on String Fields", 
+                return new HelpBox("<color=green>[FilePath]</color> is applicable only on String Fields",
                                    HelpBoxMessageType.Error);
             }
 
-            Undo.undoRedoPerformed += OnUndoRedoPerformed;
-            
             prop = property;
-            objectField = new ObjectField(property.displayName) 
-            {
-                allowSceneObjects = false
-            };
+            objectField = new ObjectField(property.displayName);
+            objectField.allowSceneObjects = false;
 
             // By default unity adds this class on Child Fields of PropertyField
             // Since this field is added as a child of PropertyField through code
@@ -38,23 +35,26 @@ namespace PowerTools.Attributes.Editor
             objectField.value = string.IsNullOrEmpty(prop.stringValue) ? null
                                 : AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(prop.stringValue);
 
-            objectField.RegisterValueChangedCallback((evt) =>
-            {
-                if (evt.newValue != null)
-                {
-                    string path = AssetDatabase.GetAssetPath(evt.newValue);
-
-                    property.stringValue = path;
-                }
-                else
-                {
-                    property.stringValue = "";
-                }
-
-                property.serializedObject.ApplyModifiedProperties();
-            });
+            objectField.RegisterValueChangedCallback(OnObjectFieldValueChange);
+            Undo.undoRedoPerformed += OnUndoRedoPerformed;
 
             return objectField;
+        }
+
+        private void OnObjectFieldValueChange(ChangeEvent<UnityEngine.Object> evt)
+        {
+            if (evt.newValue != null)
+            {
+                string path = AssetDatabase.GetAssetPath(evt.newValue);
+
+                prop.stringValue = path;
+            }
+            else
+            {
+                prop.stringValue = "";
+            }
+
+            prop.serializedObject.ApplyModifiedProperties();
         }
 
         private void OnUndoRedoPerformed()
@@ -67,6 +67,7 @@ namespace PowerTools.Attributes.Editor
 
         public void Dispose()
         {
+            objectField.UnregisterValueChangedCallback(OnObjectFieldValueChange);
             Undo.undoRedoPerformed -= OnUndoRedoPerformed;
         }
     }

@@ -11,6 +11,8 @@ using UnityEngine;
 
 namespace PowerTools.Attributes.Editor
 {
+    [CanEditMultipleObjects]
+    [CustomEditor(typeof(ScriptableObject), true)]
     public class PowerEditor : UnityEditor.Editor
     {
         protected List<SerializedProperty> serializedProperties = new();
@@ -31,6 +33,16 @@ namespace PowerTools.Attributes.Editor
             Stack<VisualElement> parentStack = new Stack<VisualElement>();
 
             VisualElement currentParent = tree;
+
+            DisplayScriptFieldAttribute displayScriptFieldAttr = targetType.GetCustomAttribute<DisplayScriptFieldAttribute>();
+            if (displayScriptFieldAttr != null)
+            {
+                PropertyField scriptField = new PropertyField(serializedObject.FindProperty("m_Script"));
+                scriptField.SetEnabled(false);
+                scriptField.style.marginBottom = 2f;
+
+                currentParent.Add(scriptField);
+            }
 
             TogglesAttribute togglesAttribute = targetType.GetCustomAttribute<TogglesAttribute>();
             ToggleButtonGroup toggleButtonGroup = null;
