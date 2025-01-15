@@ -1,9 +1,8 @@
 using System;
-using System.Diagnostics;
 
 namespace PowerTools.Attributes
 {
-    [Conditional("UNITY_EDITOR")]
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class TitleAttribute : UnityEngine.PropertyAttribute
     {

@@ -2,6 +2,7 @@ using System;
 
 namespace PowerTools.Attributes
 {
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class SearchableAttribute : UnityEngine.PropertyAttribute
     {

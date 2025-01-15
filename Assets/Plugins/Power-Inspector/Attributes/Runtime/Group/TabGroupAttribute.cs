@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 
 namespace PowerTools.Attributes
 {
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class TabGroupAttribute : UnityEngine.PropertyAttribute, IGroupAttribute
     {
