@@ -8,10 +8,10 @@ namespace PowerTools.Attributes
     {
         #region Padding
 
-        public float PaddingLeft { get; set; }
-        public float PaddingRight { get; set; } = 2f;
-        public float PaddingTop { get; set; } = 2f;
-        public float PaddingBottom { get; set; } = 2f;
+        public float PaddingLeft { get; set; } = 6f;
+        public float PaddingRight { get; set; } = 6f;
+        public float PaddingTop { get; set; }
+        public float PaddingBottom { get; set; }
         public float PaddingHorizontal
         {
             set
@@ -75,20 +75,18 @@ namespace PowerTools.Attributes
         }
 
         #endregion
-        
-        public string[] ToggleNames { get; }
-        public Alignment Alignment { get; set; }
-        public float FontSize { get; set; } = 15f;
 
+        public Alignment Alignment { get; set; } = Alignment.Center;
+        public float FontSize { get; set; } = 15f;
+        public string[] ToggleNames { get; }
+
+        /// <summary>
+        /// Creates Toggle Buttons on top of component.
+        /// </summary>
+        /// <param name="toggles">Comma separated words: "Walk, Sprint, Swim"</param>
         public TogglesAttribute(string toggles)
         {
             ToggleNames = GetToggleNames(toggles);
-
-            Alignment = Alignment.Center;
-            FontSize = 15f;
-
-            PaddingLeft = 6f;
-            PaddingRight = 6f;
         }
 
         /// <summary>

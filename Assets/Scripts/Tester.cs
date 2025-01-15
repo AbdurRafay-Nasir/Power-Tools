@@ -70,10 +70,9 @@ public class Tester : PowerMonoBehaviour
     //public string gameOverScene;
 
     // File and Folder Paths
-    [FilePath]
+    [Path]
     public string configFilePath;
 
-    [FolderPath]
     public string saveDataFolderPath;
 
     // Conditional Display

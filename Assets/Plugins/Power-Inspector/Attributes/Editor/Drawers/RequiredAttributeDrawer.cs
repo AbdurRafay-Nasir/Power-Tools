@@ -26,14 +26,9 @@ namespace PowerTools.Attributes.Editor
 
             propertyField.RegisterValueChangeCallback(callback =>
             {
-                if (property.objectReferenceValue == null)
-                {
-                    helpbox.style.display = DisplayStyle.Flex;
-                }
-                else
-                {
-                    helpbox.style.display = DisplayStyle.None;
-                }
+                helpbox.style.display = property.objectReferenceValue == null
+                                        ? DisplayStyle.Flex 
+                                        : DisplayStyle.None;
             });
 
             root.Add(helpbox);

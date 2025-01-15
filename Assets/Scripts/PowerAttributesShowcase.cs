@@ -1,7 +1,7 @@
 using UnityEngine;
 using PowerTools.Attributes;
 
-[Toggles("A, B, C", PaddingLeft = 10f)]
+[Toggles("A, B, C")]
 [Searchable] 
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {

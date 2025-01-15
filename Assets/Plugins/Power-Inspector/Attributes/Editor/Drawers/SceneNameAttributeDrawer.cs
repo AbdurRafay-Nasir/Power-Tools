@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEditor.UIElements;
 
 namespace PowerTools.Attributes.Editor
 {
     [CustomPropertyDrawer(typeof(SceneNameAttribute))]
-    public class SceneNameAttributeDrawer : PropertyDrawer, System.IDisposable
+    public class SceneNameAttributeDrawer : PropertyDrawer
     {
         private DropdownField dropDown;
         private SerializedProperty prop;
@@ -18,7 +19,6 @@ namespace PowerTools.Attributes.Editor
             if (property.propertyType != SerializedPropertyType.String)
                 return new HelpBox("<color=green>[SceneName]</color> is only valid on strings.", HelpBoxMessageType.Error);
 
-            Undo.undoRedoPerformed += OnUndoRedoPerformed;
             prop = property;
 
             List<string> sceneNames = new();
@@ -37,27 +37,18 @@ namespace PowerTools.Attributes.Editor
             dropDown = new DropdownField(property.displayName, sceneNames, defaultValue);
             dropDown.AddToClassList("unity-base-field__aligned");
 
+            dropDown.BindProperty(property);
+
             property.stringValue = dropDown.value;
             property.serializedObject.ApplyModifiedProperties();
 
             dropDown.RegisterValueChangedCallback((evt) =>
             {
-                property.stringValue = dropDown.value;
+                property.stringValue = evt.newValue;
                 property.serializedObject.ApplyModifiedProperties();
             });
                          
             return dropDown;
-        }
-
-        private void OnUndoRedoPerformed()
-        {
-            prop.serializedObject.Update();
-            dropDown.value = prop.stringValue;
-        }
-
-        public void Dispose()
-        {
-            Undo.undoRedoPerformed -= OnUndoRedoPerformed;
         }
     }
 }

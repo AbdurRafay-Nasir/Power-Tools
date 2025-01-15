@@ -85,9 +85,9 @@ namespace PowerTools.Attributes.Editor
                     }
                     else if (attribute is EndGroupAttribute endGroupAttribute)
                     {
-                        int groupsToClose = endGroupAttribute.openGroupsToClose > parentStack.Count
+                        int groupsToClose = endGroupAttribute.OpenGroupsToClose > parentStack.Count
                                             ? parentStack.Count
-                                            : endGroupAttribute.openGroupsToClose;
+                                            : endGroupAttribute.OpenGroupsToClose;
 
                         for (int j = 0; j < groupsToClose; j++)
                             currentParent = parentStack.Pop();

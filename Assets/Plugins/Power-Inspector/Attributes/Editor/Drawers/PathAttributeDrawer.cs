@@ -3,12 +3,11 @@
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 
 namespace PowerTools.Attributes.Editor
 {
-    [CustomPropertyDrawer(typeof(FolderPathAttribute))]
-    public class FolderPathAttributeDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(PathAttribute))]
+    public class PathAttributeDrawer : PropertyDrawer, System.IDisposable
     {
         private SerializedProperty prop;
         private ObjectField objectField;
@@ -17,13 +16,14 @@ namespace PowerTools.Attributes.Editor
         {
             if (property.propertyType != SerializedPropertyType.String)
             {
-                return new HelpBox("<color=green>[FolderPath]</color> is applicable only on String Fields", HelpBoxMessageType.Error);
+                return new HelpBox("<color=green>[FilePath]</color> is applicable only on String Fields", 
+                                   HelpBoxMessageType.Error);
             }
 
             Undo.undoRedoPerformed += OnUndoRedoPerformed;
-
+            
             prop = property;
-            objectField = new ObjectField(property.displayName)
+            objectField = new ObjectField(property.displayName) 
             {
                 allowSceneObjects = false
             };
@@ -44,21 +44,14 @@ namespace PowerTools.Attributes.Editor
                 {
                     string path = AssetDatabase.GetAssetPath(evt.newValue);
 
-                    if (AssetDatabase.IsValidFolder(path))
-                    {
-                        property.stringValue = path;
-                        property.serializedObject.ApplyModifiedProperties();
-                    }
-                    else
-                    {
-                        objectField.value = null;
-                    }
+                    property.stringValue = path;
                 }
                 else
                 {
                     property.stringValue = "";
-                    property.serializedObject.ApplyModifiedProperties();
                 }
+
+                property.serializedObject.ApplyModifiedProperties();
             });
 
             return objectField;
