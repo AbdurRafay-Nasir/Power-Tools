@@ -1,184 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using PowerTools.Attributes;
+using UnityEngine.UI;
 
-[Toggles("General, Advanced, Debug")]
-public class Tester : PowerMonoBehaviour
+public class Tester : MonoBehaviour
 {
-    // General Settings
-    [ToggleGroup("General")]
-    [BoxGroup]
-    public string playerName;
+    public PowerAttributesShowcase showcase;
 
-    [BoxGroup]
-    [Required]
-    public int playerID;
+    public Button button;
+    public TextMeshProUGUI field_TMP;
+    public TextMeshProUGUI method_TMP;
 
-    [ToggleGroup("General")]
-    [FoldoutGroup("Gameplay Settings")]
-    [Range(0, 100)]
-    public float health;
-
-    [FoldoutGroup("Gameplay Settings")]
-    [Range(0, 100)]
-    public float stamina;
-
-    [EndGroup] // Ends FoldoutGroup "Gameplay Settings"
-    [EndGroup] // Ends ToggleGroup "General"
-
-    // Advanced Settings
-    [ToggleGroup("Advanced")]
-    [TabView(Alignment.Left)]
-    [TabGroup("Graphics")]
-    public bool enableShadows;
-
-    [EndGroup, TabGroup("Graphics")]
-    public bool enablePostProcessing;
-
-    [EndGroup, TabGroup("Audio")]
-    [Range(0, 1)]
-    public float masterVolume;
-
-    [EndGroup, TabGroup("Audio")]
-    [Range(0, 1)]
-    public float musicVolume;
-
-    [EndGroup, TabGroup("Controls")]
-    public KeyCode jumpKey;
-
-    [EndGroup, TabGroup("Controls")]
-    public KeyCode shootKey;
-
-    [EndGroup(3)] // Ends TabView
-
-    // Debug Settings
-    [ToggleGroup("Debug")]
-    [ReadOnly]
-    public string debugInfo;
-
-    [ToggleGroup("Debug")]
-    [Helpbox("This is a debug variable for testing purposes.", MessageType.None)]
-    public bool showDebugLogs;
-
-    [EndGroup] // Ends ToggleGroup "Debug"
-
-    // Scene References (Casued Problems)
-    //[SceneName]
-    //public string mainScene;
-
-    //[SceneName]
-    //public string gameOverScene;
-
-    // File and Folder Paths
-    [Path]
-    public string configFilePath;
-
-    public string saveDataFolderPath;
-
-    // Conditional Display
-    public int advancedOptionValue;
-
-    public bool showAdvancedOptions = true;
-
-    // Gizmo Drawing
-    [DrawLine(HideWhenInspectorIsClosed = true), PositionHandle(HideWhenInspectorIsClosed = true)]
-    public Vector3 pointA;
-
-    [DrawRadius(HideWhenInspectorIsClosed = true)]
-    public float centerPoint;
-
-    // Position Handles
-    [PositionHandle(HideWhenInspectorIsClosed = true)]
-    public Vector3 handlePosition;
-
-    // Methods
-    [Button("GG")]
-    public void ResetPlayerStats()
+    private void OnEnable()
     {
-        health = 100f;
-        stamina = 100f;
-        Debug.Log("Player stats reset.");
+        button.onClick.AddListener(OnClick);
+    }
+    private void OnDisable()
+    {
+        button.onClick.RemoveListener(OnClick);
     }
 
-    [Button("BB")]
-    public void LoadMainScene()
+    private void OnClick()
     {
-        // Logic to load the main scene
-        Debug.Log("Loading main scene...");
+        foreach (FieldInfo field in showcase.GetType().GetFields())
+        {
+            IEnumerable<Attribute> attributes = field.GetCustomAttributes();
+
+            foreach (var attr in attributes)
+            {
+                field_TMP.text += $"{field.Name}: {attr.GetType().Name}\n";
+            }
+        }
+
+        foreach (var method in showcase.GetType().GetMethods())
+        {
+            IEnumerable<Attribute> attributes = method.GetCustomAttributes();
+
+            foreach (var attr in attributes)
+            {
+                method_TMP.text += $"{method.Name}: {attr.GetType().Name}\n";
+            }
+        }
     }
-
-    ///* // Inherited from Joint
-    //public Rigidbody connectedBody;
-    //public Vector3 anchor;
-    //public Vector3 axis;
-    //public bool autoConfigureConnectedAnchor;
-    //public Vector3 connectedAnchor;
-    //public Vector3 secondaryAxis;
-    //public ConfigurableJointMotion xMotion;
-    //public ConfigurableJointMotion yMotion;
-    //public ConfigurableJointMotion zMotion;
-    //public ConfigurableJointMotion angularXMotion;
-    //public ConfigurableJointMotion angularYMotion;
-    //public ConfigurableJointMotion angularZMotion;
-
-    //// linear limit spring
-    //public float spring;
-    //public float damper;
-
-    //// linear limit
-    //public float limit;
-    //public float bounciness;
-    //public float contactDistance;
-
-
-    //public float breakForce;
-    //public float breakTorque;
-    //public bool enableCollision;
-    //public bool enablePreprocessing;
-    //public float massScale;
-    //public float connectedMassScale;
-
-    //// ConfigurableJoint-specific properties
-
-    //// Linear Motion
-
-    //// Angular Motion
-
-    //// Linear Limit
-    //public SoftJointLimitSpring linearLimitSpring;
-    //public SoftJointLimit linearLimit;
-
-    //// Angular Limits
-    //public SoftJointLimitSpring angularXLimitSpring;
-    //public SoftJointLimit lowAngularXLimit;
-    //public SoftJointLimit highAngularXLimit;
-    //public SoftJointLimitSpring angularYZLimitSpring;
-    //public SoftJointLimit angularYLimit;
-    //public SoftJointLimit angularZLimit;
-
-    //// Target Settings
-    //public Vector3 targetPosition;
-    //public Vector3 targetVelocity;
-    //public Quaternion targetRotation;
-    //public Vector3 targetAngularVelocity;
-
-    //// Drive Settings
-    //public JointDrive xDrive;
-    //public JointDrive yDrive;
-    //public JointDrive zDrive;
-    //public RotationDriveMode rotationDriveMode;
-    //public JointDrive angularXDrive;
-    //public JointDrive angularYZDrive;
-    //public JointDrive slerpDrive;
-
-    //// Projection Settings
-    //public JointProjectionMode projectionMode;
-    //public float projectionDistance;
-    //public float projectionAngle;
-
-    //// Miscellaneous
-    //public bool configuredInWorldSpace;
-    //public bool swapBodies;
-
-    //*/
 }

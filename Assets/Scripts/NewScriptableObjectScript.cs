@@ -3,7 +3,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewScriptableObjectScript", menuName = "Scriptable Objects/NewScriptableObjectScript")]
 [DisplayScriptField]
-public class NewScriptableObjectScript : ScriptableObject
+public class NewScriptableObjectScript : PowerScriptableObject
 {
     [BoxGroup]
     [Title("AAAAAAAAAAAAAAAA")]

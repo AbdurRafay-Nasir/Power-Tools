@@ -7,12 +7,9 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
 using System.Text.RegularExpressions;
-using UnityEngine;
 
 namespace PowerTools.Attributes.Editor
 {
-    [CanEditMultipleObjects]
-    [CustomEditor(typeof(ScriptableObject), true)]
     public class PowerEditor : UnityEditor.Editor
     {
         protected List<SerializedProperty> serializedProperties = new();
