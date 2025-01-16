@@ -485,7 +485,7 @@ MonoBehaviour:
   blastRadius: 10
   vector2: {x: 0, y: 0}
   meshRenderer: {fileID: 0}
-  scene: 
+  scene: Assets/Plugins/Power-Tools/Attributes/Runtime/EndGroupAttribute.cs
 --- !u!1 &898784193
 GameObject:
   m_ObjectHideFlags: 0

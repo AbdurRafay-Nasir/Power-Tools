@@ -1,4 +1,7 @@
-public class PowerScriptableObject : UnityEngine.ScriptableObject
+namespace PowerTools.Attributes
 {
-    
+    public class PowerScriptableObject : UnityEngine.ScriptableObject
+    {
+
+    }
 }
