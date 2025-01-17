@@ -205,6 +205,21 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ![image](https://github.com/user-attachments/assets/7afbd2c8-2ba2-4dc6-9ca8-d6a9c2c85b69)
 
 ## Property Attributes
+
+### Title
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [Title("This is Spartaaaaaa!!!!", "Assemble Brodars. We are gonna win this game")]
+    public int i1;
+    public int i2;
+}
+```
+![image](https://github.com/user-attachments/assets/66675955-d566-48e0-8b84-8feee09bd004)
+
 ### Button
 ```csharp
 using UnityEngine;
