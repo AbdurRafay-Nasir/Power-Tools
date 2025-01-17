@@ -204,4 +204,79 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/7afbd2c8-2ba2-4dc6-9ca8-d6a9c2c85b69)
 
+## Property Attributes
+### Button Attribute
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [Button("Add Coins")]
+    private void AddCoins()
+    {
+        Debug.Log("Coins Added...");
+    }
+}
+```
+![image](https://github.com/user-attachments/assets/a957d602-9144-435b-ac33-1c4bbe9293b3)
+
+### GetFromChild Attribute
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    // Searches in DIRECT childs and fills the component
+    // if found, otherwise shows an error in a box
+    [GetFromChild] 
+    public MeshRenderer childRenderer;
+
+    // Searhes in all childs (children, grand children and so on)
+    [GetFromChild(true)]
+    public BoxCollider childCollider;
+}
+```
+
+### GetFromSelf Attribute
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    // Finds and fills reference if found on same game object
+    [GetFromSelf]
+    public MeshRenderer childRenderer;
+}
+```
+
+### GetFromParent Attribute
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    // Finds and fills reference if found on direct parent
+    [GetFromParent]
+    public MeshRenderer childRenderer;
+
+    // Finds and fills reference if found on any parent
+    // (direct, grand and so on)
+    [GetFromParent(true)]
+    public BoxCollider childCollider;
+}
+```
+
+
+
+
+
+
+
+
+
+
 
