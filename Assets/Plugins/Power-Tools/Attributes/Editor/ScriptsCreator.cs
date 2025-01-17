@@ -8,9 +8,9 @@ namespace PowerEditor.Attributes.Editor
 { 
     public class ScriptsCreator
     {
-        private const string PROPERTY_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Attributes/Editor/Templates/PropertyAttribute.cs.txt";
-        private const string GROUP_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Attributes/Editor/Templates/GroupAttribute.cs.txt";
-        private const string DRAWER_TEMPLATE_PATH = "Assets/Plugins/Power-Inspector/Attributes/Editor/Templates/PropertyAttributeDrawer.cs.txt";
+        private const string PROPERTY_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Tools/Attributes/Editor/Templates/PropertyAttribute.cs.txt";
+        private const string GROUP_ATTRIBUTE_TEMPLATE_PATH = "Assets/Plugins/Power-Tools/Attributes/Editor/Templates/GroupAttribute.cs.txt";
+        private const string DRAWER_TEMPLATE_PATH = "Assets/Plugins/Power-Tools/Attributes/Editor/Templates/PropertyAttributeDrawer.cs.txt"; 
 
         #region Create Attribute
 
@@ -40,7 +40,7 @@ namespace PowerEditor.Attributes.Editor
             string templateFileContent = File.ReadAllText(DRAWER_TEMPLATE_PATH);
             string editorScriptContent = templateFileContent.Replace("#ATTRIBUTENAME#", selectedFileName);
 
-            string relativeEditorScriptPath = "Assets/Plugins/Power-Inspector/Editor/Drawers/" + selectedFileName + "Drawer.cs";
+            string relativeEditorScriptPath = "Assets/Plugins/Power-Tools/Attributes/Editor/Drawers/" + selectedFileName + "Drawer.cs";
 
             File.WriteAllText(relativeEditorScriptPath, editorScriptContent);
 
