@@ -1,4 +1,7 @@
-## FoldoutGroup
+## Group Attributes
+Thse attributes affect multiple fields, these can also be nested.
+
+### FoldoutGroup
 
 ```csharp
 using UnityEngine;
@@ -38,7 +41,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/8670d0b1-41f6-448c-bc8b-8aee75c52388)
 
-## BoxGroup
+### BoxGroup
 
 ```csharp
 using UnityEngine;
@@ -83,7 +86,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ![image](https://github.com/user-attachments/assets/86a7005c-ba50-4bc4-ae9a-0c2cf5a2b3f8)
 
 
-## TabView & TabGroup
+### TabView & TabGroup
 
 ```csharp
 using UnityEngine;
@@ -108,7 +111,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/206f5c19-6224-4b99-ba1e-2c4c250f3d5e)
 
-## Toggles & ToggleGroup
+### Toggles & ToggleGroup
 
 ```csharp
 using UnityEngine;
@@ -137,7 +140,9 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 \
 ![image](https://github.com/user-attachments/assets/cfa354ff-9e97-41c7-be25-a787c6f08340)
 
-## DrawLine
+## Scene Attributes
+These attributes have effects in scene view.
+### DrawLine
 
 ```csharp
 using UnityEngine;
@@ -151,7 +156,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/0a186c3c-51f7-4fda-b018-fb2fb3703239)
 
-## PositionHandle
+### PositionHandle
 ```csharp
 using UnityEngine;
 using PowerTools.Attributes;
@@ -166,7 +171,7 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/47459e34-32d0-4164-b36c-ff6ce8aea9b7)
 
-## DrawRadius
+### DrawRadius
 ```csharp
 using UnityEngine;
 using PowerTools.Attributes;
