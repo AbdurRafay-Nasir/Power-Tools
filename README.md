@@ -59,11 +59,82 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/85dbb780-1737-4f5e-9bfb-9c10ce97d275)
 
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [BoxGroup(MarginVertical = 7f)]
+    public int int1 = 10;
+
+    [FoldoutGroup("Ints")]
+    public int int2 = 10;
+    public int int3 = 10;  
+    
+    [EndGroup(2)] // specify how many groups should be closed
+
+    [BoxGroup(BorderColorHex = "#4EC9B0")]
+    public double double1 = 5.2f;
+    public double double2 = 6.8f;
+}
+```
+![image](https://github.com/user-attachments/assets/73e99e7d-92fe-4291-8813-e425ab3c387e)
 
 
+## TabView & TabGroup
 
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
 
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    // TabView is a group attribute, required to create Tabs
+    [TabView]
+    [TabGroup("Int Fields")]
+    public int int1 = 10;
+    public int int2 = 10;
+    public int int3 = 10;
+    
+    [EndGroup]
 
+    [TabGroup("Double Fields")]
+    [GUI(MarginTop = 5f)]
+    public double double1 = 5.2f;
+    public double double2 = 6.8f;
+}
+```
+![image](https://github.com/user-attachments/assets/206f5c19-6224-4b99-ba1e-2c4c250f3d5e)
+
+## Toggles & ToggleGroup
+
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+[Toggles("Ints, Doubles, Strings")]
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [ToggleGroup("Ints")]
+    public int int1 = 10;
+    public int int2 = 10;
+    public int int3 = 10;
+    [EndGroup]
+
+    [ToggleGroup("Doubles")]
+    public double double1 = 5.2f;
+    public double double2 = 6.8f;
+    [EndGroup]
+
+    [ToggleGroup("Strings")]
+    public double string1 = 5.2f;
+    public double string2 = 6.8f;
+}
+```
+![image](https://github.com/user-attachments/assets/45a4d569-2f75-42ac-abfd-8920223937a8)
+\
+![image](https://github.com/user-attachments/assets/cfa354ff-9e97-41c7-be25-a787c6f08340)
 
 
 
