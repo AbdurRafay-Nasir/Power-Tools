@@ -106,11 +106,11 @@ namespace PowerTools.Attributes.Editor
                 PropertyField propertyField = new PropertyField(property);
                 propertyField.name = property.name;
 
-                GUIAttribute guiAttribute = property.GetAttribute<GUIAttribute>();
-                if (guiAttribute != null)
+                MarginAttribute marginAttribute = property.GetAttribute<MarginAttribute>();
+                if (marginAttribute != null)
                 {
-                    propertyField.SetMargin(guiAttribute.MarginLeft, guiAttribute.MarginRight,
-                                            guiAttribute.MarginTop, guiAttribute.MarginBottom);
+                    propertyField.SetMargin(marginAttribute.Left, marginAttribute.Right,
+                                            marginAttribute.Top, marginAttribute.Bottom);
                 }
 
                 propertyFields.Add(propertyField);

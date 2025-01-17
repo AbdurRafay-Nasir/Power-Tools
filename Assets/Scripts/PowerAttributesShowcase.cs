@@ -1,11 +1,18 @@
 using UnityEngine;
 using PowerTools.Attributes;
 
-[Toggles("A, B, C")]
-[Searchable]
-[DisplayScriptField]
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
+    [Margin(Vertical = 20f)]
+    public float f1;
+}
+
+/*
+ * [Toggles("A, B, C")]
+[Searchable]
+[DisplayScriptField]
+ * 
+ * 
     [ToggleGroup("A")]
     [TabView(Alignment.Left)]
     [TabGroup("A")]
@@ -30,4 +37,4 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
     {
         Debug.Log(scene);
     }
-}
+ */

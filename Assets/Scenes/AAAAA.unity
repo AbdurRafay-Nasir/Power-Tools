@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 680137321}
   - component: {fileID: 680137322}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Awesome Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,10 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8781f47abc7896e4a856d983380275d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastRadius: 10
-  vector2: {x: 0, y: 0}
-  meshRenderer: {fileID: 0}
-  scene: Assets/Plugins/Power-Tools/Attributes/Runtime/EndGroupAttribute.cs
+  childRenderer: {fileID: 0}
+  childCollider: {fileID: 0}
 --- !u!1 &898784193
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,6 +93,7 @@ namespace PowerTools.Attributes
         public string BorderColorBottomHex { get; set; } = "#808080";
         public string BorderColorHorizontalHex
         {
+            get => "";
             set
             {
                 BorderColorLeftHex = value;
@@ -101,6 +102,7 @@ namespace PowerTools.Attributes
         }
         public string BorderColorVerticalHex
         {
+            get => "";
             set
             {
                 BorderColorTopHex = value;
@@ -109,6 +111,7 @@ namespace PowerTools.Attributes
         }
         public string BorderColorHex
         {
+            get => "";
             set
             {
                 BorderColorLeftHex = value;
