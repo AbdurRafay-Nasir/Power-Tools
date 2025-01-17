@@ -3,8 +3,9 @@ using PowerTools.Attributes;
 
 public class PowerAttributesShowcase : PowerMonoBehaviour
 {
-    [Margin(Vertical = 20f)]
-    public float f1;
+    [Title("This is Spartaaaaaa!!!!", "Assemble Brodars. We are gonna win this game")]
+    public int i1;
+    public int i2;
 }
 
 /*

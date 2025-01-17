@@ -482,8 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8781f47abc7896e4a856d983380275d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childRenderer: {fileID: 0}
-  childCollider: {fileID: 0}
+  nextScene: New Scene
 --- !u!1 &898784193
 GameObject:
   m_ObjectHideFlags: 0
