@@ -1,6 +1,8 @@
 # Power Tools
 A utility tool to help create custom inspectors with ease. Use Attirbutes to create the look of inspector that you want.
 
+![image](https://github.com/user-attachments/assets/502699ab-5e91-4a3d-a36a-5cab70abfc33)
+
 ## Download
 Goto latest release and download .unitypackag file. Or click [here](https://github.com/AbdurRafay-Nasir/Power-Tools/releases/download/v1.0.0/power_tools.unitypackage)
 
