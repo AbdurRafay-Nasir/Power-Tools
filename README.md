@@ -140,6 +140,26 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 \
 ![image](https://github.com/user-attachments/assets/cfa354ff-9e97-41c7-be25-a787c6f08340)
 
+### ReadOnlyGroup
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [BoxGroup(MarginVertical = 7f)]
+    public int int1 = 10;
+    public int int2 = 10;
+    [EndGroup]
+
+    [BoxGroup(BorderColorHex = "#4EC9B0")]
+    [ReadOnlyGroup] // Unmodifiable Fields
+    public double double1 = 5.2f;
+    public double double2 = 6.8f;
+}
+```
+![image](https://github.com/user-attachments/assets/8a882b6f-0ea7-4042-ab89-81ece6e91763)
+
 ## Scene Attributes
 These attributes have effects in scene view.
 ### DrawLine
