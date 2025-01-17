@@ -3,7 +3,7 @@ A utility tool to help create custom inspectors with ease. Use Attirbutes to cre
 
 ## Attributes
 There are three kind of attributes.
-- **Property** Only works on individual fields. 
+- **Property** Only works on individual fields (Button is exception as it works on Methods). 
 - **Group** Works on multiple fields.
 - **Scene** Works on individual fields. Has effects in SceneView. No custom inspector is made 
 
