@@ -312,8 +312,36 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 ```
 ![image](https://github.com/user-attachments/assets/0244caed-552b-4e2a-8b7a-7c6ab9934dc8)
 
+### Required
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
 
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [Required]
+    public GameObject bulletPrefab;
 
+    [Required("Bruh. Plz fill this")]
+    public GameObject impactPrefab;
+}
+```
+![image](https://github.com/user-attachments/assets/0093e495-8816-4146-aefc-a98c44642996)
+
+### SceneName
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    // Displays a dropdown of all Scenes that are
+    // in in Build Settings / Profiles
+    [SceneName]
+    public string nextScene;
+}
+```
+![image](https://github.com/user-attachments/assets/d75019a9-e0fd-4947-9124-1c5ddd391b22)
 
 
 
