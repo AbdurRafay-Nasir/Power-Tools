@@ -136,9 +136,46 @@ public class PowerAttributesShowcase : PowerMonoBehaviour
 \
 ![image](https://github.com/user-attachments/assets/cfa354ff-9e97-41c7-be25-a787c6f08340)
 
+## DrawLine
 
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
 
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [DrawLine]
+    public Vector3 target;
+}
+```
+![image](https://github.com/user-attachments/assets/0a186c3c-51f7-4fda-b018-fb2fb3703239)
 
+## PositionHandle
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
 
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    // PositionHandle adds a move tool to manipulate
+    // Vector3 in Scene.Also works on Vector2 and Transform
+    [DrawLine, PositionHandle] 
+    public Vector3 target;
+}
+```
+![image](https://github.com/user-attachments/assets/47459e34-32d0-4164-b36c-ff6ce8aea9b7)
+
+## DrawRadius
+```csharp
+using UnityEngine;
+using PowerTools.Attributes;
+
+public class PowerAttributesShowcase : PowerMonoBehaviour
+{
+    [DrawRadius("#FFFF00")] 
+    public float target;
+}
+```
+![image](https://github.com/user-attachments/assets/7afbd2c8-2ba2-4dc6-9ca8-d6a9c2c85b69)
 
 
