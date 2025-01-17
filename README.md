@@ -2,8 +2,7 @@
 A utility tool to help create custom inspectors with ease. Use Attirbutes to create the look of inspector that you want.
 
 ## Download
-- Goto latest release and download .unitypackag file
-- Or click [here](https://github.com/AbdurRafay-Nasir/Power-Tools/releases/download/v1.0.0/power_tools.unitypackage)
+Goto latest release and download .unitypackag file. Or click [here](https://github.com/AbdurRafay-Nasir/Power-Tools/releases/download/v1.0.0/power_tools.unitypackage)
 
 ## Attributes
 There are three kind of attributes.
